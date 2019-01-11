@@ -1,6 +1,7 @@
 package com.kodemakers.charity.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
         holder.tvUserName.setText(newList.get(position).getName());
         holder.tvRoleName.setText(newList.get(position).getRole());
         Glide.with(context).load(newList.get(position).getImage()).into(holder.civUserImage);
-
+        holder.ivForwardArrow.setColorFilter(Color.parseColor("#03a9f4"));
 
     }
 
@@ -59,7 +60,7 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
 
         TextView tvUserName,tvRoleName;
         CircleImageView civUserImage;
-
+        ImageView ivForwardArrow;
 
         public RecViewHolder(View itemView) {
             super(itemView);
@@ -68,7 +69,7 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
             tvUserName = itemView.findViewById(R.id.tvUserName);
             tvRoleName = itemView.findViewById(R.id.tvRoleName);
             civUserImage = itemView.findViewById(R.id.civUserImage);
-
+            ivForwardArrow = itemView.findViewById(R.id.ivForwardArrow);
         }
     }
 

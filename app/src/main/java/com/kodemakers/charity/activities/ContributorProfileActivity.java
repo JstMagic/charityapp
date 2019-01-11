@@ -28,7 +28,7 @@ public class ContributorProfileActivity extends AppCompatActivity {
     }
 
     private void loadData(){
-        Glide.with(ContributorProfileActivity.this).load(R.drawable.hourse).into(ivProfileImage);
+        Glide.with(ContributorProfileActivity.this).load(R.drawable.dummy_user).into(ivProfileImage);
 
     }
 

@@ -1,6 +1,7 @@
 package com.kodemakers.charity.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -50,6 +51,8 @@ public class AccountDetailsActivity extends AppCompatActivity {
             toolbar.setTitle("Account Details");
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+            toolbar.setTitleTextColor(Color.parseColor("#000000"));
+            toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

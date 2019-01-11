@@ -1,6 +1,7 @@
 package com.kodemakers.charity.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setTitle("Charity Name");
+            toolbar.setTitleTextColor(Color.parseColor("#000000"));
+            toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
             setSupportActionBar(toolbar);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override

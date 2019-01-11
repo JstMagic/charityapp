@@ -59,7 +59,7 @@
                         android:layout_marginLeft="6dp"
                         android:text="Name"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
+                        android:textSize="17sp" />
 
 
                 </LinearLayout>
@@ -78,7 +78,7 @@
                         android:text="date"
                         android:layout_marginLeft="6dp"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -92,6 +92,7 @@
                 android:layout_marginRight="4dp">
 
                 <ImageView
+                    android:id="@+id/ivForwardArrow"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_arrow_forward_blue" />

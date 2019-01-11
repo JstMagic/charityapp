@@ -1,6 +1,7 @@
 package com.kodemakers.charity.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -49,11 +50,11 @@ public class StoriesActivity extends AppCompatActivity {
 
         ArrayList<StoryDetails> newList = new ArrayList<>();
 
-        newList.add(new StoryDetails("ABC",R.drawable.hourse,"09-01-2019"));
-        newList.add(new StoryDetails("XYZ",R.drawable.hourse,"09-01-2019"));
-        newList.add(new StoryDetails("PQR",R.drawable.hourse,"09-01-2019"));
-        newList.add(new StoryDetails("STU",R.drawable.hourse,"09-01-2019"));
-        newList.add(new StoryDetails("ASD",R.drawable.hourse,"09-01-2019"));
+        newList.add(new StoryDetails("Story 1",R.drawable.charity_image,"09-01-2019"));
+        newList.add(new StoryDetails("Story 2",R.drawable.charity_image,"09-01-2019"));
+        newList.add(new StoryDetails("Story 3",R.drawable.charity_image,"09-01-2019"));
+        newList.add(new StoryDetails("Story 4",R.drawable.charity_image,"09-01-2019"));
+        newList.add(new StoryDetails("Story 5",R.drawable.charity_image,"09-01-2019"));
 
 
         storyDetailsAdapter =new StoryDetailsAdapter(StoriesActivity.this, newList);
@@ -120,6 +121,8 @@ public class StoriesActivity extends AppCompatActivity {
             toolbar.setTitle("Stories");
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+            toolbar.setTitleTextColor(Color.parseColor("#000000"));
+            toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -75,9 +75,9 @@
                 <ImageView
                     android:id="@+id/ivStoryImage"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/hourse" />
+                    />
             </LinearLayout>
 
             <!--<View-->
@@ -99,11 +99,12 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/ivEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_edit" />
@@ -113,15 +114,16 @@
                         android:layout_height="40dp"
                         android:padding="8dp"
                         android:text="Edit"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp" />
+                    android:layout_marginBottom="2dp"/>
 
 
                 <LinearLayout
@@ -129,11 +131,12 @@
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/ivDelete"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_clear" />
@@ -143,7 +146,7 @@
                         android:layout_height="40dp"
                         android:padding="8dp"
                         android:text="Delete"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>

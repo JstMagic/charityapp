@@ -1,6 +1,7 @@
 package com.kodemakers.charity.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -40,7 +41,7 @@ public class CharityDetailsActivity extends AppCompatActivity {
         tvEmail.setText("abc@gmail.com");
         tvMobile.setText("1010101010");
         tvAddress.setText("abc,xyz");
-        Glide.with(CharityDetailsActivity.this).load(R.drawable.hourse).into(ivCharityImage);
+        Glide.with(CharityDetailsActivity.this).load(R.drawable.charity_image).into(ivCharityImage);
     }
 
     @Override
@@ -70,6 +71,8 @@ public class CharityDetailsActivity extends AppCompatActivity {
             toolbar.setTitle("Charity Details");
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+            toolbar.setTitleTextColor(Color.parseColor("#000000"));
+            toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

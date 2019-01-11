@@ -1,5 +1,6 @@
 package com.kodemakers.charity.activities;
 
+import android.graphics.Color;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,7 +34,6 @@ public class UsersListActivity extends AppCompatActivity {
         loadData();
     }
 
-
     void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
     }
@@ -45,11 +45,11 @@ public class UsersListActivity extends AppCompatActivity {
 
         ArrayList<UserDetails> newList = new ArrayList<>();
 
-        newList.add(new UserDetails("Nirav",R.drawable.hourse,"09-01-2019"));
-        newList.add(new UserDetails("Ram",R.drawable.hourse,"09-01-2019"));
-        newList.add(new UserDetails("Shyam",R.drawable.hourse,"09-01-2019"));
-        newList.add(new UserDetails("Mira",R.drawable.hourse,"09-01-2019"));
-        newList.add(new UserDetails("Geeta",R.drawable.hourse,"09-01-2019"));
+        newList.add(new UserDetails("Nirav",R.drawable.dummy_user,"09-01-2019"));
+        newList.add(new UserDetails("Ram",R.drawable.dummy_user,"09-01-2019"));
+        newList.add(new UserDetails("Shyam",R.drawable.dummy_user,"09-01-2019"));
+        newList.add(new UserDetails("Mira",R.drawable.dummy_user,"09-01-2019"));
+        newList.add(new UserDetails("Geeta",R.drawable.dummy_user,"09-01-2019"));
 
 
         userDetailsAdapter =new UserDetailsAdapter(UsersListActivity.this, newList);
@@ -108,6 +108,8 @@ public class UsersListActivity extends AppCompatActivity {
         if (toolbar != null) {
             toolbar.setTitle("Followers");
             setSupportActionBar(toolbar);
+            toolbar.setTitleTextColor(Color.parseColor("#000000"));
+            toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override

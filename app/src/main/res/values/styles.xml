@@ -9,7 +9,7 @@
     </style>
 
     <style name="SearchViewStyle" >
-        <item name="android:editTextColor">@color/white</item>
+        <item name="android:editTextColor">@color/black</item>
     </style>
 
 </resources>

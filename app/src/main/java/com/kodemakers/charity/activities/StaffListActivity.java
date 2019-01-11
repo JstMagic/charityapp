@@ -1,6 +1,7 @@
 package com.kodemakers.charity.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -49,11 +50,11 @@ public class StaffListActivity extends AppCompatActivity {
 
         ArrayList<StaffDetails> newList = new ArrayList<>();
 
-        newList.add(new StaffDetails("ABC",R.drawable.hourse,"moderator"));
-        newList.add(new StaffDetails("XYZ",R.drawable.hourse,"staff"));
-        newList.add(new StaffDetails("PQR",R.drawable.hourse,"admin"));
-        newList.add(new StaffDetails("STU",R.drawable.hourse,"moderator"));
-        newList.add(new StaffDetails("ASD",R.drawable.hourse,"staff"));
+        newList.add(new StaffDetails("Staff 1",R.drawable.dummy_user,"moderator"));
+        newList.add(new StaffDetails("Staff 2",R.drawable.dummy_user,"staff"));
+        newList.add(new StaffDetails("Staff 3",R.drawable.dummy_user,"admin"));
+        newList.add(new StaffDetails("Staff 4",R.drawable.dummy_user,"moderator"));
+        newList.add(new StaffDetails("Staff 5",R.drawable.dummy_user,"staff"));
 
 
         staffDetailsAdapter =new StaffDetailsAdapter(StaffListActivity.this, newList);
@@ -120,6 +121,8 @@ public class StaffListActivity extends AppCompatActivity {
             toolbar.setTitle("Staff List");
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+            toolbar.setTitleTextColor(Color.parseColor("#000000"));
+            toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

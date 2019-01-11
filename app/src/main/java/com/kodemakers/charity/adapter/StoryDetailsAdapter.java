@@ -2,6 +2,7 @@ package com.kodemakers.charity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,8 @@ public class StoryDetailsAdapter extends RecyclerView.Adapter<StoryDetailsAdapte
         holder.tvDate.setText(newList.get(position).getDate());
         Glide.with(context).load(newList.get(position).getImage()).into(holder.ivStoryImage);
 
-
+        holder.ivDelete.setColorFilter(Color.parseColor("#03a9f4"));
+        holder.ivEdit.setColorFilter(Color.parseColor("#03a9f4"));
          }
 
     @Override
@@ -61,7 +63,7 @@ public class StoryDetailsAdapter extends RecyclerView.Adapter<StoryDetailsAdapte
 
 
         TextView tvTitle,tvDate;
-        ImageView ivStoryImage;
+        ImageView ivStoryImage,ivEdit,ivDelete;
 
 
         public RecViewHolder(View itemView) {
@@ -71,6 +73,8 @@ public class StoryDetailsAdapter extends RecyclerView.Adapter<StoryDetailsAdapte
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDate = itemView.findViewById(R.id.tvDate);
             ivStoryImage = itemView.findViewById(R.id.ivStoryImage);
+            ivEdit = itemView.findViewById(R.id.ivEdit);
+            ivDelete = itemView.findViewById(R.id.ivDelete);
 
         }
     }
