@@ -43,14 +43,14 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/users"/>
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Users"
                         android:textColor="@color/mcv_text_date_light"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/text_medium"
+                        />
 
 
                 </LinearLayout>
@@ -73,14 +73,14 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/charity"/>
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Charity"
                         android:textColor="@color/mcv_text_date_light"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/text_medium"
+                         />
 
 
                 </LinearLayout>
@@ -110,14 +110,14 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/stories"/>
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Stories"
                         android:textColor="@color/mcv_text_date_light"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/text_medium"
+                         />
 
 
                 </LinearLayout>
@@ -140,14 +140,14 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/staff"/>
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Staff"
                         android:textColor="@color/mcv_text_date_light"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
+                        android:textSize="@dimen/text_medium"
+                        
 
                         />
 
@@ -179,14 +179,14 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/donations"/>
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Donatios"
                         android:textColor="@color/mcv_text_date_light"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/text_medium"
+                         />
 
 
                 </LinearLayout>
@@ -209,14 +209,14 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/account"/>
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Account Details"
                         android:textColor="@color/mcv_text_date_light"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
+                        android:textSize="@dimen/text_medium"
+                        
 
                         />
 
@@ -250,14 +250,14 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/intro_steppers"/>
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Intro Steppers"
                         android:textColor="@color/mcv_text_date_light"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/text_medium"
+                         />
 
 
                 </LinearLayout>

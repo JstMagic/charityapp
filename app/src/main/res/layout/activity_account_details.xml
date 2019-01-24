@@ -28,137 +28,159 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:padding="@dimen/padding_edit_text"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Name On Account"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
 
-                    <EditText
-                        android:id="@+id/edtNameOnAccount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Name On Account"
-                        android:padding="6dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:textColor="@color/colorGrayDark"
-                        android:textSize="20sp" />
-                </android.support.design.widget.TextInputLayout>
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtNameOnAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:padding="@dimen/padding_edit_text"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="IFSC Code"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
 
-                    <EditText
-                        android:id="@+id/edtIfscCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="IFSC Code"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:padding="6dp"
-                        android:textColor="@color/colorGrayDark"
-                        android:textSize="20sp" />
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtIfscCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
 
-                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:padding="@dimen/padding_edit_text"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Bank Name"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
 
-                    <EditText
-                        android:id="@+id/edtBankName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Bank Name"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:padding="6dp"
-                        android:textColor="@color/colorGrayDark"
-                        android:textSize="20sp" />
-                </android.support.design.widget.TextInputLayout>
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtBankName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:padding="@dimen/padding_edit_text"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Account Type"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
 
-                    <EditText
-                        android:id="@+id/edtAccountType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Account Type"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:padding="6dp"
-                        android:textColor="@color/colorGrayDark"
-                        android:textSize="20sp" />
-                </android.support.design.widget.TextInputLayout>
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtAccountType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:padding="@dimen/padding_edit_text"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Address"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
 
-                    <EditText
-                        android:id="@+id/edtAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:hint="Address"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:maxLines="3"
-                        android:minLines="3"
-                        android:padding="6dp"
-                        android:textColor="@color/colorGrayDark"
-                        android:textSize="20sp" />
-                </android.support.design.widget.TextInputLayout>
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom">
 
-        <TextView
+        <com.kodemakers.charity.fonts.RobotoBoldTextView
             android:id="@+id/tvSave"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:background="@color/colorPrimary"
             android:gravity="center"
+            android:padding="16dp"
             android:text="Save"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_medium"
+            />
     </LinearLayout>
 
 

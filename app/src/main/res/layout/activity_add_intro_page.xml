@@ -23,7 +23,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp">
 
                 <FrameLayout
                     android:id="@+id/viewA"
@@ -44,7 +48,7 @@
                             android:padding="5dp"
                             android:src="@drawable/user_img" />
 
-                        <TextView
+                        <com.kodemakers.charity.fonts.RobotoLightTextView
                             android:id="@+id/tvSetImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -54,7 +58,7 @@
                             android:padding="10dp"
                             android:text="Add Image"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_small" />
                     </LinearLayout>
 
                 </FrameLayout>
@@ -62,43 +66,50 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:padding="@dimen/padding_edit_text"
                     android:orientation="vertical">
 
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/text_input_layout"
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="Title"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_small" />
 
-
-                        <EditText
-                            android:id="@+id/edtTitle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:hint="Title"
-                            android:inputType="text"
-                            android:maxLines="1"
-                            android:textColor="@color/colorAccent" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
+                    <com.kodemakers.charity.fonts.RobotoNormalEditText
+                        android:id="@+id/edtTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/border_gray"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_medium" />
 
 
-                        <EditText
-                            android:id="@+id/edtDescription"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:hint="Description"
-                            android:inputType="numberDecimal"
-                            android:maxLines="1"
-                            android:textColor="@color/colorAccent" />
-                    </android.support.design.widget.TextInputLayout>
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="Description"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_small" />
+
+                    <com.kodemakers.charity.fonts.RobotoNormalEditText
+                        android:id="@+id/edtDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/border_gray"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_medium" />
+
+
 
                 </LinearLayout>
             </LinearLayout>
@@ -106,16 +117,16 @@
 
     </LinearLayout>
 
-    <TextView
+    <com.kodemakers.charity.fonts.RobotoBoldTextView
         android:id="@+id/tvAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:padding="15dp"
+        android:padding="16dp"
         android:text="ADD"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_medium" />
 
 
 

@@ -54,7 +54,6 @@ public class UserDetailsAdapter extends RecyclerView.Adapter<UserDetailsAdapter.
                 context.startActivity(i);
             }
         });
-        holder.ivForwardArrow.setColorFilter(Color.parseColor("#03a9f4"));
     }
 
     @Override

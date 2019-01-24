@@ -45,7 +45,6 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
         holder.tvUserName.setText(newList.get(position).getName());
         holder.tvRoleName.setText(newList.get(position).getRole());
         Glide.with(context).load(newList.get(position).getImage()).into(holder.civUserImage);
-        holder.ivForwardArrow.setColorFilter(Color.parseColor("#03a9f4"));
 
     }
 

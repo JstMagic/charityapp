@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -11,6 +11,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="5dp"
+        app:cardCornerRadius="5dp"
         android:elevation="10dp">
 
         <LinearLayout
@@ -30,13 +31,13 @@
                     android:layout_weight="2"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvName"
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
+                        android:id="@+id/tvTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Title"
                         android:textColor="@color/colorGrayDark"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/text_small" />
 
 
                 </LinearLayout>
@@ -44,17 +45,17 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:gravity="center">
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoLightTextView
                         android:id="@+id/tvDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="date"
                         android:textColor="@color/Gray"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/text_small" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -74,7 +75,7 @@
                 <ImageView
                     android:id="@+id/ivStoryImage"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:scaleType="centerCrop"
                     />
             </LinearLayout>
@@ -98,29 +99,31 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/ivEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_edit" />
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:padding="8dp"
                         android:text="Edit"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_medium" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp" />
+                    android:layout_marginBottom="2dp"/>
 
 
                 <LinearLayout
@@ -128,22 +131,23 @@
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/ivDelete"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_clear" />
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:padding="8dp"
                         android:text="Delete"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_medium" />
                 </LinearLayout>
             </LinearLayout>
 

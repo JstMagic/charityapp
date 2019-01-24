@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -27,8 +28,31 @@ import java.util.Locale;
  * Created by nirav on 10/10/15.
  */
 public class MyApplication extends Application {
-    private RequestQueue mRequestQueue;
+
+    private static Typeface light;
+    private static Typeface normal;
+    private static Typeface bold;
+    private static Typeface medium;
+
+        private RequestQueue mRequestQueue;
     private static MyApplication sInstance;
+
+    public static Typeface getRobotoLightFont() {
+        return light;
+    }
+
+    public static Typeface getRobotoRegularFont() {
+        return normal;
+    }
+
+    public static Typeface getRobotoBoldFont() {
+        return bold;
+    }
+
+    public static Typeface getRobotoMediumFont() {
+        return medium;
+    }
+
 
     public static synchronized MyApplication getInstance() {
         return sInstance;
@@ -45,6 +69,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+
+        light = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/light.ttf");
+        normal = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/normal.ttf");
+        bold = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/bold.ttf");
+        medium = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/medium.ttf");
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo(

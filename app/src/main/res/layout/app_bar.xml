@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llHeader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
+    android:background="@color/white"
     android:minHeight="?attr/actionBarSize"
     app:titleTextColor="@color/white"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -13,3 +21,4 @@
     app:collapseIcon="@drawable/ic_arrow_back">
 
 </android.support.v7.widget.Toolbar>
+</android.support.design.widget.AppBarLayout>

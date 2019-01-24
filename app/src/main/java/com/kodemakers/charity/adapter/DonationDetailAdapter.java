@@ -48,7 +48,6 @@ public class DonationDetailAdapter extends RecyclerView.Adapter<DonationDetailAd
         holder.tvUserName.setText(newList.get(position).getContributorName());
         holder.tvDonationType.setText(newList.get(position).getDonationType());
         Glide.with(context).load(newList.get(position).getImage()).into(holder.civUserImage);
-        holder.ivForwardArrow.setColorFilter(Color.parseColor("#03a9f4"));
 
         holder.tvAmount.setText(newList.get(position).getAmount());
     }

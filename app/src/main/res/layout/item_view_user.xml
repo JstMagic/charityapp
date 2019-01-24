@@ -52,14 +52,14 @@
                     android:paddingRight="4dp">
 
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:id="@+id/tvUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Name"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="17sp" />
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_small" />
 
 
                 </LinearLayout>
@@ -68,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
                         android:id="@+id/tvDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -77,8 +77,8 @@
                         android:paddingBottom="4dp"
                         android:text="date"
                         android:layout_marginLeft="6dp"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="12sp" />
+                        android:textColor="@color/GrayDark"
+                        android:textSize="@dimen/text_small" />
                 </LinearLayout>
             </LinearLayout>
 
