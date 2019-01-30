@@ -1,10 +1,14 @@
 package com.kodemakers.charity.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -12,7 +16,7 @@ import com.kodemakers.charity.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout llUsers,llCharities,llStories,llStaff,llDonations,llAccount,llIntroSteppers;
+    LinearLayout llUsers,llCharities,llStories,llStaff,llDonations,llAccount,llIntroSteppers,llNotifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         llDonations = findViewById(R.id.llDonations);
         llAccount = findViewById(R.id.llAccount);
         llIntroSteppers = findViewById(R.id.llIntroSteppers);
-
+        llNotifications = findViewById(R.id.llNotifications);
     }
 
     private void loadData(){
@@ -90,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        llNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this,NotificationActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void setToolbar() {
@@ -106,5 +118,45 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_logout, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_log_out) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Do you really want to Logout this App ?").setCancelable(false)
+                    .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+//                                PrefUtils.clearCurrentUser(getContext());
+                            Intent i = new Intent(MainActivity.this,LoginActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.setTitle("Logout");
+            dialog.show();
+            return true;
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
+
     }
 }

@@ -36,7 +36,8 @@
         <activity android:name=".activities.IntroSteppersActivity" />
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.DonationDetailActivity" />
-        <activity android:name=".activities.AddIntroPageActivity"></activity>
+        <activity android:name=".activities.AddIntroPageActivity" />
+        <activity android:name=".activities.NotificationActivity"></activity>
     </application>
 
 </manifest>
