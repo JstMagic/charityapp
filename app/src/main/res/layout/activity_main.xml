@@ -47,7 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Users"
+                        android:text="Followers"
                         android:textColor="@color/mcv_text_date_light"
                         android:textSize="@dimen/text_medium"
                         />
@@ -77,7 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Charity"
+                        android:text="Charity Name"
                         android:textColor="@color/mcv_text_date_light"
                         android:textSize="@dimen/text_medium"
                          />
@@ -114,7 +114,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Stories"
+                        android:text="Feeds"
                         android:textColor="@color/mcv_text_date_light"
                         android:textSize="@dimen/text_medium"
                          />
@@ -263,14 +263,29 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llNotifications"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_weight="1"
+                    android:background="@drawable/uc_button_background_white"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="8dp">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/intro_steppers"/>
 
+                    <com.kodemakers.charity.fonts.RobotoMediumTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Notifications"
+                        android:textColor="@color/mcv_text_date_light"
+                        android:textSize="@dimen/text_medium"
+                        />
 
                 </LinearLayout>
 
