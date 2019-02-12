@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -82,12 +80,12 @@
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="@color/colorPrimary"
                                 android:ellipsize="end"
-                                android:hint="USERNAME"
-                                android:textSize="@dimen/text_medium"
-                                android:inputType="text"
+                                android:hint="EMAIL"
+                                android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:textColor="@color/colortext"
-                                android:textColorHint="@color/colorPrimary" />
+                                android:textColorHint="@color/colorPrimary"
+                                android:textSize="@dimen/text_medium" />
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
@@ -104,11 +102,11 @@
                                 android:backgroundTint="@color/colorPrimary"
                                 android:ellipsize="end"
                                 android:hint="PASSWORD"
-                                android:textSize="@dimen/text_medium"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
                                 android:textColor="@color/colortext"
-                                android:textColorHint="@color/colorPrimary" />
+                                android:textColorHint="@color/colorPrimary"
+                                android:textSize="@dimen/text_medium" />
                         </android.support.design.widget.TextInputLayout>
 
                         <com.kodemakers.charity.fonts.RobotoLightTextView
@@ -116,13 +114,68 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:layout_marginBottom="50dp"
                             android:paddingRight="6dp"
                             android:text="FORGOT PASSWORD?"
                             android:textAlignment="textEnd"
                             android:textColor="#bdbdbd"
-                            android:textSize="@dimen/text_micro"
-                             />
+                            android:textSize="@dimen/text_micro" />
+
+                        <com.kodemakers.charity.fonts.RobotoNormalTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="ROLE"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_medium" />
+
+                        <LinearLayout
+                            android:layout_marginBottom="60dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.kodemakers.charity.fonts.RobotoNormalTextView
+                                android:id="@+id/tvAdmin"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/blue_border"
+                                android:padding="4dp"
+                                android:text="ADMIN"
+                                android:textAlignment="center"
+                                android:textColor="#bfbfbf"
+                                android:textSize="@dimen/text_small" />
+
+                            <com.kodemakers.charity.fonts.RobotoNormalTextView
+                                android:id="@+id/tvModerator"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/blue_border"
+                                android:padding="4dp"
+                                android:text="MODERATOR"
+                                android:textAlignment="center"
+                                android:textColor="#bfbfbf"
+                                android:textSize="@dimen/text_small" />
+
+                            <com.kodemakers.charity.fonts.RobotoNormalTextView
+                                android:id="@+id/tvStaff"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/blue_border"
+                                android:padding="4dp"
+                                android:text="STAFF"
+                                android:textAlignment="center"
+                                android:textColor="#bfbfbf"
+                                android:textSize="@dimen/text_small" />
+                        </LinearLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
@@ -145,7 +198,6 @@
                 android:textColor="#ffffff"
                 android:textSize="@dimen/text_medium" />
         </FrameLayout>
-
 
 
     </LinearLayout>

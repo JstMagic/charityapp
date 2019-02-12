@@ -1,38 +1,27 @@
 package com.kodemakers.charity.activities;
 
-import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.kodemakers.charity.R;
-import com.kodemakers.charity.adapter.RoleSpinnerAdapter;
-import com.kodemakers.charity.custom.FileUtil;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import id.zelory.compressor.Compressor;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import com.kodemakers.charity.app.Config;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText edtName,edtEmail,edtPassword,edtConfirmPwd;
+    EditText edtName, edtEmail;
     TextView tvRegister;
     ImageView ivBackArrow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +31,9 @@ public class SignUpActivity extends AppCompatActivity {
         loadData();
     }
 
-    void initViews(){
+    void initViews() {
         edtName = findViewById(R.id.edtName);
         edtEmail = findViewById(R.id.edtEmail);
-        edtPassword = findViewById(R.id.edtPassword);
-        edtConfirmPwd = findViewById(R.id.edtConfirmPwd);
         tvRegister = findViewById(R.id.tvRegister);
         ivBackArrow = findViewById(R.id.ivBackArrow);
     }
@@ -55,8 +42,18 @@ public class SignUpActivity extends AppCompatActivity {
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SignUpActivity.this,ProfileActivity.class);
-                startActivity(i);
+                if (edtName.getText().toString().length() == 0) {
+                    Toast.makeText(SignUpActivity.this, "Please enter name", Toast.LENGTH_SHORT).show();
+                } else if (edtEmail.getText().toString().length() == 0) {
+                    Toast.makeText(SignUpActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
+                } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText().toString()).matches()) {
+                    Toast.makeText(getApplicationContext(), "Please enter valid email", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent i = new Intent(SignUpActivity.this, ProfileActivity.class);
+                    i.putExtra("name", edtName.getText().toString());
+                    i.putExtra("email", edtEmail.getText().toString());
+                    startActivity(i);
+                }
             }
         });
 

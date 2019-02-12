@@ -34,7 +34,7 @@ public class MyApplication extends Application {
     private static Typeface bold;
     private static Typeface medium;
 
-        private RequestQueue mRequestQueue;
+    private RequestQueue mRequestQueue;
     private static MyApplication sInstance;
 
     public static Typeface getRobotoLightFont() {
@@ -117,7 +117,7 @@ public class MyApplication extends Application {
         getRequestQueue().add(req);
     }
 
-    public String convertDate(String oldDate, String format){
+    public String convertDate(String oldDate, String format) {
         DateFormat inputFormat = new SimpleDateFormat(format);
         DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
         Date date = null;

@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,10 +13,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.kodemakers.charity.R;
+import com.kodemakers.charity.custom.PrefUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout llUsers,llCharities,llStories,llStaff,llDonations,llAccount,llIntroSteppers,llNotifications;
+    LinearLayout llUsers, llCharities, llStories, llStaff, llDonations, llAccount, llIntroSteppers, llNotifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         loadData();
     }
 
-    void initViews(){
+    void initViews() {
         llUsers = findViewById(R.id.llUsers);
         llCharities = findViewById(R.id.llCharities);
         llStories = findViewById(R.id.llStories);
@@ -38,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         llNotifications = findViewById(R.id.llNotifications);
     }
 
-    private void loadData(){
+    private void loadData() {
         llUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,UsersListActivity.class);
+                Intent i = new Intent(MainActivity.this, UsersListActivity.class);
                 startActivity(i);
             }
         });
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         llCharities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,CharityDetailsActivity.class);
+                Intent i = new Intent(MainActivity.this, CharityDetailsActivity.class);
                 startActivity(i);
             }
         });
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         llStories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,StoriesActivity.class);
+                Intent i = new Intent(MainActivity.this, StoriesActivity.class);
                 startActivity(i);
             }
         });
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         llStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,StaffListActivity.class);
+                Intent i = new Intent(MainActivity.this, StaffListActivity.class);
                 startActivity(i);
             }
         });
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         llDonations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,DonationActivity.class);
+                Intent i = new Intent(MainActivity.this, DonationActivity.class);
                 startActivity(i);
             }
         });
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         llAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,AccountDetailsActivity.class);
+                Intent i = new Intent(MainActivity.this, AccountDetailsActivity.class);
                 startActivity(i);
             }
         });
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         llIntroSteppers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,IntroSteppersActivity.class);
+                Intent i = new Intent(MainActivity.this, IntroSteppersActivity.class);
                 startActivity(i);
             }
         });
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         llNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,NotificationActivity.class);
+                Intent i = new Intent(MainActivity.this, NotificationActivity.class);
                 startActivity(i);
             }
         });
@@ -135,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-//                                PrefUtils.clearCurrentUser(getContext());
-                            Intent i = new Intent(MainActivity.this,LoginActivity.class);
+                            PrefUtils.clearCurrentUser(MainActivity.this);
+                            Intent i = new Intent(MainActivity.this, LoginActivity.class);
                             startActivity(i);
                             finish();
                         }
@@ -153,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
             return true;
         }
-
 
 
         return super.onOptionsItemSelected(item);

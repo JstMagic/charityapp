@@ -183,7 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Donatios"
+                        android:text="Donations"
                         android:textColor="@color/mcv_text_date_light"
                         android:textSize="@dimen/text_medium"
                          />
