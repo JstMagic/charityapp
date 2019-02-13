@@ -108,8 +108,27 @@ public class MainActivity extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.setTitle("Charity Name");
+            try {
+                if (PrefUtils.getUser(MainActivity.this).getCharityName().length() == 0) {
+                    toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getName());
+                    if (PrefUtils.getUser(MainActivity.this).getType().equalsIgnoreCase("staff")) {
+                        toolbar.setSubtitle("Staff");
+                    } else {
+                        toolbar.setSubtitle("Moderator");
+                    }
+                } else {
+                    toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getCharityName());
+                }
+            } catch (Exception e) {
+                toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getName());
+                if (PrefUtils.getUser(MainActivity.this).getType().equalsIgnoreCase("staff")) {
+                    toolbar.setSubtitle("Staff");
+                } else {
+                    toolbar.setSubtitle("Moderator");
+                }
+            }
             toolbar.setTitleTextColor(Color.parseColor("#000000"));
+            toolbar.setSubtitleTextColor(Color.parseColor("#000000"));
             toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
             setSupportActionBar(toolbar);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {

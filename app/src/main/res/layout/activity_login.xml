@@ -141,11 +141,11 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginRight="2dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/blue_border"
+                                android:background="@drawable/button_background"
                                 android:padding="4dp"
                                 android:text="ADMIN"
                                 android:textAlignment="center"
-                                android:textColor="#bfbfbf"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/text_small" />
 
                             <com.kodemakers.charity.fonts.RobotoNormalTextView
@@ -159,7 +159,7 @@
                                 android:padding="4dp"
                                 android:text="MODERATOR"
                                 android:textAlignment="center"
-                                android:textColor="#bfbfbf"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="@dimen/text_small" />
 
                             <com.kodemakers.charity.fonts.RobotoNormalTextView
@@ -173,7 +173,7 @@
                                 android:padding="4dp"
                                 android:text="STAFF"
                                 android:textAlignment="center"
-                                android:textColor="#bfbfbf"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="@dimen/text_small" />
                         </LinearLayout>
                     </LinearLayout>

@@ -2,240 +2,273 @@ package com.kodemakers.charity.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CharityResponse{
+public class CharityResponse {
 
-	@SerializedName("transaction_id")
-	private String transactionId;
+    @SerializedName("transaction_id")
+    private String transactionId;
 
-	@SerializedName("image")
-	private String image;
+    @SerializedName("image")
+    private String image;
 
-	@SerializedName("charity_type")
-	private String charityType;
+    @SerializedName("charity_type")
+    private String charityType;
 
-	@SerializedName("is_active")
-	private String isActive;
+    @SerializedName("is_active")
+    private String isActive;
 
-	@SerializedName("charity_address")
-	private String charityAddress;
+    @SerializedName("charity_address")
+    private String charityAddress;
 
-	@SerializedName("impact")
-	private String impact;
+    @SerializedName("impact")
+    private String impact;
 
-	@SerializedName("latitude")
-	private String latitude;
+    @SerializedName("latitude")
+    private String latitude;
 
-	@SerializedName("mobile")
-	private String mobile;
+    @SerializedName("mobile")
+    private String mobile;
 
-	@SerializedName("created_at")
-	private String createdAt;
+    @SerializedName("created_at")
+    private String createdAt;
 
-	@SerializedName("notification_id")
-	private String notificationId;
+    @SerializedName("notification_id")
+    private String notificationId;
 
-	@SerializedName("message")
-	private String message;
+    @SerializedName("message")
+    private String message;
 
-	@SerializedName("charity_name")
-	private String charityName;
+    @SerializedName("charity_name")
+    private String charityName;
 
-	@SerializedName("charity_details")
-	private String charityDetails;
+    @SerializedName("charity_details")
+    private String charityDetails;
 
-	@SerializedName("password")
-	private String password;
+    @SerializedName("password")
+    private String password;
 
-	@SerializedName("followers")
-	private String followers;
+    @SerializedName("followers")
+    private String followers;
 
-	@SerializedName("charity_id")
-	private String charityId;
+    @SerializedName("charity_id")
+    private String charityId;
 
-	@SerializedName("email")
-	private String email;
+    @SerializedName("email")
+    private String email;
 
-	@SerializedName("longitude")
-	private String longitude;
+    @SerializedName("longitude")
+    private String longitude;
 
-	@SerializedName("status")
-	private String status;
+    @SerializedName("status")
+    private String status;
 
-	public void setTransactionId(String transactionId){
-		this.transactionId = transactionId;
-	}
+    @SerializedName("staff_id")
+    private String staff_id;
 
-	public String getTransactionId(){
-		return transactionId;
-	}
+    @SerializedName("name")
+    private String name;
 
-	public void setImage(String image){
-		this.image = image;
-	}
+    @SerializedName("type")
+    private String type;
 
-	public String getImage(){
-		return image;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setCharityType(String charityType){
-		this.charityType = charityType;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getCharityType(){
-		return charityType;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setIsActive(String isActive){
-		this.isActive = isActive;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getIsActive(){
-		return isActive;
-	}
+    public String getStaff_id() {
+        return staff_id;
+    }
 
-	public void setCharityAddress(String charityAddress){
-		this.charityAddress = charityAddress;
-	}
+    public void setStaff_id(String staff_id) {
+        this.staff_id = staff_id;
+    }
 
-	public String getCharityAddress(){
-		return charityAddress;
-	}
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
 
-	public void setImpact(String impact){
-		this.impact = impact;
-	}
+    public String getTransactionId() {
+        return transactionId;
+    }
 
-	public String getImpact(){
-		return impact;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public void setLatitude(String latitude){
-		this.latitude = latitude;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public String getLatitude(){
-		return latitude;
-	}
+    public void setCharityType(String charityType) {
+        this.charityType = charityType;
+    }
 
-	public void setMobile(String mobile){
-		this.mobile = mobile;
-	}
+    public String getCharityType() {
+        return charityType;
+    }
 
-	public String getMobile(){
-		return mobile;
-	}
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
+    }
 
-	public void setCreatedAt(String createdAt){
-		this.createdAt = createdAt;
-	}
+    public String getIsActive() {
+        return isActive;
+    }
 
-	public String getCreatedAt(){
-		return createdAt;
-	}
+    public void setCharityAddress(String charityAddress) {
+        this.charityAddress = charityAddress;
+    }
 
-	public void setNotificationId(String notificationId){
-		this.notificationId = notificationId;
-	}
+    public String getCharityAddress() {
+        return charityAddress;
+    }
 
-	public String getNotificationId(){
-		return notificationId;
-	}
+    public void setImpact(String impact) {
+        this.impact = impact;
+    }
 
-	public void setMessage(String message){
-		this.message = message;
-	}
+    public String getImpact() {
+        return impact;
+    }
 
-	public String getMessage(){
-		return message;
-	}
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
 
-	public void setCharityName(String charityName){
-		this.charityName = charityName;
-	}
+    public String getLatitude() {
+        return latitude;
+    }
 
-	public String getCharityName(){
-		return charityName;
-	}
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-	public void setCharityDetails(String charityDetails){
-		this.charityDetails = charityDetails;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public String getCharityDetails(){
-		return charityDetails;
-	}
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public void setPassword(String password){
-		this.password = password;
-	}
+    public String getCreatedAt() {
+        return createdAt;
+    }
 
-	public String getPassword(){
-		return password;
-	}
+    public void setNotificationId(String notificationId) {
+        this.notificationId = notificationId;
+    }
 
-	public void setFollowers(String followers){
-		this.followers = followers;
-	}
+    public String getNotificationId() {
+        return notificationId;
+    }
 
-	public String getFollowers(){
-		return followers;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public void setCharityId(String charityId){
-		this.charityId = charityId;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public String getCharityId(){
-		return charityId;
-	}
+    public void setCharityName(String charityName) {
+        this.charityName = charityName;
+    }
 
-	public void setEmail(String email){
-		this.email = email;
-	}
+    public String getCharityName() {
+        return charityName;
+    }
 
-	public String getEmail(){
-		return email;
-	}
+    public void setCharityDetails(String charityDetails) {
+        this.charityDetails = charityDetails;
+    }
 
-	public void setLongitude(String longitude){
-		this.longitude = longitude;
-	}
+    public String getCharityDetails() {
+        return charityDetails;
+    }
 
-	public String getLongitude(){
-		return longitude;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setStatus(String status){
-		this.status = status;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getStatus(){
-		return status;
-	}
+    public void setFollowers(String followers) {
+        this.followers = followers;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"CharityResponse{" + 
-			"transaction_id = '" + transactionId + '\'' + 
-			",image = '" + image + '\'' + 
-			",charity_type = '" + charityType + '\'' + 
-			",is_active = '" + isActive + '\'' + 
-			",charity_address = '" + charityAddress + '\'' + 
-			",impact = '" + impact + '\'' + 
-			",latitude = '" + latitude + '\'' + 
-			",mobile = '" + mobile + '\'' + 
-			",created_at = '" + createdAt + '\'' + 
-			",notification_id = '" + notificationId + '\'' + 
-			",message = '" + message + '\'' + 
-			",charity_name = '" + charityName + '\'' + 
-			",charity_details = '" + charityDetails + '\'' + 
-			",password = '" + password + '\'' + 
-			",followers = '" + followers + '\'' + 
-			",charity_id = '" + charityId + '\'' + 
-			",email = '" + email + '\'' + 
-			",longitude = '" + longitude + '\'' + 
-			",status = '" + status + '\'' + 
-			"}";
-		}
+    public String getFollowers() {
+        return followers;
+    }
+
+    public void setCharityId(String charityId) {
+        this.charityId = charityId;
+    }
+
+    public String getCharityId() {
+        return charityId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "CharityResponse{" +
+                        "transaction_id = '" + transactionId + '\'' +
+                        ",image = '" + image + '\'' +
+                        ",charity_type = '" + charityType + '\'' +
+                        ",is_active = '" + isActive + '\'' +
+                        ",charity_address = '" + charityAddress + '\'' +
+                        ",impact = '" + impact + '\'' +
+                        ",latitude = '" + latitude + '\'' +
+                        ",mobile = '" + mobile + '\'' +
+                        ",created_at = '" + createdAt + '\'' +
+                        ",notification_id = '" + notificationId + '\'' +
+                        ",message = '" + message + '\'' +
+                        ",charity_name = '" + charityName + '\'' +
+                        ",charity_details = '" + charityDetails + '\'' +
+                        ",password = '" + password + '\'' +
+                        ",followers = '" + followers + '\'' +
+                        ",charity_id = '" + charityId + '\'' +
+                        ",email = '" + email + '\'' +
+                        ",longitude = '" + longitude + '\'' +
+                        ",status = '" + status + '\'' +
+                        "}";
+    }
 }

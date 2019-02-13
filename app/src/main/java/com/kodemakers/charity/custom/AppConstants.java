@@ -7,4 +7,5 @@ public class AppConstants {
     public static final String REGISTRATION = BASE_URL + "charity_registration.php";
     public static final String CHECK_PAYMENT_STATUS = BASE_URL + "get_registration_payment_status.php";
     public static final String LOGIN = BASE_URL + "charity_login.php";
+    public static final String LOGIN_OTHER = BASE_URL + "staff_login.php";
 }
