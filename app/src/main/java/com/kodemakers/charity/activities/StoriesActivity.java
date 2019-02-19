@@ -1,7 +1,10 @@
 package com.kodemakers.charity.activities;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,25 +13,51 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.kodemakers.charity.R;
+import com.kodemakers.charity.adapter.CharityStoriesAdapter;
 import com.kodemakers.charity.adapter.StoryDetailsAdapter;
 import com.kodemakers.charity.adapter.UserDetailsAdapter;
+import com.kodemakers.charity.custom.AppConstants;
+import com.kodemakers.charity.custom.ContextMenuAdapter;
+import com.kodemakers.charity.custom.ContextMenuItem;
+import com.kodemakers.charity.custom.PostServiceCall;
+import com.kodemakers.charity.custom.PrefUtils;
+import com.kodemakers.charity.model.FeedsResponse;
 import com.kodemakers.charity.model.StoryDetails;
 import com.kodemakers.charity.model.UserDetails;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class StoriesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    StoryDetailsAdapter storyDetailsAdapter;
+    CharityStoriesAdapter charityStoriesAdapter;
     private FloatingActionButton fabBtnAdd;
     Menu menu;
+    Dialog customDialog;
+    LayoutInflater inflater;
+    View child;
+    ListView listView;
+    List<ContextMenuItem> contextMenuItems;
+    ContextMenuAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,27 +76,60 @@ public class StoriesActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(StoriesActivity.this, 1);
         recyclerView.setLayoutManager(layoutManager);
-
-        ArrayList<StoryDetails> newList = new ArrayList<>();
-
-        newList.add(new StoryDetails("Story 1",R.drawable.charity_image,"09-01-2019"));
-        newList.add(new StoryDetails("Story 2",R.drawable.charity_image,"09-01-2019"));
-        newList.add(new StoryDetails("Story 3",R.drawable.charity_image,"09-01-2019"));
-        newList.add(new StoryDetails("Story 4",R.drawable.charity_image,"09-01-2019"));
-        newList.add(new StoryDetails("Story 5",R.drawable.charity_image,"09-01-2019"));
-
-
-        storyDetailsAdapter =new StoryDetailsAdapter(StoriesActivity.this, newList);
-        recyclerView.setAdapter(storyDetailsAdapter);
+        getCharityFeeds();
 
         fabBtnAdd = (FloatingActionButton)findViewById(R.id.fabBtnAdd);
         fabBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i =new Intent(StoriesActivity.this,AddNewStoryActivity.class);
-                startActivity(i);
+                customDialog();
             }
         });
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
+    }
+
+    private void getCharityFeeds() {
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("charity_id", PrefUtils.getUser(StoriesActivity.this).getCharityId());
+            jsonObject.put("user_id", PrefUtils.getUser(StoriesActivity.this).getCharityId());
+        } catch (JSONException e) {
+
+        }
+
+        if (isNetworkConnected()) {
+
+//            progressDialog = new ProgressDialog(getContext());
+//            progressDialog.setMessage("Loading...");
+//            progressDialog.show();
+            new PostServiceCall(AppConstants.GET_FEEDS, jsonObject) {
+
+                @Override
+                public void response(String response) {
+                    Log.e("response", response);
+//                    progressDialog.dismiss();
+
+                    FeedsResponse feedsResponse = new GsonBuilder().create().fromJson(response, FeedsResponse.class);
+                    charityStoriesAdapter = new CharityStoriesAdapter(StoriesActivity.this, feedsResponse.getFeeds(),feedsResponse.getLikes());
+                    recyclerView.setAdapter(charityStoriesAdapter);
+
+                }
+
+                @Override
+                public void error(String error) {
+//                    progressDialog.dismiss();
+                    Toast.makeText(StoriesActivity.this, "Technical Problem, try again later", Toast.LENGTH_SHORT).show();
+                }
+            }.call();
+        } else {
+            Toast.makeText(StoriesActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -131,5 +193,86 @@ public class StoriesActivity extends AppCompatActivity {
             });
         }
     }
+
+    void customDialog(){
+        inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        child = inflater.inflate(R.layout.listview_context_menu, null);
+        listView = (ListView) child.findViewById(R.id.listView_context_menu);
+
+        contextMenuItems = new ArrayList<ContextMenuItem>();
+        contextMenuItems.add(new ContextMenuItem(getResources().getDrawable(
+                R.drawable.photo), "Image"));
+
+        contextMenuItems.add(new ContextMenuItem(getResources().getDrawable(
+                R.drawable.text), "Message"));
+
+        contextMenuItems.add(new ContextMenuItem(getResources().getDrawable(
+                R.drawable.video), "Video"));
+
+
+        adapter = new ContextMenuAdapter(StoriesActivity.this,
+                contextMenuItems);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                customDialog.dismiss();
+                Intent i;
+                switch (position) {
+                    case 0:
+                        i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                        startActivity(i);
+                        break;
+                    case 2:
+                        i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                        startActivity(i);
+                        break;
+
+                    default:
+                }
+
+            }
+        });
+
+        customDialog = new Dialog(StoriesActivity.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setContentView(child);
+        customDialog.show();
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_add_post, menu);
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        //find out which menu item was pressed
+        Intent i;
+        switch (item.getItemId()) {
+            case R.id.gallery:
+                i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.text:
+                i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.video:
+                i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return false;
+        }
+    }
+
+
 
 }

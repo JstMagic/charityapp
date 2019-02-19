@@ -1,0 +1,134 @@
+package com.kodemakers.charity.adapter;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.kodemakers.charity.R;
+import com.kodemakers.charity.activities.PlayVideoActivity;
+import com.kodemakers.charity.custom.AppConstants;
+import com.kodemakers.charity.model.FeedsDetails;
+import com.kodemakers.charity.model.LikesDetails;
+
+import java.util.List;
+
+public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAdapter.RecViewHolder> {
+
+    Context context;
+    List<FeedsDetails> newList;
+    private List<LikesDetails> likes;
+
+    public CharityStoriesAdapter(Context context, List<FeedsDetails> newList, List<LikesDetails> likes) {
+        this.context = context;
+        this.newList = newList;
+        this.likes =likes;
+    }
+
+    @Override
+    public CharityStoriesAdapter.RecViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_image_story, parent, false);
+        return new CharityStoriesAdapter.RecViewHolder(view);
+    }
+
+
+
+    @Override
+    public void onBindViewHolder(final CharityStoriesAdapter.RecViewHolder holder, final int position) {
+
+        holder.tvTitle.setText(newList.get(position).getTitle());
+        Glide.with(context).load(AppConstants.BASE_URL + newList.get(position).getImageUrl()).into(holder.ivImage);
+        holder.tvDate.setText(newList.get(position).getCreatedAt().substring(0,10));
+
+        holder.ivShare.setColorFilter(Color.parseColor("#03a9f4"));
+        holder.ivDelete.setColorFilter(Color.parseColor("#03a9f4"));
+        holder.ivEdit.setColorFilter(Color.parseColor("#03a9f4"));
+
+        if(newList.get(position).getDetails().equalsIgnoreCase("")){
+            holder.tvDetails.setVisibility(View.GONE);
+        }else{
+            holder.tvDetails.setVisibility(View.VISIBLE);
+            holder.tvDetails.setText(newList.get(position).getDetails());
+        }
+
+        if(newList.get(position).getFeedType().equalsIgnoreCase("text")){
+            holder.ivImage.setVisibility(View.GONE);
+        }else {
+            holder.ivImage.setVisibility(View.VISIBLE);
+            if(newList.get(position).getFeedType().equalsIgnoreCase("image")){
+                holder.ivPlayVideo.setVisibility(View.GONE);
+            }else if(newList.get(position).getFeedType().equalsIgnoreCase("video")){
+                holder.ivPlayVideo.setVisibility(View.VISIBLE);
+                holder.ivPlayVideo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(context, PlayVideoActivity.class);
+                        i.putExtra("video",AppConstants.BASE_URL + newList.get(position).getVideoUrl());
+                        context.startActivity(i);
+                    }
+                });
+            }
+        }
+
+        holder.tvLikesCount.setText("Likes : " +newList.get(position).getLikes());
+
+
+        holder.llshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareApp();
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return newList.size();
+    }
+
+    public class RecViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tvTitle, tvDate,tvDetails,tvLikesCount;
+        ImageView ivImage,ivShare,ivPlayVideo,ivEdit,ivDelete;
+        LinearLayout llshare,llEdit,llDelete;
+
+        public RecViewHolder(View itemView) {
+            super(itemView);
+
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvDate = itemView.findViewById(R.id.tvDate);
+            tvDetails = itemView.findViewById(R.id.tvDetails);
+            tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
+            ivImage = itemView.findViewById(R.id.ivImage);
+            ivShare = itemView.findViewById(R.id.ivShare);
+            ivPlayVideo = itemView.findViewById(R.id.ivPlayVideo);
+            llshare = itemView.findViewById(R.id.llshare);
+            llEdit = itemView.findViewById(R.id.llEdit);
+            llDelete = itemView.findViewById(R.id.llDelete);
+            ivEdit = itemView.findViewById(R.id.ivEdit);
+            ivDelete = itemView.findViewById(R.id.ivDelete);
+        }
+    }
+
+    private void shareApp() {
+
+        String shareBody = "Download App http://play.google.com/store/apps/details?id=" + context.getPackageName();
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        context.startActivity(Intent.createChooser(sharingIntent, "Download App"));
+    }
+
+
+}

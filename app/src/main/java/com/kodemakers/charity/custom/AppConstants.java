@@ -13,4 +13,5 @@ public class AppConstants {
     public static final String EDIT_INTRO_SLIDER = BASE_URL + "edit_intro_steppers.php";
     public static final String GET_INTRO_SLIDER = BASE_URL + "get_intro_steppers.php";
     public static final String DELETE_INTRO_SLIDER = BASE_URL + "delete_intro_steppers.php";
+    public static final String GET_FEEDS = BASE_URL + "get_feeds.php";
 }

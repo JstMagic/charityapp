@@ -22,31 +22,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:padding="4dp">
 
                     <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:id="@+id/tvTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Title"
                         android:textColor="@color/colorGrayDark"
-                        android:textSize="@dimen/text_small" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                        android:textSize="@dimen/text_medium" />
 
                     <com.kodemakers.charity.fonts.RobotoLightTextView
                         android:id="@+id/tvDate"
@@ -54,39 +45,60 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="date"
+                        android:layout_marginRight="8dp"
                         android:textColor="@color/Gray"
                         android:textSize="@dimen/text_small" />
+
                 </LinearLayout>
 
+                <com.kodemakers.charity.fonts.RobotoMediumTextView
+                    android:id="@+id/tvDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:text="details"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoMediumTextView
+                    android:id="@+id/tvLikesCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="2"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+
             </LinearLayout>
-
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0.5dp"-->
-            <!--android:layout_marginLeft="3dp"-->
-            <!--android:layout_marginRight="3dp"-->
-            <!--android:background="@color/black" />-->
-
-
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/charity_image" />
+
+                </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/ivStoryImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:scaleType="centerCrop"
-                    />
-            </LinearLayout>
+                    android:id="@+id/ivPlayVideo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/play_button"
+                    android:visibility="gone"/>
 
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0.5dp"-->
-            <!--android:layout_marginLeft="3dp"-->
-            <!--android:layout_marginRight="3dp"-->
-            <!--android:background="@color/black" />-->
-
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,6 +161,39 @@
                         android:textColor="@color/blue"
                         android:textSize="@dimen/text_medium" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"/>
+
+                <LinearLayout
+                    android:id="@+id/llshare"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_share" />
+
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:padding="8dp"
+                        android:text="Share"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_medium" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
         </LinearLayout>
