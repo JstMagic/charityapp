@@ -30,7 +30,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPwd;
-    TextView tvSignIn, tvAdmin, tvModerator, tvStaff;
+    TextView tvSignIn, tvAdmin, tvModerator, tvStaff, tvForgotPwd;
     LinearLayout llnewuser;
     //notification id
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         tvAdmin = findViewById(R.id.tvAdmin);
         tvModerator = findViewById(R.id.tvModerator);
         tvStaff = findViewById(R.id.tvStaff);
+        tvForgotPwd = findViewById(R.id.tvForgotPwd);
     }
 
     private void loadData() {
@@ -136,6 +137,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(i);
+            }
+        });
+
+        tvForgotPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(i);
             }
         });
