@@ -25,6 +25,8 @@ public class StaffResult {
         return mStatus;
     }
 
+
+
     public void setStatus(Long status) {
         mStatus = status;
     }
