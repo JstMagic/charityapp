@@ -1,7 +1,6 @@
 package com.kodemakers.charity.activities;
 
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +15,7 @@ import android.widget.ImageView;
 
 import com.kodemakers.charity.R;
 import com.kodemakers.charity.adapter.DonationDetailAdapter;
-import com.kodemakers.charity.adapter.StaffDetailsAdapter;
 import com.kodemakers.charity.model.DonationDetails;
-import com.kodemakers.charity.model.StaffDetails;
 
 import java.util.ArrayList;
 

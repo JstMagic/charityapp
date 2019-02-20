@@ -1,38 +1,101 @@
+
 package com.kodemakers.charity.model;
 
+
+import com.google.gson.annotations.SerializedName;
+
+@SuppressWarnings("unused")
 public class StaffDetails {
 
-    private String name;
-    private Integer image;
-    private String role;
+    @SerializedName("charity_id")
+    private String mCharityId;
+    @SerializedName("created_at")
+    private String mCreatedAt;
+    @SerializedName("email")
+    private String mEmail;
+    @SerializedName("image")
+    private String mImage;
+    @SerializedName("is_active")
+    private String mIsActive;
+    @SerializedName("name")
+    private String mName;
+    @SerializedName("password")
+    private String mPassword;
+    @SerializedName("staff_id")
+    private String mStaffId;
+    @SerializedName("type")
+    private String mType;
 
-    public StaffDetails(String name, Integer image, String role) {
-        this.name = name;
-        this.image = image;
-        this.role = role;
+    public String getCharityId() {
+        return mCharityId;
+    }
+
+    public void setCharityId(String charityId) {
+        mCharityId = charityId;
+    }
+
+    public String getCreatedAt() {
+        return mCreatedAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        mCreatedAt = createdAt;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public void setEmail(String email) {
+        mEmail = email;
+    }
+
+    public String getImage() {
+        return mImage;
+    }
+
+    public void setImage(String image) {
+        mImage = image;
+    }
+
+    public String getIsActive() {
+        return mIsActive;
+    }
+
+    public void setIsActive(String isActive) {
+        mIsActive = isActive;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        mName = name;
     }
 
-    public Integer getImage() {
-        return image;
+    public String getPassword() {
+        return mPassword;
     }
 
-    public void setImage(Integer image) {
-        this.image = image;
+    public void setPassword(String password) {
+        mPassword = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getStaffId() {
+        return mStaffId;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setStaffId(String staffId) {
+        mStaffId = staffId;
     }
+
+    public String getType() {
+        return mType;
+    }
+
+    public void setType(String type) {
+        mType = type;
+    }
+
 }

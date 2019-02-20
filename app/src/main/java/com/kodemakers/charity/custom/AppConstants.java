@@ -2,7 +2,7 @@ package com.kodemakers.charity.custom;
 
 public class AppConstants {
 
-    public static final String BASE_URL = "http://104.168.139.111/charity_app/";
+    public static final String BASE_URL = "http://transportitems.com/charity_app/";
 
     public static final String REGISTRATION = BASE_URL + "charity_registration.php";
     public static final String CHECK_PAYMENT_STATUS = BASE_URL + "get_registration_payment_status.php";
@@ -13,5 +13,17 @@ public class AppConstants {
     public static final String EDIT_INTRO_SLIDER = BASE_URL + "edit_intro_steppers.php";
     public static final String GET_INTRO_SLIDER = BASE_URL + "get_intro_steppers.php";
     public static final String DELETE_INTRO_SLIDER = BASE_URL + "delete_intro_steppers.php";
+
     public static final String GET_FEEDS = BASE_URL + "get_feeds.php";
+    public static final String IMAGE_FEEDS = BASE_URL + "add_image_feeds.php";
+    public static final String TEXT_FEEDS = BASE_URL + "add_text_feeds.php";
+    public static final String DELETE_FEEDS = BASE_URL + "delete_feed.php";
+    public static final String EDIT_IMAGE_FEEDS = BASE_URL + "edit_image_feed.php";
+    public static final String EDIT_TEXT_FEEDS = BASE_URL + "edit_text_feed.php";
+
+    public static final String GET_STAFF = BASE_URL + "admin_get_staff.php";
+    public static final String ADD_STAFF = BASE_URL + "add_staff.php";
+    public static final String EDIT_STAFF = BASE_URL + "edit_staff.php";
+    public static final String DELETE_STAFF = BASE_URL + "delete_staff.php";
+
 }

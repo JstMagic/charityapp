@@ -1,22 +1,34 @@
 package com.kodemakers.charity.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.GsonBuilder;
 import com.kodemakers.charity.R;
+import com.kodemakers.charity.activities.AddNewStoryActivity;
 import com.kodemakers.charity.activities.PlayVideoActivity;
 import com.kodemakers.charity.custom.AppConstants;
+import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.model.FeedsDetails;
 import com.kodemakers.charity.model.LikesDetails;
+import com.kodemakers.charity.model.StatusResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -58,7 +70,6 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
             holder.tvDetails.setVisibility(View.VISIBLE);
             holder.tvDetails.setText(newList.get(position).getDetails());
         }
-
         if(newList.get(position).getFeedType().equalsIgnoreCase("text")){
             holder.ivImage.setVisibility(View.GONE);
         }else {
@@ -77,9 +88,32 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
                 });
             }
         }
-
         holder.tvLikesCount.setText("Likes : " +newList.get(position).getLikes());
+        if(newList.get(position).getFeedType().equalsIgnoreCase("text")){
+            holder.llEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, AddNewStoryActivity.class);
+                    i.putExtra("FeedDetails",newList.get(position));
+                    context.startActivity(i);
+                }
+            });
+        }else {
+            if(newList.get(position).getFeedType().equalsIgnoreCase("image")){
+                holder.llEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                        Intent i = new Intent(context, AddNewStoryActivity.class);
+                        i.putExtra("FeedDetails",newList.get(position));
+                        i.putExtra("is_Image",true);
+                        context.startActivity(i);
+                    }
+                });
+            }else if(newList.get(position).getFeedType().equalsIgnoreCase("video")){
+
+            }
+        }
 
         holder.llshare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +122,62 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
             }
         });
 
+        holder.llDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("CLick ","Yes");
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
+                builder.setMessage("Do you really want to delete this feed").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                final ProgressDialog progressDialog;
+                                progressDialog = new ProgressDialog(context);
+                                progressDialog.setMessage("Deleting...");
+                                progressDialog.show();
+
+                                JSONObject requestObjet = new JSONObject();
+                                try {
+                                    requestObjet.put("feed_id", newList.get(position).getFeedId());
+                                    requestObjet.put("charity_id", newList.get(position).getCharityId());
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                new PostServiceCall(AppConstants.DELETE_FEEDS, requestObjet) {
+
+                                    @Override
+                                    public void response(String response) {
+                                        progressDialog.dismiss();
+                                        StatusResponse statusChangeResponse = new GsonBuilder().create().fromJson(response, StatusResponse.class);
+                                        Toast.makeText(context, statusChangeResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                        if (statusChangeResponse.getStatus().equalsIgnoreCase("1")) {
+                                            newList.remove(position);
+                                            notifyDataSetChanged();
+                                        }
+                                    }
+                                    @Override
+                                    public void error(String error) {
+                                        progressDialog.dismiss();
+                                    }
+                                }.call();
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.setTitle("Delete Feed");
+                dialog.show();
+            }
+        });
     }
 
     @Override

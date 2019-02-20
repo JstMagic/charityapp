@@ -139,14 +139,17 @@ public class StoriesActivity extends AppCompatActivity {
 
         return true;
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCharityFeeds();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
             MenuItem search = menu.findItem(R.id.action_search);
             SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
             search(searchView);
-
             ImageView searchClose = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
             searchClose.setImageResource(R.drawable.ic_clear);
             return true;
@@ -175,7 +178,6 @@ public class StoriesActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void setToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -223,23 +225,23 @@ public class StoriesActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                        i.putExtra("is_Image",true);
+                        i.putExtra("is_Add",true);
                         startActivity(i);
                         break;
                     case 1:
                         i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                        i.putExtra("is_Add",true);
                         startActivity(i);
                         break;
                     case 2:
                         i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
                         startActivity(i);
                         break;
-
                     default:
                 }
-
             }
         });
-
         customDialog = new Dialog(StoriesActivity.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setContentView(child);

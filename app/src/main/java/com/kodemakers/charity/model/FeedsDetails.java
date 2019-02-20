@@ -2,7 +2,9 @@ package com.kodemakers.charity.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FeedsDetails {
+import java.io.Serializable;
+
+public class FeedsDetails implements Serializable {
 
 	@SerializedName("video_url")
 	private String videoUrl;

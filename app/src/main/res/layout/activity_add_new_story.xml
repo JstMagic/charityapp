@@ -64,7 +64,32 @@
                     android:background="@drawable/border_gray"
                     android:padding="10dp"
                     android:textColor="@color/colorGrayDark"
-                    android:textSize="@dimen/text_medium" />            </LinearLayout>
+                    android:textSize="@dimen/text_medium" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_edit_text"
+                android:orientation="vertical">
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Details"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

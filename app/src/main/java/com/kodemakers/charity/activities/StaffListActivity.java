@@ -1,7 +1,10 @@
 package com.kodemakers.charity.activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +13,25 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.kodemakers.charity.R;
+import com.kodemakers.charity.adapter.CharityStoriesAdapter;
 import com.kodemakers.charity.adapter.StaffDetailsAdapter;
-import com.kodemakers.charity.adapter.StoryDetailsAdapter;
-import com.kodemakers.charity.model.StaffDetails;
-import com.kodemakers.charity.model.StoryDetails;
+import com.kodemakers.charity.custom.AppConstants;
+import com.kodemakers.charity.custom.PostServiceCall;
+import com.kodemakers.charity.custom.PrefUtils;
+import com.kodemakers.charity.model.FeedsResponse;
+import com.kodemakers.charity.model.StaffResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -43,29 +55,60 @@ public class StaffListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
     }
 
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
+    }
+
+    private void getCharityStaff() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("charity_id", PrefUtils.getUser(StaffListActivity.this).getCharityId());
+            Log.e("request for staff", jsonObject+"");
+        } catch (JSONException e) {
+
+        }
+        if (isNetworkConnected()) {
+
+            final ProgressDialog progressDialog = new ProgressDialog(StaffListActivity.this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+            new PostServiceCall(AppConstants.GET_STAFF, jsonObject) {
+
+                @Override
+                public void response(String response) {
+                    Log.e("response for staff", response);
+                    progressDialog.dismiss();
+
+                    StaffResult feedsResponse = new GsonBuilder().create().fromJson(response, StaffResult.class);
+                    staffDetailsAdapter = new StaffDetailsAdapter(StaffListActivity.this, feedsResponse.getResult());
+                    recyclerView.setAdapter(staffDetailsAdapter);
+
+                }
+
+                @Override
+                public void error(String error) {
+//                    progressDialog.dismiss();
+                    Toast.makeText(StaffListActivity.this, "Technical Problem, try again later", Toast.LENGTH_SHORT).show();
+                }
+            }.call();
+        } else {
+            Toast.makeText(StaffListActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void loadData() {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(StaffListActivity.this, 1);
         recyclerView.setLayoutManager(layoutManager);
-
-        ArrayList<StaffDetails> newList = new ArrayList<>();
-
-        newList.add(new StaffDetails("Staff 1",R.drawable.dummy_user,"moderator"));
-        newList.add(new StaffDetails("Staff 2",R.drawable.dummy_user,"staff"));
-        newList.add(new StaffDetails("Staff 3",R.drawable.dummy_user,"admin"));
-        newList.add(new StaffDetails("Staff 4",R.drawable.dummy_user,"moderator"));
-        newList.add(new StaffDetails("Staff 5",R.drawable.dummy_user,"staff"));
-
-
-        staffDetailsAdapter =new StaffDetailsAdapter(StaffListActivity.this, newList);
-        recyclerView.setAdapter(staffDetailsAdapter);
-
+        getCharityStaff();
         fabBtnAdd = (FloatingActionButton)findViewById(R.id.fabBtnAdd);
         fabBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i =new Intent(StaffListActivity.this,AddNewStoryActivity.class);
-//                startActivity(i);
+                Intent i =new Intent(StaffListActivity.this,AddNewStoryActivity.class);
+                i.putExtra("type", "add");
+                startActivity(i);
             }
         });
     }

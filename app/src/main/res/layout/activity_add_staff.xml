@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activities.AddStaffActivity">
+
+    <include layout="@layout/app_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp">
+
+                <FrameLayout
+                    android:id="@+id/viewA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imgStaff"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:padding="5dp"
+                            android:src="@drawable/user_img" />
+
+                        <com.kodemakers.charity.fonts.RobotoLightTextView
+                            android:id="@+id/tvSetImageStaff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/round_shape_border_blue"
+                            android:padding="10dp"
+                            android:text="Add Image"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/text_small" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_edit_text"
+                    android:orientation="vertical">
+
+
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="Name"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_small" />
+
+                    <com.kodemakers.charity.fonts.RobotoNormalEditText
+                        android:id="@+id/edtStaffName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/border_gray"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_medium" />
+
+
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="Staff Email"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_small" />
+
+                    <com.kodemakers.charity.fonts.RobotoNormalEditText
+                        android:id="@+id/edtStaffEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/border_gray"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_medium" />
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.kodemakers.charity.fonts.RobotoBoldTextView
+        android:id="@+id/tvAddStaff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="16dp"
+        android:text="ADD"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_medium" />
+
+
+
+</LinearLayout>
