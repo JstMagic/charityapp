@@ -117,8 +117,6 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(ProfileActivity.this, "Please select profile image", Toast.LENGTH_SHORT).show();
                 } else if (edtMobileNo.getText().toString().length() == 0) {
                     Toast.makeText(ProfileActivity.this, "Please enter mobile", Toast.LENGTH_SHORT).show();
-                } else if (edtMobileNo.getText().toString().length() != 10) {
-                    Toast.makeText(ProfileActivity.this, "Please enter valid mobile", Toast.LENGTH_SHORT).show();
                 } else {
                     register();
                 }

@@ -81,9 +81,9 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
                 holder.ivPlayVideo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(context, PlayVideoActivity.class);
-                        i.putExtra("video",AppConstants.BASE_URL + newList.get(position).getVideoUrl());
-                        context.startActivity(i);
+//                        Intent i = new Intent(context, PlayVideoActivity.class);
+//                        i.putExtra("video",AppConstants.BASE_URL + newList.get(position).getVideoUrl());
+//                        context.startActivity(i);
                     }
                 });
             }

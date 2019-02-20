@@ -28,16 +28,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapter.RecViewHolder>{
 
     Context context;
-    ArrayList<StaffDetails> newList;
+    List<StaffDetails> newList;
 
 
-    public StaffDetailsAdapter(Context context, ArrayList<StaffDetails> newList) {
+    public StaffDetailsAdapter(Context context, List<StaffDetails> newList) {
         this.context = context;
         this.newList = newList;
     }

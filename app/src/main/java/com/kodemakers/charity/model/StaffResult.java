@@ -2,6 +2,7 @@
 package com.kodemakers.charity.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,15 +10,15 @@ import com.google.gson.annotations.SerializedName;
 public class StaffResult {
 
     @SerializedName("result")
-    private ArrayList<StaffDetails> mResult;
+    private List<StaffDetails> mResult;
     @SerializedName("status")
     private Long mStatus;
 
-    public ArrayList<StaffDetails> getResult() {
+    public List<StaffDetails> getResult() {
         return mResult;
     }
 
-    public void setResult(ArrayList<StaffDetails> result) {
+    public void setResult(List<StaffDetails> result) {
         mResult = result;
     }
 

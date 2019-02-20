@@ -182,7 +182,7 @@ public class StoriesActivity extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.setTitle("Stories");
+            toolbar.setTitle("Feeds");
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
             toolbar.setTitleTextColor(Color.parseColor("#000000"));
@@ -235,8 +235,8 @@ public class StoriesActivity extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case 2:
-                        i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
-                        startActivity(i);
+//                        i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+//                        startActivity(i);
                         break;
                     default:
                 }
