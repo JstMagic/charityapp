@@ -2,6 +2,19 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
     defaultConfig {
         applicationId "com.kodemakers.charity"
         minSdkVersion 16
@@ -9,15 +22,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        useLibrary 'org.apache.http.legacy'
     }
     signingConfigs {
         key {
             keyAlias 'charity_app'
             keyPassword 'charity_app'
-           // storeFile file('/Users/nirav/Desktop/jks_files/charity_app.jks')
-            storeFile file('/home/nkdroid/Desktop/jks_files_kodemakers/charity_app.jks')
+            // storeFile file('/Users/nirav/Desktop/jks_files/charity_app.jks')
+            //storeFile file('/home/nkdroid/Desktop/jks_files_kodemakers/charity_app.jks')
             //    storeFile file('/Users/nirav/Desktop/jks_files/nkdroid.jks')
-            //storeFile file('/home/nkdroid/Desktop/nkDroid Solutions/JKS/charity_app.jks')
+            storeFile file('/home/nkdroid/Desktop/nkDroid Solutions/JKS/charity_app.jks')
             storePassword 'charity_app'
         }
     }
@@ -55,5 +69,13 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:r2.5.1'
     implementation 'com.google.android.exoplayer:exoplayer-dash:r2.5.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:r2.5.1'
+    implementation files('libs/httpclient-4.3.6.jar')
+    implementation files('libs/httpcore-4.3.3.jar')
+    implementation files('libs/httpmime-4.3.6.jar')
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+    }
 }
 apply plugin: 'com.google.gms.google-services'

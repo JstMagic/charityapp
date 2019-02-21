@@ -30,7 +30,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPwd;
-    TextView tvSignIn, tvAdmin, tvModerator, tvStaff, tvForgotPwd;
+    TextView tvSignIn, tvForgotPwd;
     LinearLayout llnewuser;
     //notification id
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -82,37 +82,37 @@ public class LoginActivity extends AppCompatActivity {
         edtPwd = findViewById(R.id.edtPwd);
         tvSignIn = findViewById(R.id.tvSignIn);
         llnewuser = findViewById(R.id.llnewuser);
-        tvAdmin = findViewById(R.id.tvAdmin);
-        tvModerator = findViewById(R.id.tvModerator);
-        tvStaff = findViewById(R.id.tvStaff);
+//        tvAdmin = findViewById(R.id.tvAdmin);
+//        tvModerator = findViewById(R.id.tvModerator);
+//        tvStaff = findViewById(R.id.tvStaff);
         tvForgotPwd = findViewById(R.id.tvForgotPwd);
     }
 
     private void loadData() {
 
-        tvAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                type = "admin";
-                updateUI();
-            }
-        });
-
-        tvModerator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                type = "moderator";
-                updateUI();
-            }
-        });
-
-        tvStaff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                type = "staff";
-                updateUI();
-            }
-        });
+//        tvAdmin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                type = "admin";
+//                updateUI();
+//            }
+//        });
+//
+//        tvModerator.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                type = "moderator";
+//                updateUI();
+//            }
+//        });
+//
+//        tvStaff.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                type = "staff";
+//                updateUI();
+//            }
+//        });
 
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,24 +150,24 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void updateUI() {
-        tvAdmin.setBackground(getResources().getDrawable(R.drawable.blue_border));
-        tvAdmin.setTextColor(getResources().getColor(R.color.colorPrimary));
-        tvModerator.setBackground(getResources().getDrawable(R.drawable.blue_border));
-        tvModerator.setTextColor(getResources().getColor(R.color.colorPrimary));
-        tvStaff.setBackground(getResources().getDrawable(R.drawable.blue_border));
-        tvStaff.setTextColor(getResources().getColor(R.color.colorPrimary));
-        if (type.equalsIgnoreCase("admin")) {
-            tvAdmin.setBackground(getResources().getDrawable(R.drawable.button_background));
-            tvAdmin.setTextColor(getResources().getColor(R.color.white));
-        } else if (type.equalsIgnoreCase("staff")) {
-            tvStaff.setBackground(getResources().getDrawable(R.drawable.button_background));
-            tvStaff.setTextColor(getResources().getColor(R.color.white));
-        } else {
-            tvModerator.setBackground(getResources().getDrawable(R.drawable.button_background));
-            tvModerator.setTextColor(getResources().getColor(R.color.white));
-        }
-    }
+//    public void updateUI() {
+//        tvAdmin.setBackground(getResources().getDrawable(R.drawable.blue_border));
+//        tvAdmin.setTextColor(getResources().getColor(R.color.colorPrimary));
+//        tvModerator.setBackground(getResources().getDrawable(R.drawable.blue_border));
+//        tvModerator.setTextColor(getResources().getColor(R.color.colorPrimary));
+//        tvStaff.setBackground(getResources().getDrawable(R.drawable.blue_border));
+//        tvStaff.setTextColor(getResources().getColor(R.color.colorPrimary));
+//        if (type.equalsIgnoreCase("admin")) {
+//            tvAdmin.setBackground(getResources().getDrawable(R.drawable.button_background));
+//            tvAdmin.setTextColor(getResources().getColor(R.color.white));
+//        } else if (type.equalsIgnoreCase("staff")) {
+//            tvStaff.setBackground(getResources().getDrawable(R.drawable.button_background));
+//            tvStaff.setTextColor(getResources().getColor(R.color.white));
+//        } else {
+//            tvModerator.setBackground(getResources().getDrawable(R.drawable.button_background));
+//            tvModerator.setTextColor(getResources().getColor(R.color.white));
+//        }
+//    }
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

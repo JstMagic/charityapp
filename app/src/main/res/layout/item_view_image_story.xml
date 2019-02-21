@@ -169,29 +169,29 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"/>
 
-                <LinearLayout
-                    android:id="@+id/llshare"
-                    android:layout_width="0dp"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/llshare"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:gravity="center"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <ImageView
-                        android:id="@+id/ivShare"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_share" />
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ivShare"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:src="@drawable/ic_share" />-->
 
-                    <com.kodemakers.charity.fonts.RobotoNormalTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="8dp"
-                        android:text="Share"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/text_medium" />
-                </LinearLayout>
+                    <!--<com.kodemakers.charity.fonts.RobotoNormalTextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:padding="8dp"-->
+                        <!--android:text="Share"-->
+                        <!--android:textColor="@color/blue"-->
+                        <!--android:textSize="@dimen/text_medium" />-->
+                <!--</LinearLayout>-->
 
 
             </LinearLayout>

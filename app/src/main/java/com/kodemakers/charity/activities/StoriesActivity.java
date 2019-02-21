@@ -235,8 +235,9 @@ public class StoriesActivity extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case 2:
-//                        i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
-//                        startActivity(i);
+                        i = new Intent(StoriesActivity.this, AddVideoFeedActivity.class);
+                        i.putExtra("type","add");
+                        startActivity(i);
                         break;
                     default:
                 }
@@ -267,7 +268,7 @@ public class StoriesActivity extends AppCompatActivity {
                 startActivity(i);
                 return true;
             case R.id.video:
-                i = new Intent(StoriesActivity.this, AddNewStoryActivity.class);
+                i = new Intent(StoriesActivity.this, AddVideoFeedActivity.class);
                 startActivity(i);
                 return true;
             default:

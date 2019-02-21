@@ -20,6 +20,8 @@ public class AppConstants {
     public static final String DELETE_FEEDS = BASE_URL + "delete_feed.php";
     public static final String EDIT_IMAGE_FEEDS = BASE_URL + "edit_image_feed.php";
     public static final String EDIT_TEXT_FEEDS = BASE_URL + "edit_text_feed.php";
+    public static final String ADD_VIDEO_FEEDS = BASE_URL + "add_video_feed.php";
+    public static final String EDIT_VIDEO_FEEDS = BASE_URL + "edit_video_feed.php";
 
     public static final String GET_STAFF = BASE_URL + "admin_get_staff.php";
     public static final String ADD_STAFF = BASE_URL + "add_staff.php";

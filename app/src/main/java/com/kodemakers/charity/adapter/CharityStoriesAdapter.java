@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.GsonBuilder;
 import com.kodemakers.charity.R;
 import com.kodemakers.charity.activities.AddNewStoryActivity;
+import com.kodemakers.charity.activities.AddVideoFeedActivity;
 import com.kodemakers.charity.activities.PlayVideoActivity;
 import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.custom.PostServiceCall;
@@ -60,7 +61,6 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
         Glide.with(context).load(AppConstants.BASE_URL + newList.get(position).getImageUrl()).into(holder.ivImage);
         holder.tvDate.setText(newList.get(position).getCreatedAt().substring(0,10));
 
-        holder.ivShare.setColorFilter(Color.parseColor("#03a9f4"));
         holder.ivDelete.setColorFilter(Color.parseColor("#03a9f4"));
         holder.ivEdit.setColorFilter(Color.parseColor("#03a9f4"));
 
@@ -81,9 +81,9 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
                 holder.ivPlayVideo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        Intent i = new Intent(context, PlayVideoActivity.class);
-//                        i.putExtra("video",AppConstants.BASE_URL + newList.get(position).getVideoUrl());
-//                        context.startActivity(i);
+                        Intent i = new Intent(context, PlayVideoActivity.class);
+                        i.putExtra("video",AppConstants.BASE_URL + newList.get(position).getVideoUrl());
+                        context.startActivity(i);
                     }
                 });
             }
@@ -111,16 +111,19 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
                     }
                 });
             }else if(newList.get(position).getFeedType().equalsIgnoreCase("video")){
+                holder.llEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                        Intent i = new Intent(context, AddVideoFeedActivity.class);
+                        i.putExtra("FeedDetails",newList.get(position));
+                        i.putExtra("type", "edit");
+                        context.startActivity(i);
+                    }
+                });
             }
         }
 
-        holder.llshare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shareApp();
-            }
-        });
 
         holder.llDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,7 +192,7 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
 
         TextView tvTitle, tvDate,tvDetails,tvLikesCount;
         ImageView ivImage,ivShare,ivPlayVideo,ivEdit,ivDelete;
-        LinearLayout llshare,llEdit,llDelete;
+        LinearLayout llEdit,llDelete;
 
         public RecViewHolder(View itemView) {
             super(itemView);
@@ -199,9 +202,7 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
             tvDetails = itemView.findViewById(R.id.tvDetails);
             tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
             ivImage = itemView.findViewById(R.id.ivImage);
-            ivShare = itemView.findViewById(R.id.ivShare);
             ivPlayVideo = itemView.findViewById(R.id.ivPlayVideo);
-            llshare = itemView.findViewById(R.id.llshare);
             llEdit = itemView.findViewById(R.id.llEdit);
             llDelete = itemView.findViewById(R.id.llDelete);
             ivEdit = itemView.findViewById(R.id.ivEdit);
@@ -209,14 +210,6 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
         }
     }
 
-    private void shareApp() {
-
-        String shareBody = "Download App http://play.google.com/store/apps/details?id=" + context.getPackageName();
-        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-        context.startActivity(Intent.createChooser(sharingIntent, "Download App"));
-    }
 
 
 }
