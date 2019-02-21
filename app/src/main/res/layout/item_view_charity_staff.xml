@@ -84,30 +84,28 @@
 
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.3"
                 android:gravity="right"
                 android:layout_marginRight="4dp">
 
                 <ImageView
-                    android:clickable="true"
-                    android:focusable="true"
                     android:id="@+id/ivUpdateStaff"
                     android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_edit"
-                    android:layout_marginBottom="4dp"
-                    />
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_edit" />
                 <ImageView
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center"
                     android:id="@+id/ivDeleteStaff"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/ic_clear"
                     />
 

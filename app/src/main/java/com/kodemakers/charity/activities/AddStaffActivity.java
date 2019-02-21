@@ -45,18 +45,19 @@ import io.reactivex.schedulers.Schedulers;
 public class AddStaffActivity extends AppCompatActivity {
 
     EditText edtName, edtEmail;
-    TextView tvSetImage, tvAdd;
+    TextView tvSetImage, tvAdd, tvModerator, tvStaff;
     CircleImageView imgUser;
     private int SELECT_FILE = 1;
     private File actualImage;
     private File compressedImage;
     StaffDetails staffDetails;
-
+    String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_staff);
         setToolbar();
+        type=null;
         initViews();
         loadData();
     }
@@ -66,17 +67,50 @@ public class AddStaffActivity extends AppCompatActivity {
         tvSetImage = findViewById(R.id.tvSetImageStaff);
         imgUser = findViewById(R.id.imgStaff);
         tvAdd = findViewById(R.id.tvAddStaff);
+        tvModerator  = findViewById(R.id.tvtypeModerator);
+        tvStaff = findViewById(R.id.tvtypeStaff);
     }
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
     }
+    public void updateUI() {
+        tvModerator.setBackground(getResources().getDrawable(R.drawable.blue_border));
+        tvModerator.setTextColor(getResources().getColor(R.color.colorPrimary));
+        tvStaff.setBackground(getResources().getDrawable(R.drawable.blue_border));
+        tvStaff.setTextColor(getResources().getColor(R.color.colorPrimary));
+        if (type.equalsIgnoreCase("staff")) {
+            tvStaff.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvStaff.setTextColor(getResources().getColor(R.color.white));
+        } else {
+            tvModerator.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvModerator.setTextColor(getResources().getColor(R.color.white));
+        }
+    }
     private void loadData() {
+
+        tvModerator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = "moderator";
+                updateUI();
+            }
+        });
+
+        tvStaff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = "staff";
+                updateUI();
+            }
+        });
 
         if (getIntent().getStringExtra("type").equalsIgnoreCase("edit")) {
             staffDetails = (StaffDetails) getIntent().getSerializableExtra("details");
             edtName.setText(staffDetails.getName());
             edtEmail.setText(staffDetails.getEmail());
+            type = staffDetails.getType();
+            updateUI();
             tvAdd.setText("Edit");
             Glide.with(AddStaffActivity.this).load(AppConstants.BASE_URL + staffDetails.getImage()).into(imgUser);
         }
@@ -90,7 +124,9 @@ public class AddStaffActivity extends AppCompatActivity {
                     Toast.makeText(AddStaffActivity.this, "Please enter Name", Toast.LENGTH_SHORT).show();
                 } else if (edtEmail.getText().toString().length() == 0) {
                     Toast.makeText(AddStaffActivity.this, "Please enter Email", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (type == null) {
+                    Toast.makeText(AddStaffActivity.this, "Please Select type", Toast.LENGTH_SHORT).show();
+                }else {
                     if (getIntent().getStringExtra("type").equalsIgnoreCase("add")) {
                         add();
                     } else {
@@ -141,7 +177,7 @@ public class AddStaffActivity extends AppCompatActivity {
         try {
             requestObject.put("charity_id", PrefUtils.getUser(AddStaffActivity.this).getCharityId());
             requestObject.put("name", edtName.getText().toString());
-            requestObject.put("type","charity");
+            requestObject.put("type",type);
             requestObject.put("email", edtEmail.getText().toString());
             requestObject.put("image", "data:image/jpeg;base64," + encoded1 + "");
 
@@ -213,10 +249,10 @@ public class AddStaffActivity extends AppCompatActivity {
         }
 
         try {
-            requestObject.put("id", staffDetails.getStaffId());
+            requestObject.put("staff_id", staffDetails.getStaffId());
             requestObject.put("charity_id", PrefUtils.getUser(AddStaffActivity.this).getCharityId());
             requestObject.put("name", edtName.getText().toString());
-            requestObject.put("type","charity");
+            requestObject.put("type",type);
             requestObject.put("email", edtEmail.getText().toString());
             requestObject.put("image", "data:image/jpeg;base64," + encoded1 + "");
 
@@ -224,7 +260,7 @@ public class AddStaffActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Log.e("response", requestObject.toString());
+        Log.e("response for edit", requestObject.toString());
 
         if (isNetworkConnected()) {
 
@@ -326,9 +362,9 @@ public class AddStaffActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             if (getIntent().getStringExtra("type").equalsIgnoreCase("edit")) {
-                toolbar.setTitle("Edit Intro Stepper");
+                toolbar.setTitle("Edit Staff");
             }else {
-                toolbar.setTitle("Add Intro Stepper");
+                toolbar.setTitle("Add Staff");
             }
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back);

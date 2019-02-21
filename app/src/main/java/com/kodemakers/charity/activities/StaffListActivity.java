@@ -106,7 +106,7 @@ public class StaffListActivity extends AppCompatActivity {
         fabBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i =new Intent(StaffListActivity.this,AddNewStoryActivity.class);
+                Intent i =new Intent(StaffListActivity.this,AddStaffActivity.class);
                 i.putExtra("type", "add");
                 startActivity(i);
             }
@@ -119,6 +119,11 @@ public class StaffListActivity extends AppCompatActivity {
         this.menu = menu;
 
         return true;
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCharityStaff();
     }
 
     @Override

@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".activities.AddStaffActivity">
-
     <include layout="@layout/app_bar"/>
 
     <LinearLayout
@@ -83,6 +82,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:nextFocusForward="@+id/edtStaffEmail"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/border_gray"
                         android:padding="10dp"
@@ -104,13 +106,60 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="4dp"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:nextFocusForward="@+id/llStafftype"
                         android:background="@drawable/border_gray"
                         android:padding="10dp"
                         android:textColor="@color/colorGrayDark"
                         android:textSize="@dimen/text_medium" />
 
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="TYPE"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/text_small" />
+
+                    <LinearLayout
+                        android:layout_marginBottom="60dp"
+                        android:id="@+id/llStafftype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
 
+                        <com.kodemakers.charity.fonts.RobotoNormalTextView
+                            android:id="@+id/tvtypeModerator"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/blue_border"
+                            android:padding="4dp"
+                            android:text="MODERATOR"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_small" />
+
+                        <com.kodemakers.charity.fonts.RobotoNormalTextView
+                            android:id="@+id/tvtypeStaff"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/blue_border"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:text="STAFF"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_small" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

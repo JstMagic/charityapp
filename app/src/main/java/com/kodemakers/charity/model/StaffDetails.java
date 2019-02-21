@@ -4,8 +4,9 @@ package com.kodemakers.charity.model;
 
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("unused")
-public class StaffDetails {
+import java.io.Serializable;
+
+public class StaffDetails implements Serializable {
 
     @SerializedName("charity_id")
     private String mCharityId;

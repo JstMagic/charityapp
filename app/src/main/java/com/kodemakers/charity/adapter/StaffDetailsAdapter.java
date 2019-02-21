@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.GsonBuilder;
 import com.kodemakers.charity.R;
 import com.kodemakers.charity.activities.AddIntroPageActivity;
+import com.kodemakers.charity.activities.AddStaffActivity;
 import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.model.StaffDetails;
@@ -112,15 +113,15 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
                 dialog.show();
             }
         });
-       /* holder.llEdit.setOnClickListener(new View.OnClickListener() {
+        holder.ivUpdateStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, AddIntroPageActivity.class);
+                Intent i = new Intent(context, AddStaffActivity.class);
                 i.putExtra("type", "edit");
                 i.putExtra("details", newList.get(position));
                 context.startActivity(i);
             }
-        });*/
+        });
     }
 
     @Override
