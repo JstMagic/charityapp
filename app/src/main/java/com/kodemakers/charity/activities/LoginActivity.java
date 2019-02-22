@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     //notification id
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     String regId;
-    String type = "admin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,37 +81,11 @@ public class LoginActivity extends AppCompatActivity {
         edtPwd = findViewById(R.id.edtPwd);
         tvSignIn = findViewById(R.id.tvSignIn);
         llnewuser = findViewById(R.id.llnewuser);
-//        tvAdmin = findViewById(R.id.tvAdmin);
-//        tvModerator = findViewById(R.id.tvModerator);
-//        tvStaff = findViewById(R.id.tvStaff);
         tvForgotPwd = findViewById(R.id.tvForgotPwd);
     }
 
     private void loadData() {
 
-//        tvAdmin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                type = "admin";
-//                updateUI();
-//            }
-//        });
-//
-//        tvModerator.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                type = "moderator";
-//                updateUI();
-//            }
-//        });
-//
-//        tvStaff.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                type = "staff";
-//                updateUI();
-//            }
-//        });
 
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,11 +97,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (edtPwd.getText().toString().length() == 0) {
                     Toast.makeText(LoginActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (type.equalsIgnoreCase("admin")) {
-                        loginAdmin();
-                    } else {
-                        loginOther();
-                    }
+                    loginAdmin();
+
                 }
             }
         });
@@ -150,24 +120,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-//    public void updateUI() {
-//        tvAdmin.setBackground(getResources().getDrawable(R.drawable.blue_border));
-//        tvAdmin.setTextColor(getResources().getColor(R.color.colorPrimary));
-//        tvModerator.setBackground(getResources().getDrawable(R.drawable.blue_border));
-//        tvModerator.setTextColor(getResources().getColor(R.color.colorPrimary));
-//        tvStaff.setBackground(getResources().getDrawable(R.drawable.blue_border));
-//        tvStaff.setTextColor(getResources().getColor(R.color.colorPrimary));
-//        if (type.equalsIgnoreCase("admin")) {
-//            tvAdmin.setBackground(getResources().getDrawable(R.drawable.button_background));
-//            tvAdmin.setTextColor(getResources().getColor(R.color.white));
-//        } else if (type.equalsIgnoreCase("staff")) {
-//            tvStaff.setBackground(getResources().getDrawable(R.drawable.button_background));
-//            tvStaff.setTextColor(getResources().getColor(R.color.white));
-//        } else {
-//            tvModerator.setBackground(getResources().getDrawable(R.drawable.button_background));
-//            tvModerator.setTextColor(getResources().getColor(R.color.white));
-//        }
-//    }
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -224,53 +176,5 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void loginOther() {
-
-        JSONObject requestObject = new JSONObject();
-
-        try {
-            requestObject.put("email", edtEmail.getText().toString());
-            requestObject.put("password", edtPwd.getText().toString());
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        if (isNetworkConnected()) {
-
-            final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
-            progressDialog.setMessage("Loading...");
-            progressDialog.show();
-            new PostServiceCall(AppConstants.LOGIN_OTHER, requestObject) {
-
-                @Override
-                public void response(String response) {
-                    Log.e("response", response);
-                    progressDialog.dismiss();
-
-                    CharityResponse userData = new GsonBuilder().create().fromJson(response, CharityResponse.class);
-                    Toast.makeText(LoginActivity.this, userData.getMessage() + "", Toast.LENGTH_SHORT).show();
-
-                    if (userData.getStatus().equalsIgnoreCase("1")) {
-                        PrefUtils.setUser(userData, LoginActivity.this);
-                        Intent y = new Intent(LoginActivity.this, MainActivity.class);
-                        y.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        y.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(y);
-                        finish();
-                    }
-
-                }
-
-                @Override
-                public void error(String error) {
-                    progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Technical Problem, try again later", Toast.LENGTH_SHORT).show();
-                }
-            }.call();
-        } else {
-            Toast.makeText(LoginActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }

@@ -127,62 +127,7 @@
                             android:textColor="#bdbdbd"
                             android:textSize="@dimen/text_micro" />
                         </LinearLayout>
-                        <!--<com.kodemakers.charity.fonts.RobotoNormalTextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:padding="5dp"-->
-                            <!--android:text="ROLE"-->
-                            <!--android:textColor="@color/colorPrimary"-->
-                            <!--android:textSize="@dimen/text_medium" />-->
 
-                        <!--<LinearLayout-->
-                            <!--android:layout_marginBottom="60dp"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:orientation="horizontal">-->
-
-                            <!--<com.kodemakers.charity.fonts.RobotoNormalTextView-->
-                                <!--android:id="@+id/tvAdmin"-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_marginLeft="2dp"-->
-                                <!--android:layout_marginRight="2dp"-->
-                                <!--android:layout_weight="1"-->
-                                <!--android:background="@drawable/button_background"-->
-                                <!--android:padding="4dp"-->
-                                <!--android:text="ADMIN"-->
-                                <!--android:textAlignment="center"-->
-                                <!--android:textColor="@color/white"-->
-                                <!--android:textSize="@dimen/text_small" />-->
-
-                            <!--<com.kodemakers.charity.fonts.RobotoNormalTextView-->
-                                <!--android:id="@+id/tvModerator"-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_marginLeft="2dp"-->
-                                <!--android:layout_marginRight="2dp"-->
-                                <!--android:layout_weight="1"-->
-                                <!--android:background="@drawable/blue_border"-->
-                                <!--android:padding="4dp"-->
-                                <!--android:text="MODERATOR"-->
-                                <!--android:textAlignment="center"-->
-                                <!--android:textColor="@color/colorPrimary"-->
-                                <!--android:textSize="@dimen/text_small" />-->
-
-                            <!--<com.kodemakers.charity.fonts.RobotoNormalTextView-->
-                                <!--android:id="@+id/tvStaff"-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_marginLeft="2dp"-->
-                                <!--android:layout_marginRight="2dp"-->
-                                <!--android:layout_weight="1"-->
-                                <!--android:background="@drawable/blue_border"-->
-                                <!--android:padding="4dp"-->
-                                <!--android:text="STAFF"-->
-                                <!--android:textAlignment="center"-->
-                                <!--android:textColor="@color/colorPrimary"-->
-                                <!--android:textSize="@dimen/text_small" />-->
-                        <!--</LinearLayout>-->
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
