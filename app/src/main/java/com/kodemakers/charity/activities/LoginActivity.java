@@ -231,7 +231,6 @@ public class LoginActivity extends AppCompatActivity {
         try {
             requestObject.put("email", edtEmail.getText().toString());
             requestObject.put("password", edtPwd.getText().toString());
-            requestObject.put("type", type + "");
 
         } catch (JSONException e) {
             e.printStackTrace();
