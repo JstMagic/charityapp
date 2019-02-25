@@ -122,6 +122,7 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
                 context.startActivity(i);
             }
         });
+
     }
 
     @Override

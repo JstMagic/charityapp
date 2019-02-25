@@ -18,11 +18,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
 import com.kodemakers.charity.R;
 import com.kodemakers.charity.adapter.CharityStoriesAdapter;
+import com.kodemakers.charity.adapter.IntroPagesAdapter;
 import com.kodemakers.charity.adapter.StaffDetailsAdapter;
 import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.custom.PostServiceCall;
@@ -39,6 +41,7 @@ public class StaffListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     StaffDetailsAdapter staffDetailsAdapter;
+    TextView tvEmptyView;
     private FloatingActionButton fabBtnAdd;
     Menu menu;
 
@@ -53,6 +56,7 @@ public class StaffListActivity extends AppCompatActivity {
 
     void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
+        tvEmptyView = findViewById(R.id.tvEmptyView);
     }
 
     private boolean isNetworkConnected() {
@@ -81,9 +85,15 @@ public class StaffListActivity extends AppCompatActivity {
                     progressDialog.dismiss();
 
                     StaffResult feedsResponse = new GsonBuilder().create().fromJson(response, StaffResult.class);
-                    staffDetailsAdapter = new StaffDetailsAdapter(StaffListActivity.this, feedsResponse.getResult());
-                    recyclerView.setAdapter(staffDetailsAdapter);
-
+                    if (feedsResponse.getStatus().equalsIgnoreCase("1")) {
+                        staffDetailsAdapter = new StaffDetailsAdapter(StaffListActivity.this, feedsResponse.getResult());
+                        recyclerView.setAdapter(staffDetailsAdapter);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        tvEmptyView.setVisibility(View.GONE);
+                    } else {
+                        recyclerView.setVisibility(View.GONE);
+                        tvEmptyView.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override

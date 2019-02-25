@@ -1,34 +1,25 @@
 
 package com.kodemakers.charity.model;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
 
 public class StaffResult {
-
     @SerializedName("result")
-    private List<StaffDetails> mResult;
+    private ArrayList<StaffDetails> mResult;
     @SerializedName("status")
-    private Long mStatus;
-
-    public List<StaffDetails> getResult() {
+    private String mStatus;
+    public ArrayList<StaffDetails> getResult() {
         return mResult;
     }
-
-    public void setResult(List<StaffDetails> result) {
+    public void setResult(ArrayList<StaffDetails> result) {
         mResult = result;
     }
-
-    public Long getStatus() {
+    public String getStatus() {
         return mStatus;
     }
-
-
-
-    public void setStatus(Long status) {
+    public void setStatus(String status) {
         mStatus = status;
     }
 }

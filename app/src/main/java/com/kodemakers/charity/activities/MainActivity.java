@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.kodemakers.charity.R;
 import com.kodemakers.charity.custom.PrefUtils;
@@ -18,7 +19,7 @@ import com.kodemakers.charity.custom.PrefUtils;
 public class MainActivity extends AppCompatActivity {
 
     LinearLayout llUsers, llCharities, llStories, llStaff, llDonations, llAccount, llIntroSteppers, llNotifications;
-
+    TextView tvCharityName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         llAccount = findViewById(R.id.llAccount);
         llIntroSteppers = findViewById(R.id.llIntroSteppers);
         llNotifications = findViewById(R.id.llNotifications);
+        tvCharityName = findViewById(R.id.tvCharityNameDashboard);
+        if (PrefUtils.getUser(MainActivity.this).getCharityName().length() != 0) {
+            tvCharityName.setText(PrefUtils.getUser(MainActivity.this).getCharityName());
+        }
     }
 
     private void loadData() {
@@ -118,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getCharityName());
+
                 }
             } catch (Exception e) {
                 toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getName());
