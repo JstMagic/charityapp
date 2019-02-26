@@ -167,52 +167,52 @@ public class StoriesActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search_icon, menu);
-        this.menu = menu;
-
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_search_icon, menu);
+//        this.menu = menu;
+//
+//        return true;
+//    }
     @Override
     protected void onResume() {
         super.onResume();
         getCharityFeeds();
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_search) {
-            MenuItem search = menu.findItem(R.id.action_search);
-            SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
-            search(searchView);
-            ImageView searchClose = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
-            searchClose.setImageResource(R.drawable.ic_clear);
-            return true;
-        }
-
-
-
-        return super.onOptionsItemSelected(item);
-
-    }
-
-    private void search(SearchView searchView) {
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.action_search) {
+//            MenuItem search = menu.findItem(R.id.action_search);
+//            SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+//            search(searchView);
+//            ImageView searchClose = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+//            searchClose.setImageResource(R.drawable.ic_clear);
+//            return true;
+//        }
+//
+//
+//
+//        return super.onOptionsItemSelected(item);
+//
+//    }
+//
+//    private void search(SearchView searchView) {
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//
 //                rvPosts.getFilter().filter(newText);
-                return true;
-            }
-        });
-    }
+//                return true;
+//            }
+//        });
+//    }
 
     private void setToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);

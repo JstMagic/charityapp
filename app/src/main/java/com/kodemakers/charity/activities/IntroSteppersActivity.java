@@ -101,6 +101,7 @@ public class IntroSteppersActivity extends AppCompatActivity {
                         recyclerView.setVisibility(View.GONE);
                         tvEmptyView.setVisibility(View.VISIBLE);
                     }
+
                     fabBtnAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

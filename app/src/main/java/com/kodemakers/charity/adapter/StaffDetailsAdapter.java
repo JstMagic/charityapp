@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import com.kodemakers.charity.activities.AddIntroPageActivity;
 import com.kodemakers.charity.activities.AddStaffActivity;
 import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.custom.PostServiceCall;
+import com.kodemakers.charity.model.FollowersItem;
 import com.kodemakers.charity.model.StaffDetails;
 import com.kodemakers.charity.model.StatusResponse;
 
@@ -33,7 +36,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapter.RecViewHolder>{
+public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapter.RecViewHolder> implements Filterable {
 
     Context context;
     List<StaffDetails> newList;
@@ -126,6 +129,46 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
         });
 
     }
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+                    mFilteredList = newList;
+                } else {
+
+                    List<StaffDetails> filteredList = new ArrayList<>();
+
+                    for (StaffDetails staffDetails : newList) {
+
+                        if (staffDetails.getName().toLowerCase().contains(charString)) {
+                            filteredList.add(staffDetails);
+                        }
+                    }
+
+                    mFilteredList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilteredList = (List<StaffDetails>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
 
     @Override
     public int getItemCount() {

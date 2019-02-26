@@ -166,7 +166,7 @@ public class StaffListActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-//                rvPosts.getFilter().filter(newText);
+                staffDetailsAdapter.getFilter().filter(newText);
                 return true;
             }
         });

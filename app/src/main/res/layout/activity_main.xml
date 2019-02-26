@@ -305,7 +305,6 @@
             <com.kodemakers.charity.fonts.RobotoMediumTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="la"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_large"

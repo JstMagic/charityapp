@@ -10,11 +10,21 @@
 
     <include layout="@layout/app_bar"/>
 
+    <com.kodemakers.charity.fonts.RobotoMediumTextView
+        android:id="@+id/tvEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="No Data"
+        android:textSize="@dimen/text_large"
+        android:visibility="gone" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
+        android:padding="4dp"
         />
 
 
