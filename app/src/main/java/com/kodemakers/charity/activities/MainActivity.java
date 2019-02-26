@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setToolbar();
         initViews();
         loadData();
+
+        //comment
     }
 
     void initViews() {
