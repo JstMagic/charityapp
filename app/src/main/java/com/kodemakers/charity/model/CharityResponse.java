@@ -18,6 +18,9 @@ public class CharityResponse implements Serializable {
     @SerializedName("is_active")
     private String isActive;
 
+    @SerializedName("is_live")
+    private String isLive;
+
     @SerializedName("charity_address")
     private String charityAddress;
 
@@ -86,6 +89,14 @@ public class CharityResponse implements Serializable {
 
     @SerializedName("charity_paypal_email")
     private String charitypaypalemail;
+
+    public String getIsLive() {
+        return isLive;
+    }
+
+    public void setIsLive(String isLive) {
+        this.isLive = isLive;
+    }
 
     public String getCharitynameinaccount() {
         return charitynameinaccount;

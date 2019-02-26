@@ -17,9 +17,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="2dp"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_height="30dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:layout_height="match_parent">
+                    <com.kodemakers.charity.fonts.RobotoNormalTextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/tvCharityStatustext"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_medium"
+                        android:text="Make Charity live"/>
+                    <Switch
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/switchCharitylive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@color/colorGrayLight"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -293,23 +322,4 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:layout_height="50dp">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
-            <com.kodemakers.charity.fonts.RobotoMediumTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_large"
-                android:text="Make Charity live"/>
-        </LinearLayout>
-
-    </LinearLayout>
 </LinearLayout>
