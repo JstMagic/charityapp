@@ -293,5 +293,24 @@
 
     </android.support.v4.widget.NestedScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <com.kodemakers.charity.fonts.RobotoMediumTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="la"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_large"
+                android:text="Make Charity live"/>
+        </LinearLayout>
 
+    </LinearLayout>
 </LinearLayout>
