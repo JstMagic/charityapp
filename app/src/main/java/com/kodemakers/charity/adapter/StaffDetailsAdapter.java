@@ -37,11 +37,13 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
 
     Context context;
     List<StaffDetails> newList;
+    List<StaffDetails> mFilteredList;
 
 
     public StaffDetailsAdapter(Context context, List<StaffDetails> newList) {
         this.context = context;
         this.newList = newList;
+        this.mFilteredList = newList;
     }
 
     @Override

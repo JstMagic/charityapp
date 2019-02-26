@@ -13,44 +13,67 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kodemakers.charity.R;
+import com.kodemakers.charity.custom.AppConstants;
+import com.kodemakers.charity.custom.PrefUtils;
+import com.kodemakers.charity.model.CharityResponse;
 
 public class CharityDetailsActivity extends AppCompatActivity {
 
-    TextView tvCharityName,tvEmail,tvMobile,tvAddress;
+    TextView tvCharityName,tvEmail,tvMobile,tvAddress,
+            tvLocation,tvCharityNameonAccount,tvCharityIfsc,
+            tvCharityBankName,tvCharityAccountNumber,tvCharityPaypalEmail,tvUpdateCharity;
     ImageView ivCharityImage;
+    CharityResponse charityResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charity_details);
+        charityResponse = PrefUtils.getUser(CharityDetailsActivity.this);
         setToolbar();
         initViews();
         loadData();
     }
-
     void initViews(){
         tvCharityName = findViewById(R.id.tvCharityName);
         tvEmail = findViewById(R.id.tvEmail);
         tvMobile = findViewById(R.id.tvMobile);
         tvAddress = findViewById(R.id.tvAddress);
         ivCharityImage = findViewById(R.id.ivCharityImage);
+        tvLocation = findViewById(R.id.tvCharityLocation);
+        tvCharityNameonAccount = findViewById(R.id.tvCharityNameOnAccount);
+        tvCharityIfsc = findViewById(R.id.tvCharityifsccode);
+        tvCharityBankName = findViewById(R.id.tvCharityBankName);
+        tvCharityAccountNumber = findViewById(R.id.tvCharityAccountNo);
+        tvCharityPaypalEmail = findViewById(R.id.tvCharityPaypalEmail);
+        tvUpdateCharity = findViewById(R.id.tvCharityUpdate);
     }
-
     private void loadData(){
-        tvCharityName.setText("ABC Charity");
-        tvEmail.setText("abc@gmail.com");
-        tvMobile.setText("1010101010");
-        tvAddress.setText("abc,xyz");
-        Glide.with(CharityDetailsActivity.this).load(R.drawable.charity_image).into(ivCharityImage);
+        tvCharityName.setText(charityResponse.getCharityName());
+        tvEmail.setText(charityResponse.getEmail());
+        tvMobile.setText(charityResponse.getMobile());
+        tvAddress.setText(charityResponse.getCharityAddress());
+        Glide.with(CharityDetailsActivity.this).load(AppConstants.BASE_URL+charityResponse.getImage()).into(ivCharityImage);
+        tvLocation.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
+        tvCharityNameonAccount.setText(charityResponse.getCharitynameinaccount());
+        tvCharityIfsc.setText(charityResponse.getCharityifsccode());
+        tvCharityBankName.setText(charityResponse.getCharitybankname());
+        tvCharityAccountNumber.setText(charityResponse.getCharityaccountno());
+        tvCharityPaypalEmail.setText(charityResponse.getCharitypaypalemail());
+        tvUpdateCharity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CharityDetailsActivity.this,UpdateCharityDetailsActivity.class);
+                intent.putExtra("charityResponse",charityResponse);
+                startActivity(intent);
+            }
+        });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit, menu);
-
        return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_edit) {
@@ -58,13 +81,8 @@ public class CharityDetailsActivity extends AppCompatActivity {
             startActivity(i);
             return true;
         }
-
-
-
         return super.onOptionsItemSelected(item);
-
     }
-
     private void setToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -80,5 +98,12 @@ public class CharityDetailsActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        // put your code here...
+        charityResponse = PrefUtils.getUser(CharityDetailsActivity.this);
+
     }
 }

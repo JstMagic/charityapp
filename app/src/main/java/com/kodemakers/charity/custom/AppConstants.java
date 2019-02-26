@@ -28,4 +28,7 @@ public class AppConstants {
     public static final String EDIT_STAFF = BASE_URL + "edit_staff.php";
     public static final String DELETE_STAFF = BASE_URL + "delete_staff.php";
 
+    public static final String UPDATE_CHARITY_DETAILS = BASE_URL + "update_charity_profile.php";
+
+
 }

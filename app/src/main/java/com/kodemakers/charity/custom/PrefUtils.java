@@ -2,9 +2,7 @@ package com.kodemakers.charity.custom;//package com.kodemakers.charity.user.cust
 
 
 import android.content.Context;
-
 import com.kodemakers.charity.model.CharityResponse;
-
 public class PrefUtils {
 
     public static void setUser(CharityResponse currentUser, Context ctx) {

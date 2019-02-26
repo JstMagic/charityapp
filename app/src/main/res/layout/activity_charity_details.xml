@@ -39,8 +39,6 @@
                     android:layout_margin="2dp"
                     android:scaleType="fitXY" />
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,7 +65,6 @@
                     android:textSize="@dimen/text_medium" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +91,6 @@
                     android:textSize="@dimen/text_medium" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +117,6 @@
                     android:textSize="@dimen/text_medium" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,10 +147,181 @@
 
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
 
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Location"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
 
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:id="@+id/tvCharityLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Name on Account"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:id="@+id/tvCharityNameOnAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="IFSC Code"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:id="@+id/tvCharityifsccode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Bank Name"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:id="@+id/tvCharityBankName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Account No"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:id="@+id/tvCharityAccountNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Paypal Email"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:id="@+id/tvCharityPaypalEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.kodemakers.charity.fonts.RobotoBoldTextView
+            android:id="@+id/tvCharityUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Update"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_medium" />
+    </LinearLayout>
 
 </LinearLayout>

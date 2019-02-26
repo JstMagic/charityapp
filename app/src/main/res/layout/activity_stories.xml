@@ -9,6 +9,61 @@
     tools:context=".activities.StoriesActivity">
 
     <include layout="@layout/app_bar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/border_black"
+        android:layout_marginBottom="1dp"
+        android:padding="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_height="50dp">
+            <LinearLayout
+                android:layout_width="50dp"
+                android:gravity="center"
+                android:id="@+id/llSearchFindJob"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/search"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edtSearchBusinessCategory"
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColorHint="#cccccc"
+                android:hint="Search...."
+                android:inputType="none"
+                android:singleLine="true"
+                android:lines="1"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:minLines="1"
+                android:layout_marginLeft="8dp"
+                android:background="@color/transparent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="50dp"
+                android:gravity="center"
+                android:id="@+id/llCancelFindJob"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/cancel"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

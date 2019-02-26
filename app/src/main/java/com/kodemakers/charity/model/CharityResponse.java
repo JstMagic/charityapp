@@ -2,7 +2,9 @@ package com.kodemakers.charity.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CharityResponse {
+import java.io.Serializable;
+
+public class CharityResponse implements Serializable {
 
     @SerializedName("transaction_id")
     private String transactionId;
@@ -69,6 +71,61 @@ public class CharityResponse {
 
     @SerializedName("type")
     private String type;
+
+    @SerializedName("charity_name_account")
+    private String charitynameinaccount;
+
+    @SerializedName("charity_ifsc_code")
+    private String charityifsccode;
+
+    @SerializedName("charity_bank_name")
+    private String charitybankname;
+
+    @SerializedName("charity_account_no")
+    private String charityaccountno;
+
+    @SerializedName("charity_paypal_email")
+    private String charitypaypalemail;
+
+    public String getCharitynameinaccount() {
+        return charitynameinaccount;
+    }
+
+    public void setCharitynameinaccount(String charitynameinaccount) {
+        this.charitynameinaccount = charitynameinaccount;
+    }
+
+    public String getCharityifsccode() {
+        return charityifsccode;
+    }
+
+    public void setCharityifsccode(String charityifsccode) {
+        this.charityifsccode = charityifsccode;
+    }
+
+    public String getCharitybankname() {
+        return charitybankname;
+    }
+
+    public void setCharitybankname(String charitybankname) {
+        this.charitybankname = charitybankname;
+    }
+
+    public String getCharityaccountno() {
+        return charityaccountno;
+    }
+
+    public void setCharityaccountno(String charityaccountno) {
+        this.charityaccountno = charityaccountno;
+    }
+
+    public String getCharitypaypalemail() {
+        return charitypaypalemail;
+    }
+
+    public void setCharitypaypalemail(String charitypaypalemail) {
+        this.charitypaypalemail = charitypaypalemail;
+    }
 
     public String getType() {
         return type;

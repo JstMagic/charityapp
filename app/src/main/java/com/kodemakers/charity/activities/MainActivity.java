@@ -15,15 +15,18 @@ import android.widget.TextView;
 
 import com.kodemakers.charity.R;
 import com.kodemakers.charity.custom.PrefUtils;
+import com.kodemakers.charity.model.CharityResponse;
 
 public class MainActivity extends AppCompatActivity {
 
     LinearLayout llUsers, llCharities, llStories, llStaff, llDonations, llAccount, llIntroSteppers, llNotifications;
     TextView tvCharityName;
+    CharityResponse charityResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        charityResponse = PrefUtils.getUser(MainActivity.this);
         setToolbar();
         initViews();
         loadData();
@@ -39,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         llIntroSteppers = findViewById(R.id.llIntroSteppers);
         llNotifications = findViewById(R.id.llNotifications);
         tvCharityName = findViewById(R.id.tvCharityNameDashboard);
-        if (PrefUtils.getUser(MainActivity.this).getCharityName().length() != 0) {
-            tvCharityName.setText(PrefUtils.getUser(MainActivity.this).getCharityName());
+        if (charityResponse.getCharityName().length() != 0) {
+            tvCharityName.setText(charityResponse.getCharityName());
         }
     }
 
@@ -114,20 +117,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             try {
-                if (PrefUtils.getUser(MainActivity.this).getCharityName().length() == 0) {
-                    toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getName());
-                    if (PrefUtils.getUser(MainActivity.this).getType().equalsIgnoreCase("staff")) {
+                if (charityResponse.getCharityName().length() == 0) {
+                    toolbar.setTitle(charityResponse.getName());
+                    if (charityResponse.getType().equalsIgnoreCase("staff")) {
                         toolbar.setSubtitle("Staff");
                     } else {
                         toolbar.setSubtitle("Moderator");
                     }
                 } else {
-                    toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getCharityName());
+                    toolbar.setTitle(charityResponse.getCharityName());
 
                 }
             } catch (Exception e) {
-                toolbar.setTitle(PrefUtils.getUser(MainActivity.this).getName());
-                if (PrefUtils.getUser(MainActivity.this).getType().equalsIgnoreCase("staff")) {
+                toolbar.setTitle(charityResponse.getName());
+                if (charityResponse.getType().equalsIgnoreCase("staff")) {
                     toolbar.setSubtitle("Staff");
                 } else {
                     toolbar.setSubtitle("Moderator");
@@ -182,6 +185,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        // put your code here...
+        charityResponse = PrefUtils.getUser(MainActivity.this);
 
     }
 }

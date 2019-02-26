@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,22 +29,26 @@ import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.model.FeedsDetails;
 import com.kodemakers.charity.model.LikesDetails;
 import com.kodemakers.charity.model.StatusResponse;
+import com.kodemakers.charity.model.FeedsDetails;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAdapter.RecViewHolder> {
+public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAdapter.RecViewHolder> implements Filterable {
 
     Context context;
     List<FeedsDetails> newList;
     private List<LikesDetails> likes;
+    List<FeedsDetails> mFilteredList;
 
     public CharityStoriesAdapter(Context context, List<FeedsDetails> newList, List<LikesDetails> likes) {
         this.context = context;
         this.newList = newList;
         this.likes =likes;
+        mFilteredList = newList;
     }
 
     @Override
@@ -52,71 +58,107 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
         return new CharityStoriesAdapter.RecViewHolder(view);
     }
 
+    @Override
+    public Filter getFilter() {
 
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+                    mFilteredList = newList;
+                } else {
+
+                    ArrayList<FeedsDetails> filteredList = new ArrayList<>();
+
+                    for (FeedsDetails categoryResult : newList) {
+
+                        if (categoryResult.getTitle().toLowerCase().contains(charString)) {
+                            filteredList.add(categoryResult);
+                        }
+                    }
+
+                    mFilteredList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilteredList = (ArrayList<FeedsDetails>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
     @Override
     public void onBindViewHolder(final CharityStoriesAdapter.RecViewHolder holder, final int position) {
 
-        holder.tvTitle.setText(newList.get(position).getTitle());
-        Glide.with(context).load(AppConstants.BASE_URL + newList.get(position).getImageUrl()).into(holder.ivImage);
-        holder.tvDate.setText(newList.get(position).getCreatedAt().substring(0,10));
+        holder.tvTitle.setText(mFilteredList.get(position).getTitle());
+        Glide.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImageUrl()).into(holder.ivImage);
+        holder.tvDate.setText(mFilteredList.get(position).getCreatedAt().substring(0,10));
 
         holder.ivDelete.setColorFilter(Color.parseColor("#03a9f4"));
         holder.ivEdit.setColorFilter(Color.parseColor("#03a9f4"));
 
-        if(newList.get(position).getDetails().equalsIgnoreCase("")){
+        if(mFilteredList.get(position).getDetails().equalsIgnoreCase("")){
             holder.tvDetails.setVisibility(View.GONE);
         }else{
             holder.tvDetails.setVisibility(View.VISIBLE);
-            holder.tvDetails.setText(newList.get(position).getDetails());
+            holder.tvDetails.setText(mFilteredList.get(position).getDetails());
         }
-        if(newList.get(position).getFeedType().equalsIgnoreCase("text")){
+        if(mFilteredList.get(position).getFeedType().equalsIgnoreCase("text")){
             holder.ivImage.setVisibility(View.GONE);
         }else {
             holder.ivImage.setVisibility(View.VISIBLE);
-            if(newList.get(position).getFeedType().equalsIgnoreCase("image")){
+            if(mFilteredList.get(position).getFeedType().equalsIgnoreCase("image")){
                 holder.ivPlayVideo.setVisibility(View.GONE);
-            }else if(newList.get(position).getFeedType().equalsIgnoreCase("video")){
+            }else if(mFilteredList.get(position).getFeedType().equalsIgnoreCase("video")){
                 holder.ivPlayVideo.setVisibility(View.VISIBLE);
                 holder.ivPlayVideo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(context, PlayVideoActivity.class);
-                        i.putExtra("video",AppConstants.BASE_URL + newList.get(position).getVideoUrl());
+                        i.putExtra("video",AppConstants.BASE_URL + mFilteredList.get(position).getVideoUrl());
                         context.startActivity(i);
                     }
                 });
             }
         }
-        holder.tvLikesCount.setText("Likes : " +newList.get(position).getLikes());
-        if(newList.get(position).getFeedType().equalsIgnoreCase("text")){
+        holder.tvLikesCount.setText("Likes : " +mFilteredList.get(position).getLikes());
+        if(mFilteredList.get(position).getFeedType().equalsIgnoreCase("text")){
             holder.llEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(context, AddNewStoryActivity.class);
-                    i.putExtra("FeedDetails",newList.get(position));
+                    i.putExtra("FeedDetails",mFilteredList.get(position));
                     context.startActivity(i);
                 }
             });
         }else {
-            if(newList.get(position).getFeedType().equalsIgnoreCase("image")){
+            if(mFilteredList.get(position).getFeedType().equalsIgnoreCase("image")){
                 holder.llEdit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         Intent i = new Intent(context, AddNewStoryActivity.class);
-                        i.putExtra("FeedDetails",newList.get(position));
+                        i.putExtra("FeedDetails",mFilteredList.get(position));
                         i.putExtra("is_Image",true);
                         context.startActivity(i);
                     }
                 });
-            }else if(newList.get(position).getFeedType().equalsIgnoreCase("video")){
+            }else if(mFilteredList.get(position).getFeedType().equalsIgnoreCase("video")){
                 holder.llEdit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         Intent i = new Intent(context, AddVideoFeedActivity.class);
-                        i.putExtra("FeedDetails",newList.get(position));
+                        i.putExtra("FeedDetails",mFilteredList.get(position));
                         i.putExtra("type", "edit");
                         context.startActivity(i);
                     }
@@ -144,8 +186,8 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
 
                                 JSONObject requestObjet = new JSONObject();
                                 try {
-                                    requestObjet.put("feed_id", newList.get(position).getFeedId());
-                                    requestObjet.put("charity_id", newList.get(position).getCharityId());
+                                    requestObjet.put("feed_id", mFilteredList.get(position).getFeedId());
+                                    requestObjet.put("charity_id", mFilteredList.get(position).getCharityId());
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -158,7 +200,7 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
                                         StatusResponse statusChangeResponse = new GsonBuilder().create().fromJson(response, StatusResponse.class);
                                         Toast.makeText(context, statusChangeResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                         if (statusChangeResponse.getStatus().equalsIgnoreCase("1")) {
-                                            newList.remove(position);
+                                            mFilteredList.remove(position);
                                             notifyDataSetChanged();
                                         }
                                     }
@@ -185,7 +227,7 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
 
     @Override
     public int getItemCount() {
-        return newList.size();
+        return mFilteredList.size();
     }
 
     public class RecViewHolder extends RecyclerView.ViewHolder {

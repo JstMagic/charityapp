@@ -150,6 +150,195 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Location"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtLocation1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:text="Type and search Location"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    android:text=" -- OR -- "
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtLocation2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/border_gray"
+                    android:clickable="true"
+                    android:editable="true"
+                    android:focusable="true"
+                    android:padding="10dp"
+                    android:hint="Get Current Location"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Name on Account"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtUCharityNameOnAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="IFSC Code"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtUCharityifsccode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Bank Name"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtUCharityBankName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Account No"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtUCharityAccountNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp"
+                android:padding="@dimen/padding_edit_text">
+
+                <com.kodemakers.charity.fonts.RobotoNormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="Paypal Email"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_small" />
+
+                <com.kodemakers.charity.fonts.RobotoNormalEditText
+                    android:id="@+id/edtUCharityPaypalEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/border_gray"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGrayDark"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
@@ -159,7 +348,7 @@
         android:layout_gravity="bottom">
 
         <com.kodemakers.charity.fonts.RobotoBoldTextView
-            android:id="@+id/tvUpdate"
+            android:id="@+id/tvUpdateCharityDetails"
             android:textSize="@dimen/text_medium"
             android:textColor="@color/white"
             android:textAllCaps="false"

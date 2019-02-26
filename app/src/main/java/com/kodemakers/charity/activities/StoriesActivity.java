@@ -13,6 +13,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -22,7 +24,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -58,6 +62,9 @@ public class StoriesActivity extends AppCompatActivity {
     ListView listView;
     List<ContextMenuItem> contextMenuItems;
     ContextMenuAdapter adapter;
+    private LinearLayout llCancel;
+    private EditText edtSearch;
+    FeedsResponse feedsResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +73,37 @@ public class StoriesActivity extends AppCompatActivity {
         setToolbar();
         initViews();
         loadData();
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable mEdit) {
+                String text = mEdit.toString();
+                if (text.length() == 0) {
+                    //  llCancel.setVisibility(View.GONE);
+                    charityStoriesAdapter = new CharityStoriesAdapter(StoriesActivity.this, feedsResponse.getFeeds(),feedsResponse.getLikes());
+                    recyclerView.setAdapter(charityStoriesAdapter);
+                } else {
+                    charityStoriesAdapter.getFilter().filter(edtSearch.getText().toString());
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+        llCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edtSearch.setText("");
+                charityStoriesAdapter = new CharityStoriesAdapter(StoriesActivity.this, feedsResponse.getFeeds(),feedsResponse.getLikes());
+                recyclerView.setAdapter(charityStoriesAdapter);
+            }
+        });
     }
 
     void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
+        llCancel = findViewById(R.id.llCancelFindJob);
+        edtSearch = findViewById(R.id.edtSearchBusinessCategory);
     }
 
     private void loadData() {
@@ -85,6 +119,7 @@ public class StoriesActivity extends AppCompatActivity {
                 customDialog();
             }
         });
+
     }
 
     private boolean isNetworkConnected() {
@@ -115,7 +150,7 @@ public class StoriesActivity extends AppCompatActivity {
                     Log.e("response", response);
 //                    progressDialog.dismiss();
 
-                    FeedsResponse feedsResponse = new GsonBuilder().create().fromJson(response, FeedsResponse.class);
+                    feedsResponse = new GsonBuilder().create().fromJson(response, FeedsResponse.class);
                     charityStoriesAdapter = new CharityStoriesAdapter(StoriesActivity.this, feedsResponse.getFeeds(),feedsResponse.getLikes());
                     recyclerView.setAdapter(charityStoriesAdapter);
 
