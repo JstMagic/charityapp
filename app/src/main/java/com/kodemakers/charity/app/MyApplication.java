@@ -14,6 +14,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
+import com.google.android.libraries.places.api.model.Place;
+import com.kodemakers.charity.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -74,6 +76,8 @@ public class MyApplication extends Application {
         normal = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/normal.ttf");
         bold = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/bold.ttf");
         medium = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/medium.ttf");
+
+        Place.initialize(getApplicationContext(), getString(R.string.apiKey));
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo(

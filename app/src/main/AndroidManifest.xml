@@ -106,6 +106,10 @@
             android:name=".activities.NotificationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/apiKey" />
         <activity
             android:name=".activities.PlayVideoActivity"
              />

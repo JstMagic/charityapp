@@ -114,14 +114,12 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         edtLocation1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(UpdateCharityDetailsActivity.this,"To Do..",Toast.LENGTH_SHORT).show();
-                //getLocation();
+                getLocation();
             }
         });
     }
     public void getLocation() {
-        // Set the fields to specify which types of place data to return.
-        List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
+        List<com.google.android.libraries.places.api.model.Place.Field> fields = Arrays.asList(com.google.android.libraries.places.api.model.Place.Field.ADDRESS, Place.Field.LAT_LNG);
 //
 //        // Start the autocomplete intent.
         Intent intent = new Autocomplete.IntentBuilder(

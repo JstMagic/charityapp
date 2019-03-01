@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Charity</string>
     <string name="no_internet">No Internet Connection, try again later</string>
+    <string name="apiKey">AIzaSyAF_PunLPBSz5haZFVz8r6Op-UYzMCH4i0</string>
 </resources>
