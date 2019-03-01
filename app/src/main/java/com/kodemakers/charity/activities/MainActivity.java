@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             tvCharityStatusText.setText("Make Charity Live");
             switchCharityLive.setChecked(false);
         }
+
     }
 
     private void loadData() {
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         llCharities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, CharityDetailsActivity.class);
+                Intent i = new Intent(MainActivity.this, UpdateCharityDetailsActivity.class);
                 startActivity(i);
             }
         });
@@ -122,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
         llAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, AccountDetailsActivity.class);
-                startActivity(i);
+               /*/* Intent i = new Intent(MainActivity.this, UpdateCharityDetailsActivity.class);
+                startActivity(i);*/
             }
         });
 

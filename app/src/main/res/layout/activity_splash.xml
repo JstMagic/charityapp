@@ -7,13 +7,11 @@
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".activities.SplashActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center">
-
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -21,5 +19,4 @@
             android:layout_gravity="center"
             />
     </LinearLayout>
-
 </LinearLayout>

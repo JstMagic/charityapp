@@ -67,7 +67,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dp"
-                            android:text="NEW USER"
+                            android:text="NEW CHARITY"
                             android:textAlignment="center"
                             android:textColor="@color/colortext"
                             android:textSize="@dimen/text_large" />

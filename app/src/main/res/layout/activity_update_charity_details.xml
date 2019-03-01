@@ -155,7 +155,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/padding_edit_text">
-
                 <com.kodemakers.charity.fonts.RobotoNormalTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -163,13 +162,11 @@
                     android:text="Location"
                     android:textColor="@color/colorGrayDark"
                     android:textSize="@dimen/text_small" />
-
                 <com.kodemakers.charity.fonts.RobotoNormalEditText
                     android:id="@+id/edtLocation1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
                     android:layout_marginTop="4dp"
                     android:background="@drawable/border_gray"
                     android:text="Type and search Location"
@@ -179,27 +176,24 @@
                     android:focusable="false"
                     android:textColor="@color/colorGrayDark"
                     android:textSize="@dimen/text_medium" />
-
                 <com.kodemakers.charity.fonts.RobotoNormalTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:gravity="center"
                     android:padding="1dp"
                     android:text=" -- OR -- "
                     android:textColor="@color/colorGrayDark"
                     android:textSize="@dimen/text_medium" />
-
                 <com.kodemakers.charity.fonts.RobotoNormalEditText
                     android:id="@+id/edtLocation2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/border_gray"
                     android:clickable="true"
-                    android:editable="true"
+                    android:editable="false"
                     android:focusable="true"
                     android:padding="10dp"
                     android:hint="Get Current Location"
