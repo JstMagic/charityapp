@@ -14,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
+import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.kodemakers.charity.R;
 
@@ -77,7 +78,7 @@ public class MyApplication extends Application {
         bold = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/bold.ttf");
         medium = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/medium.ttf");
 
-        Place.initialize(getApplicationContext(), getString(R.string.apiKey));
+        Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo(

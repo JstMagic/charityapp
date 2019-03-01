@@ -10,13 +10,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
@@ -45,6 +45,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.gson.GsonBuilder;
 import com.kodemakers.charity.R;
@@ -70,15 +71,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class UpdateCharityDetailsActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+public class UpdateCharityDetailsActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    EditText edtCharityName,edtEmail,edtMobile,edtAddress
-            ,edtLocation2,edtLocation1,edtNameonAccount,edtIfscCode,
-            edtBankName,edtAccountNo,edtPaypalEmail;
+    EditText edtCharityName, edtEmail, edtMobile, edtAddress, edtLocation2, edtLocation1, edtNameonAccount, edtIfscCode,
+            edtBankName, edtAccountNo, edtPaypalEmail;
     TextView tvUpdate;
     LinearLayout llUploadImage;
     ImageView imgUploadImage;
-    ProgressDialog progressDialog ;
+    ProgressDialog progressDialog;
     private int SELECT_FILE = 1;
     private File actualImage;
     private File compressedImage;
@@ -90,11 +90,12 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
     public LatLng gps;
     String latitude = "", longitude = "";
     boolean isFirst = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_charity_details);
-        progressDialog= new ProgressDialog(UpdateCharityDetailsActivity.this);
+        progressDialog = new ProgressDialog(UpdateCharityDetailsActivity.this);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         setToolbar();
         //charityResponse = (CharityResponse) getIntent().getSerializableExtra("charityResponse");
@@ -118,13 +119,13 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             }
         });
     }
+
     public void getLocation() {
         List<com.google.android.libraries.places.api.model.Place.Field> fields = Arrays.asList(com.google.android.libraries.places.api.model.Place.Field.ADDRESS, Place.Field.LAT_LNG);
 //
 //        // Start the autocomplete intent.
         Intent intent = new Autocomplete.IntentBuilder(
                 AutocompleteActivityMode.OVERLAY, fields)
-                .setCountry("IN")
                 .build(this);
         startActivityForResult(intent, 123);
     }
@@ -182,6 +183,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             }
         }.start();
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -191,14 +193,17 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
         }
     }
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
     }
+
     @Override
     public void onConnectionSuspended(int i) {
 
     }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -282,7 +287,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         }
     };
 
-    void initViews(){
+    void initViews() {
         edtCharityName = findViewById(R.id.edtCharityName);
         edtEmail = findViewById(R.id.edtEmail);
         edtMobile = findViewById(R.id.edtMobile);
@@ -299,19 +304,19 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         imgUploadImage = findViewById(R.id.imgUploadImage);
     }
 
-    private void loadData(){
+    private void loadData() {
         edtCharityName.setText(charityResponse.getCharityName());
         edtEmail.setText(charityResponse.getEmail());
         edtMobile.setText(charityResponse.getMobile());
         edtAddress.setText(charityResponse.getCharityAddress());
-    //    edtLocation2.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
+        //    edtLocation2.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
 //        edtLocation1.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
         edtNameonAccount.setText(charityResponse.getCharitynameinaccount());
         edtIfscCode.setText(charityResponse.getCharityifsccode());
         edtBankName.setText(charityResponse.getCharitybankname());
         edtAccountNo.setText(charityResponse.getCharityaccountno());
         edtPaypalEmail.setText(charityResponse.getCharitypaypalemail());
-        Glide.with(UpdateCharityDetailsActivity.this).load(AppConstants.BASE_URL+charityResponse.getImage()).into(imgUploadImage);
+        Glide.with(UpdateCharityDetailsActivity.this).load(AppConstants.BASE_URL + charityResponse.getImage()).into(imgUploadImage);
         tvUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -325,35 +330,38 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             }
         });
     }
-    public void signupClick(){
-        if(edtCharityName.getText().toString().length()==0){
+
+    public void signupClick() {
+        if (edtCharityName.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Name", Toast.LENGTH_SHORT).show();
-        }else if(edtEmail.getText().toString().length()==0){
+        } else if (edtEmail.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Email", Toast.LENGTH_SHORT).show();
-        }else if(edtMobile.getText().toString().length()==0){
+        } else if (edtMobile.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Mobile", Toast.LENGTH_SHORT).show();
-        }else if(edtAddress.getText().toString().length()==0){
+        } else if (edtAddress.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Address", Toast.LENGTH_SHORT).show();
-        }else if(edtNameonAccount.getText().toString().length()==0){
+        } else if (edtNameonAccount.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Account Name", Toast.LENGTH_SHORT).show();
-        }else if(edtIfscCode.getText().toString().length()==0){
+        } else if (edtIfscCode.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Ifsc Code", Toast.LENGTH_SHORT).show();
-        }else if(edtBankName.getText().toString().length()==0){
+        } else if (edtBankName.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Bank Name", Toast.LENGTH_SHORT).show();
-        }else if(edtAccountNo.getText().toString().length()==0){
+        } else if (edtAccountNo.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Account No", Toast.LENGTH_SHORT).show();
-        }else if(edtPaypalEmail.getText().toString().length()==0){
+        } else if (edtPaypalEmail.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity paypal email", Toast.LENGTH_SHORT).show();
         } else if (edtLocation1.getText().toString().length() == 0 & edtLocation2.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter location or get current location", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             postimage();
         }
     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
     }
+
     private void postimage() {
         if (isNetworkConnected()) {
             final ProgressDialog progressDialog = new ProgressDialog(UpdateCharityDetailsActivity.this);
@@ -416,8 +424,8 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                         charityResponse.setCharitybankname(edtBankName.getText().toString().trim());
                         charityResponse.setCharityaccountno(edtAccountNo.getText().toString().trim());
                         charityResponse.setCharitypaypalemail(edtPaypalEmail.getText().toString().trim());
-                        PrefUtils.setUser(charityResponse,UpdateCharityDetailsActivity.this);
-                        Intent in = new Intent(UpdateCharityDetailsActivity.this,MainActivity.class);
+                        PrefUtils.setUser(charityResponse, UpdateCharityDetailsActivity.this);
+                        Intent in = new Intent(UpdateCharityDetailsActivity.this, MainActivity.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(in);
                     } else {
@@ -428,7 +436,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
 
                 @Override
                 public void error(String error) {
-                      progressDialog.dismiss();
+                    progressDialog.dismiss();
                     Toast.makeText(UpdateCharityDetailsActivity.this, "Technical Problem, try again later", Toast.LENGTH_SHORT).show();
                 }
             }.call();
@@ -436,12 +444,14 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             Toast.makeText(UpdateCharityDetailsActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
         }
     }
+
     private void galleryIntent() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);//
         startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
+
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
         try {
@@ -452,10 +462,12 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         compressImage();
 
     }
+
     private void setCompressedImage() {
 
         imgUploadImage.setImageBitmap(BitmapFactory.decodeFile(compressedImage.getAbsolutePath()));
     }
+
     public void compressImage() {
         if (actualImage == null) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please choose an image!", Toast.LENGTH_SHORT).show();
@@ -469,7 +481,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                         @Override
                         public void accept(File file) {
                             compressedImage = file;
-                            Log.e("com","1");
+                            Log.e("com", "1");
 
 
                             setCompressedImage();
@@ -484,9 +496,29 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                     });
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 123) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                Log.i("Location", "Place: " + place.getAddress());
+
+                edtLocation1.setText(place.getAddress().toString());
+                latitude = place.getLatLng().latitude + "";
+                longitude = place.getLatLng().longitude + "";
+                edtLocation2.setText(latitude + ", " + longitude);
+
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // TODO: Handle the error.
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Log.i("Location", status.getStatusMessage());
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_FILE) {
@@ -494,6 +526,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             }
         }
     }
+
     private void setToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {

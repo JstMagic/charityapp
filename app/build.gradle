@@ -17,7 +17,7 @@ android {
     }
     defaultConfig {
         applicationId "com.kodemakers.charity"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 27
         multiDexEnabled true
         versionCode 1
@@ -29,10 +29,10 @@ android {
         key {
             keyAlias 'charity_app'
             keyPassword 'charity_app'
-            // storeFile file('/Users/nirav/Desktop/jks_files/charity_app.jks')
+             storeFile file('/Users/nirav/Desktop/jks_files/charity_app.jks')
          //  storeFile file('/home/nkdroid/Desktop/jks_files_kodemakers/charity_app.jks')
             //    storeFile file('/Users/nirav/Desktop/jks_files/nkdroid.jks')
-            storeFile file('/home/nkdroid/Desktop/nkDroid Solutions/JKS/charity_app.jks')
+//            storeFile file('/home/nkdroid/Desktop/nkDroid Solutions/JKS/charity_app.jks')
             storePassword 'charity_app'
         }
     }
@@ -69,8 +69,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation 'com.google.firebase:firebase-database:16.0.6'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-database:16.1.0'
+    implementation 'com.google.firebase:firebase-messaging:17.4.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.android.libraries.places:places:1.0.0'
