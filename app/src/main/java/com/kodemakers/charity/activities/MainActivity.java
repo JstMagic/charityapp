@@ -217,12 +217,11 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setTitle(charityResponse.getName());
                     if (charityResponse.getType().equalsIgnoreCase("staff")) {
                         toolbar.setSubtitle("Staff");
-                    } else {
+                    }else {
                         toolbar.setSubtitle("Moderator");
                     }
                 } else {
                     toolbar.setTitle(charityResponse.getCharityName());
-
                 }
             } catch (Exception e) {
                 toolbar.setTitle(charityResponse.getName());
@@ -282,6 +281,5 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         // put your code here...
         charityResponse = PrefUtils.getUser(MainActivity.this);
-
     }
 }
