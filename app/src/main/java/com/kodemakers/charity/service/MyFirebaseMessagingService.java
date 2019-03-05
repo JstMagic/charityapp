@@ -11,10 +11,14 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.kodemakers.charity.activities.LoginActivity;
 import com.kodemakers.charity.activities.SplashActivity;
 import com.kodemakers.charity.app.Config;
+import com.kodemakers.charity.custom.PrefUtils;
+import com.kodemakers.charity.model.NotificationDetailModelList;
+import com.kodemakers.charity.model.NotificationResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -26,6 +30,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
     private NotificationUtils notificationUtils;
+    NotificationDetailModelList notificationDetailModelList;
+    ArrayList<NotificationResponse> notificationResponseArrayList;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -38,6 +44,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.e(TAG, "Notification Body: " + remoteMessage.getNotification().getBody());
             handleNotification(remoteMessage.getNotification().getBody());
         }
+
+        try {
+            notificationDetailModelList = PrefUtils.getNotification(getBaseContext());
+            notificationResponseArrayList = notificationDetailModelList.notificationResponseArrayList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            notificationDetailModelList = new NotificationDetailModelList();
+            notificationResponseArrayList = new ArrayList<>();
+        }
+
+        try {
+            notificationResponseArrayList.add(new NotificationResponse(remoteMessage.getData().toString()));
+            notificationDetailModelList.notificationResponseArrayList = notificationResponseArrayList;
+            PrefUtils.setNotification(notificationDetailModelList, getBaseContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("error", "adding");
+        }
+
+
+
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.e(TAG, "Data Payload: " + remoteMessage.getData().toString());
@@ -97,12 +124,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notification_id = i1;
             Log.e(TAG, "notification_id: " + notification_id);
 
+            //also add click_action in notificationActivity
+
             Intent resultIntent;
             if (click_action.equalsIgnoreCase("CHARITY_STATUS_NOTIFICATION")) {
-//                FirebaseNotificationResponse notification = new GsonBuilder().create().fromJson(payload.toString(), FirebaseNotificationResponse.class);
                 resultIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 resultIntent.putExtra("from_notification", true);
-//                resultIntent.putExtra("OrderDetails", notification.getResult());
                 resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             } else {
                 resultIntent = new Intent(getApplicationContext(), SplashActivity.class);

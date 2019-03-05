@@ -3,6 +3,8 @@ package com.kodemakers.charity.custom;//package com.kodemakers.charity.user.cust
 
 import android.content.Context;
 import com.kodemakers.charity.model.CharityResponse;
+import com.kodemakers.charity.model.NotificationDetailModelList;
+
 public class PrefUtils {
 
     public static void setUser(CharityResponse currentUser, Context ctx) {
@@ -23,4 +25,23 @@ public class PrefUtils {
         return currentUser;
     }
 
+    ////////////////Post Notification
+    public static void setNotification(NotificationDetailModelList currentUser, Context ctx) {
+        ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "notification_pref", 0);
+        complexPreferences.putObject("notification_pref_value", currentUser);
+        complexPreferences.commit();
+    }
+
+    public static void clearCurrentNotification(Context ctx) {
+        ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "notification_pref", 0);
+        complexPreferences.clearObject();
+        complexPreferences.commit();
+    }
+
+
+    public static NotificationDetailModelList getNotification(Context ctx) {
+        ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "notification_pref", 0);
+        NotificationDetailModelList currentUser = complexPreferences.getObject("notification_pref_value", NotificationDetailModelList.class);
+        return currentUser;
+    }
 }
