@@ -29,10 +29,10 @@ android {
         key {
             keyAlias 'charity_app'
             keyPassword 'charity_app'
-             storeFile file('/Users/nirav/Desktop/jks_files/charity_app.jks')
+          //   storeFile file('/Users/nirav/Desktop/jks_files/charity_app.jks')
          //  storeFile file('/home/nkdroid/Desktop/jks_files_kodemakers/charity_app.jks')
             //    storeFile file('/Users/nirav/Desktop/jks_files/nkdroid.jks')
-//            storeFile file('/home/nkdroid/Desktop/nkDroid Solutions/JKS/charity_app.jks')
+            storeFile file('/home/nkdroid/Desktop/nkDroid Solutions/JKS/charity_app.jks')
             storePassword 'charity_app'
         }
     }

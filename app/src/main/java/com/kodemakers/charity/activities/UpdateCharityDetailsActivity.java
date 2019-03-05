@@ -75,13 +75,14 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
 
     EditText edtCharityName, edtEmail, edtMobile, edtAddress, edtLocation2, edtLocation1, edtNameonAccount, edtIfscCode,
             edtBankName, edtAccountNo, edtPaypalEmail;
-    TextView tvUpdate;
-    LinearLayout llUploadImage;
+    TextView tvUpdate, tvAdoption, tvDonation, tvCause;
+    LinearLayout llUploadImage, llcharityType;
     ImageView imgUploadImage;
     ProgressDialog progressDialog;
     private int SELECT_FILE = 1;
     private File actualImage;
     private File compressedImage;
+    String type;
 
     CharityResponse charityResponse;
     Location mLastLocation;
@@ -100,6 +101,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         setToolbar();
         //charityResponse = (CharityResponse) getIntent().getSerializableExtra("charityResponse");
         charityResponse = PrefUtils.getUser(UpdateCharityDetailsActivity.this);
+        type=null;
         initViews();
         loadData();
         edtLocation2.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +121,27 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             }
         });
     }
+
+    public void updateUI() {
+        tvAdoption.setBackground(getResources().getDrawable(R.drawable.blue_border));
+        tvAdoption.setTextColor(getResources().getColor(R.color.colorPrimary));
+        tvDonation.setBackground(getResources().getDrawable(R.drawable.blue_border));
+        tvDonation.setTextColor(getResources().getColor(R.color.colorPrimary));
+        tvCause.setBackground(getResources().getDrawable(R.drawable.blue_border));
+        tvCause.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+        if (type.equalsIgnoreCase("1")) {
+            tvAdoption.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvAdoption.setTextColor(getResources().getColor(R.color.white));
+        } else if (type.equalsIgnoreCase("2")) {
+            tvDonation.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvDonation.setTextColor(getResources().getColor(R.color.white));
+        }else if (type.equalsIgnoreCase("3")) {
+            tvCause.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvCause.setTextColor(getResources().getColor(R.color.white));
+        }
+    }
+
 
     public void getLocation() {
         List<com.google.android.libraries.places.api.model.Place.Field> fields = Arrays.asList(com.google.android.libraries.places.api.model.Place.Field.ADDRESS, Place.Field.LAT_LNG);
@@ -302,6 +325,10 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         tvUpdate = findViewById(R.id.tvUpdateCharityDetails);
         llUploadImage = findViewById(R.id.llUploadImage);
         imgUploadImage = findViewById(R.id.imgUploadImage);
+        tvAdoption = findViewById(R.id.tvAdoption);
+        tvDonation = findViewById(R.id.tvDonation);
+        tvCause = findViewById(R.id.tvCause);
+        llcharityType = findViewById(R.id.llcharityType);
     }
 
     private void loadData() {
@@ -317,18 +344,58 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         edtAccountNo.setText(charityResponse.getCharityaccountno());
         edtPaypalEmail.setText(charityResponse.getCharitypaypalemail());
         Glide.with(UpdateCharityDetailsActivity.this).load(AppConstants.BASE_URL + charityResponse.getImage()).into(imgUploadImage);
+
+        if(charityResponse.getCharityType().equalsIgnoreCase("1")){
+            tvAdoption.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvAdoption.setTextColor(getResources().getColor(R.color.white));
+        }else  if(charityResponse.getCharityType().equalsIgnoreCase("2")){
+            tvDonation.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvDonation.setTextColor(getResources().getColor(R.color.white));
+        }else  if(charityResponse.getCharityType().equalsIgnoreCase("3")){
+            tvCause.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvCause.setTextColor(getResources().getColor(R.color.white));
+        }
+
         tvUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signupClick();
             }
         });
+
         llUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 galleryIntent();
             }
         });
+
+
+
+        tvAdoption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = "1";
+                updateUI();
+            }
+        });
+
+        tvDonation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = "2";
+                updateUI();
+            }
+        });
+
+        tvCause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = "3";
+                updateUI();
+            }
+        });
+
     }
 
     public void signupClick() {
@@ -395,6 +462,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
 
             try {
                 jsonObject.put("charity_id", PrefUtils.getUser(UpdateCharityDetailsActivity.this).getCharityId());
+                jsonObject.put("charity_type",type);
                 jsonObject.put("charity_name", edtCharityName.getText().toString().trim());
                 jsonObject.put("mobile", edtMobile.getText().toString().trim());
                 jsonObject.put("charity_address", edtAddress.getText().toString().trim());
@@ -424,6 +492,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                         charityResponse.setCharitybankname(edtBankName.getText().toString().trim());
                         charityResponse.setCharityaccountno(edtAccountNo.getText().toString().trim());
                         charityResponse.setCharitypaypalemail(edtPaypalEmail.getText().toString().trim());
+                        charityResponse.setCharityType(type);
                         PrefUtils.setUser(charityResponse, UpdateCharityDetailsActivity.this);
                         Intent in = new Intent(UpdateCharityDetailsActivity.this, MainActivity.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
