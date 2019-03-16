@@ -59,7 +59,7 @@
                         android:layout_marginLeft="6dp"
                         android:text="Name"
                         android:textColor="@color/colorGrayDark"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_medium" />
 
 
                 </LinearLayout>

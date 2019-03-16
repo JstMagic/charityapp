@@ -32,30 +32,12 @@ public class DonationDetailActivity extends AppCompatActivity {
         setToolbar();
 
         initViews();
-        loadData();
     }
 
     void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
     }
 
-    private void loadData() {
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(DonationDetailActivity.this, 1);
-        recyclerView.setLayoutManager(layoutManager);
-
-        ArrayList<DonationDetails> newList = new ArrayList<>();
-
-        newList.add(new DonationDetails("Nirav",R.drawable.dummy_user,"moeny","$ 500"));
-        newList.add(new DonationDetails("Shyam",R.drawable.dummy_user,"time","$ 50"));
-        newList.add(new DonationDetails("Ram",R.drawable.dummy_user,"moeny","$ 280"));
-
-
-        donationDetailAdapter =new DonationDetailAdapter(DonationDetailActivity.this, newList);
-        recyclerView.setAdapter(donationDetailAdapter);
-
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

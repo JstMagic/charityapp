@@ -179,14 +179,13 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
 
         TextView tvUserName,tvRoleName;
         CircleImageView civUserImage;
-        ImageView ivForwardArrow,ivUpdateStaff,ivDeleteStaff;
+        ImageView ivUpdateStaff,ivDeleteStaff;
 
         public RecViewHolder(View itemView) {
             super(itemView);
             tvUserName = itemView.findViewById(R.id.tvUserName);
             tvRoleName = itemView.findViewById(R.id.tvRoleName);
             civUserImage = itemView.findViewById(R.id.civUserImage);
-            ivForwardArrow = itemView.findViewById(R.id.ivForwardArrow);
             ivUpdateStaff = itemView.findViewById(R.id.ivUpdateStaff);
             ivDeleteStaff  = itemView.findViewById(R.id.ivDeleteStaff);
         }

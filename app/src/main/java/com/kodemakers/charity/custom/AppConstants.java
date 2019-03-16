@@ -31,6 +31,7 @@ public class AppConstants {
     public static final String UPDATE_CHARITY_DETAILS = BASE_URL + "update_charity_profile.php";
     public static final String FOLLOWERS_LIST = BASE_URL + "followers_list.php";
     public static final String MAKE_CHARITY_LIVE = BASE_URL + "make_charity_live.php";
+    public static final String TRANSACTIONS_LIST = BASE_URL + "transaction_list.php";
 
 
 }

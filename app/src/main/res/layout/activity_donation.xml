@@ -5,37 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-        tools:context=".activities.DonationActivity">
-
-    <include layout="@layout/app_bar"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1">
+    android:background="@color/colorGrayLight"
+    tools:context=".activities.DonationActivity">
 
 
-</LinearLayout>
+    <include layout="@layout/app_bar" />
 
-    <LinearLayout
+    <com.kodemakers.charity.fonts.RobotoMediumTextView
+        android:id="@+id/tvEmptyView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <com.kodemakers.charity.fonts.RobotoBoldTextView
-            android:id="@+id/tvView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:text="View Details"
-            android:textAllCaps="false"
-            android:padding="16dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_medium"
-            />
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="No Data"
+        android:textSize="@dimen/text_large"
+        android:visibility="gone" />
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:padding="4dp"/>
 </LinearLayout>

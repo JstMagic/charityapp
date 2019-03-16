@@ -1,48 +1,109 @@
 package com.kodemakers.charity.model;
 
-public class DonationDetails {
+import com.google.gson.annotations.SerializedName;
 
-    private String contributorName;
-    private Integer image;
-    private String donationType;
-    private String amount;
+public class DonationDetails{
 
-    public DonationDetails(String contributorName, Integer image, String donationType, String amount) {
-        this.contributorName = contributorName;
-        this.image = image;
-        this.donationType = donationType;
-        this.amount = amount;
-    }
+	@SerializedName("transaction_id")
+	private String transactionId;
 
-    public String getContributorName() {
-        return contributorName;
-    }
+	@SerializedName("amount")
+	private String amount;
 
-    public void setContributorName(String contributorName) {
-        this.contributorName = contributorName;
-    }
+	@SerializedName("user_id")
+	private String userId;
 
-    public Integer getImage() {
-        return image;
-    }
+	@SerializedName("charity_id")
+	private String charityId;
 
-    public void setImage(Integer image) {
-        this.image = image;
-    }
+	@SerializedName("created_at")
+	private String createdAt;
 
-    public String getDonationType() {
-        return donationType;
-    }
+	@SerializedName("comment")
+	private String comment;
 
-    public void setDonationType(String donationType) {
-        this.donationType = donationType;
-    }
+	@SerializedName("donation_id")
+	private String donationId;
 
-    public String getAmount() {
-        return amount;
-    }
+	@SerializedName("username")
+	private String username;
 
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
+	public void setTransactionId(String transactionId){
+		this.transactionId = transactionId;
+	}
+
+	public String getTransactionId(){
+		return transactionId;
+	}
+
+	public void setAmount(String amount){
+		this.amount = amount;
+	}
+
+	public String getAmount(){
+		return amount;
+	}
+
+	public void setUserId(String userId){
+		this.userId = userId;
+	}
+
+	public String getUserId(){
+		return userId;
+	}
+
+	public void setCharityId(String charityId){
+		this.charityId = charityId;
+	}
+
+	public String getCharityId(){
+		return charityId;
+	}
+
+	public void setCreatedAt(String createdAt){
+		this.createdAt = createdAt;
+	}
+
+	public String getCreatedAt(){
+		return createdAt;
+	}
+
+	public void setComment(String comment){
+		this.comment = comment;
+	}
+
+	public String getComment(){
+		return comment;
+	}
+
+	public void setDonationId(String donationId){
+		this.donationId = donationId;
+	}
+
+	public String getDonationId(){
+		return donationId;
+	}
+
+	public void setUsername(String username){
+		this.username = username;
+	}
+
+	public String getUsername(){
+		return username;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"DonationDetails{" + 
+			"transaction_id = '" + transactionId + '\'' + 
+			",amount = '" + amount + '\'' + 
+			",user_id = '" + userId + '\'' + 
+			",charity_id = '" + charityId + '\'' + 
+			",created_at = '" + createdAt + '\'' + 
+			",comment = '" + comment + '\'' + 
+			",donation_id = '" + donationId + '\'' + 
+			",username = '" + username + '\'' + 
+			"}";
+		}
 }
