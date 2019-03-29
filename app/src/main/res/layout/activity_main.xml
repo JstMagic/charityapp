@@ -8,52 +8,58 @@
     tools:context=".activities.MainActivity">
 
     <include layout="@layout/app_bar" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="2dp"
             android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/llMakeCharityLive"
                 android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:background="@color/white"
-                android:orientation="horizontal"
-                android:layout_height="30dp">
+                android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:layout_height="match_parent">
+                    android:gravity="center_horizontal">
+
                     <com.kodemakers.charity.fonts.RobotoNormalTextView
-                        android:layout_width="wrap_content"
                         android:id="@+id/tvCharityStatustext"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:text="Make Charity live"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_medium"
-                        android:text="Make Charity live"/>
+                        android:textSize="@dimen/text_medium" />
+
                     <Switch
-                        android:layout_marginLeft="10dp"
                         android:id="@+id/switchCharitylive"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/colorGrayLight"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"/>
+                android:layout_height="2dp"
+                android:background="@color/colorGrayLight" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
 
 
                 <LinearLayout
@@ -74,9 +80,9 @@
                         android:src="@drawable/charity" />
 
                     <com.kodemakers.charity.fonts.RobotoMediumTextView
+                        android:id="@+id/tvCharityNameDashboard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvCharityNameDashboard"
                         android:gravity="center"
                         android:text="Charity Name"
                         android:textColor="@color/mcv_text_date_light"
@@ -150,6 +156,7 @@
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/llUsers"
                     android:layout_width="0dp"
@@ -177,8 +184,6 @@
 
 
                 </LinearLayout>
-
-
 
 
             </LinearLayout>
@@ -264,11 +269,13 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="8dp">
+
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_margin="8dp"
                         android:src="@drawable/notification" />
+
                     <com.kodemakers.charity.fonts.RobotoMediumTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -285,8 +292,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="8dp">
-                </LinearLayout>
+                    android:padding="8dp"></LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

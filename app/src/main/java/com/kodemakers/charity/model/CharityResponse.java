@@ -90,6 +90,17 @@ public class CharityResponse implements Serializable {
     @SerializedName("charity_paypal_email")
     private String charitypaypalemail;
 
+    @SerializedName("is_profile_updated")
+    private String is_profile_updated;
+
+    public String getIs_profile_updated() {
+        return is_profile_updated;
+    }
+
+    public void setIs_profile_updated(String is_profile_updated) {
+        this.is_profile_updated = is_profile_updated;
+    }
+
     public String getIsLive() {
         return isLive;
     }

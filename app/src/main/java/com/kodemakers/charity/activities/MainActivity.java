@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
     CharityResponse charityResponse;
     Switch switchCharityLive;
     String logintype = "";
+    String logintype1 = "";
+    boolean isSwitchClicked = false;
 
-    String logintype="";
-    String logintype1="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +49,15 @@ public class MainActivity extends AppCompatActivity {
             charityResponse = PrefUtils.getUser(MainActivity.this);
             logintype = charityResponse.getType();
             if (logintype.length() > 0) {
-            logintype=charityResponse.getType();
-            logintype1 = charityResponse.getCharityType();
-            if(logintype.length()>0){
-                charityResponse.setType(logintype);
-                PrefUtils.setUser(charityResponse, MainActivity.this);
-            } else {
-                charityResponse.setType("admin");
-                PrefUtils.setUser(charityResponse, MainActivity.this);
+                logintype = charityResponse.getType();
+                logintype1 = charityResponse.getCharityType();
+                if (logintype.length() > 0) {
+                    charityResponse.setType(logintype);
+                    PrefUtils.setUser(charityResponse, MainActivity.this);
+                } else {
+                    charityResponse.setType("admin");
+                    PrefUtils.setUser(charityResponse, MainActivity.this);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         showViews();
         loadData();
-        //comment
     }
 
     private void showViews() {
@@ -110,15 +110,16 @@ public class MainActivity extends AppCompatActivity {
             if (charityResponse.getCharityName().length() != 0) {
                 tvCharityName.setText(charityResponse.getCharityName());
             }
-            if (charityResponse.getIsLive().equalsIgnoreCase("1")) {
-                tvCharityStatusText.setText("Charity is Live");
-                switchCharityLive.setChecked(true);
-            } else {
-                tvCharityStatusText.setText("Make Charity Live");
-                switchCharityLive.setChecked(false);
-            }
         } catch (Exception e) {
 
+        }
+
+        if (charityResponse.getIsLive().equalsIgnoreCase("1")) {
+            tvCharityStatusText.setText("Charity is Live");
+            switchCharityLive.setChecked(true);
+        } else {
+            tvCharityStatusText.setText("Make Charity Live");
+            switchCharityLive.setChecked(false);
         }
 
     }
@@ -191,16 +192,18 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
                 // true if the switch is in the On position
-                if(isChecked){
-                    changecharitylivestatus("1",true,"Charity is live");
-                }
-                else{
-                    changecharitylivestatus("0",false,"Make Charity live");
+                if(!isSwitchClicked) {
+                    if (isChecked) {
+                        changecharitylivestatus("1", true, "Charity is live");
+                    } else {
+                        changecharitylivestatus("0", false, "Make Charity live");
+                    }
                 }
             }
         });
 
     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
@@ -211,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setMessage("Loading...");
             progressDialog.show();
-            String encoded2 = null;
             JSONObject jsonObject = new JSONObject();
 
             try {
@@ -227,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("response", response);
 //                    progressDialog.dismiss();
                     StatusResponse feedsResponse = new GsonBuilder().create().fromJson(response, StatusResponse.class);
+                    isSwitchClicked = true;
                     if (feedsResponse.getStatus().equalsIgnoreCase("1")) {
                         Toast.makeText(MainActivity.this, feedsResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         charityResponse.setIsLive(status);
@@ -238,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, feedsResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     progressDialog.dismiss();
+                    isSwitchClicked = false;
                 }
 
                 @Override
@@ -245,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                     switchCharityLive.setChecked(!isChecked);
                     progressDialog.dismiss();
                     Toast.makeText(MainActivity.this, "Technical Problem, try again later", Toast.LENGTH_SHORT).show();
+                    isSwitchClicked = false;
                 }
             }.call();
         } else {
@@ -254,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     private void setToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -262,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setTitle(charityResponse.getName());
                     if (charityResponse.getType().equalsIgnoreCase("staff")) {
                         toolbar.setSubtitle("Staff");
-                    }else {
+                    } else {
                         toolbar.setSubtitle("Moderator");
                     }
                 } else {
@@ -288,11 +294,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_logout, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_log_out) {
@@ -321,10 +329,13 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         // put your code here...
         charityResponse = PrefUtils.getUser(MainActivity.this);
     }
 }
+
+

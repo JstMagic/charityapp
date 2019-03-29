@@ -374,7 +374,6 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             }
         });
 
-
         tvAdoption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -498,6 +497,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                         charityResponse.setCharityaccountno(edtAccountNo.getText().toString().trim());
                         charityResponse.setCharitypaypalemail(edtPaypalEmail.getText().toString().trim());
                         charityResponse.setCharityType(type);
+                        charityResponse.setIs_profile_updated("1");
                         PrefUtils.setUser(charityResponse, UpdateCharityDetailsActivity.this);
                         Intent in = new Intent(UpdateCharityDetailsActivity.this, MainActivity.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
