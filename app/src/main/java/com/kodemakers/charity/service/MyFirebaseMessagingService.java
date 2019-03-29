@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.kodemakers.charity.activities.DonationActivity;
 import com.kodemakers.charity.activities.LoginActivity;
 import com.kodemakers.charity.activities.SplashActivity;
 import com.kodemakers.charity.app.Config;
@@ -35,7 +36,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-       Log.e(TAG, "From: " + remoteMessage.getFrom());
+        Log.e(TAG, "From: " + remoteMessage.getFrom());
 
         if (remoteMessage == null)
             return;
@@ -62,7 +63,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
             Log.e("error", "adding");
         }
-
 
 
         // Check if message contains a data payload.
@@ -129,6 +129,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Intent resultIntent;
             if (click_action.equalsIgnoreCase("CHARITY_STATUS_NOTIFICATION")) {
                 resultIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                resultIntent.putExtra("from_notification", true);
+                resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            } else if (click_action.equalsIgnoreCase("MONEY_DONATION_NOTIFICATION")) {
+                resultIntent = new Intent(getApplicationContext(), DonationActivity.class);
                 resultIntent.putExtra("from_notification", true);
                 resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             } else {

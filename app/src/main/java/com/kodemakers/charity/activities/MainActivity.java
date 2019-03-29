@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,16 +31,14 @@ import com.kodemakers.charity.model.StatusResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout llUsers, llCharities, llStories, llStaff, llDonations,llMakeCharityLive, llIntroSteppers, llNotifications;
-    TextView tvCharityName,tvCharityStatusText;
+    LinearLayout llUsers, llCharities, llStories, llStaff, llDonations, llMakeCharityLive, llIntroSteppers, llNotifications;
+    TextView tvCharityName, tvCharityStatusText;
     CharityResponse charityResponse;
     Switch switchCharityLive;
+    String logintype = "";
+
     String logintype="";
     String logintype1="";
     @Override
@@ -50,22 +47,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         try {
             charityResponse = PrefUtils.getUser(MainActivity.this);
+            logintype = charityResponse.getType();
+            if (logintype.length() > 0) {
             logintype=charityResponse.getType();
             logintype1 = charityResponse.getCharityType();
             if(logintype.length()>0){
                 charityResponse.setType(logintype);
-                PrefUtils.setUser(charityResponse,MainActivity.this);
-            }else {
+                PrefUtils.setUser(charityResponse, MainActivity.this);
+            } else {
                 charityResponse.setType("admin");
-                PrefUtils.setUser(charityResponse,MainActivity.this);
+                PrefUtils.setUser(charityResponse, MainActivity.this);
             }
         } catch (Exception e) {
             e.printStackTrace();
             charityResponse.setType("admin");
-            PrefUtils.setUser(charityResponse,MainActivity.this);
+            PrefUtils.setUser(charityResponse, MainActivity.this);
         }
 
-        Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
         setToolbar();
         initViews();
         showViews();
@@ -75,32 +73,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void showViews() {
 
-        if(charityResponse.getType().equalsIgnoreCase("moderator")){
+        if (charityResponse.getType().equalsIgnoreCase("moderator")) {
             llUsers.setVisibility(View.VISIBLE);
             llCharities.setVisibility(View.GONE);
             llStaff.setVisibility(View.GONE);
             llDonations.setVisibility(View.VISIBLE);
             llMakeCharityLive.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
-        }else if(charityResponse.getType().equalsIgnoreCase("staff")){
+        } else if (charityResponse.getType().equalsIgnoreCase("staff")) {
             llUsers.setVisibility(View.GONE);
             llCharities.setVisibility(View.GONE);
             llStaff.setVisibility(View.GONE);
             llDonations.setVisibility(View.GONE);
             llMakeCharityLive.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
-        } else{
+        } else {
             llUsers.setVisibility(View.VISIBLE);
             llCharities.setVisibility(View.VISIBLE);
             llStaff.setVisibility(View.VISIBLE);
             llDonations.setVisibility(View.VISIBLE);
             llMakeCharityLive.setVisibility(View.VISIBLE);
-            Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
         }
     }
 
     void initViews() {
-        switchCharityLive  =(Switch)findViewById(R.id.switchCharitylive);
+        switchCharityLive = findViewById(R.id.switchCharitylive);
         llUsers = findViewById(R.id.llUsers);
         llCharities = findViewById(R.id.llCharities);
         llStories = findViewById(R.id.llStories);
@@ -122,8 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 tvCharityStatusText.setText("Make Charity Live");
                 switchCharityLive.setChecked(false);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -137,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         llCharities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         llStories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         llStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         llDonations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 //        llAccount.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -172,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(i);*/
 //            }
 //        });
+
         llIntroSteppers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,12 +199,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
     }
-    public void changecharitylivestatus(final String status, final boolean isChecked, final String livestring){
+
+    public void changecharitylivestatus(final String status, final boolean isChecked, final String livestring) {
         if (isNetworkConnected()) {
             final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setMessage("Loading...");
@@ -230,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
                         charityResponse.setIsLive(status);
                         switchCharityLive.setChecked(isChecked);
                         tvCharityStatusText.setText(livestring);
-                        PrefUtils.setUser(charityResponse,MainActivity.this);
+                        PrefUtils.setUser(charityResponse, MainActivity.this);
                     } else {
                         switchCharityLive.setChecked(!isChecked);
                         Toast.makeText(MainActivity.this, feedsResponse.getMessage(), Toast.LENGTH_SHORT).show();

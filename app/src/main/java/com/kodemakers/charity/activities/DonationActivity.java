@@ -2,10 +2,11 @@ package com.kodemakers.charity.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +22,6 @@ import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.custom.PrefUtils;
 import com.kodemakers.charity.model.DonationList;
-import com.kodemakers.charity.model.FollowersList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ public class DonationActivity extends AppCompatActivity {
         loadData();
     }
 
-    void initViews(){
+    void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
         tvEmptyView = findViewById(R.id.tvEmptyView);
     }
@@ -80,7 +80,7 @@ public class DonationActivity extends AppCompatActivity {
                     DonationList donationList = new GsonBuilder().create().fromJson(response, DonationList.class);
                     if (donationList.getStatus().equalsIgnoreCase("1")) {
 
-                        transactionListAdapter =new DonationDetailAdapter(DonationActivity.this, donationList.getDonationDetails());
+                        transactionListAdapter = new DonationDetailAdapter(DonationActivity.this, donationList.getDonationDetails());
                         recyclerView.setAdapter(transactionListAdapter);
 
                         recyclerView.setVisibility(View.VISIBLE);
@@ -114,9 +114,26 @@ public class DonationActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    finish();
+                    if (getIntent().getBooleanExtra("from_notification", false)) {
+                        Intent i = new Intent(DonationActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        finish();
+                    }
                 }
             });
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getIntent().getBooleanExtra("from_notification", false)) {
+            Intent i = new Intent(DonationActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        } else {
+            super.onBackPressed();
         }
     }
 }

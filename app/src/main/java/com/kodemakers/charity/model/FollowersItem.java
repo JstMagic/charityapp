@@ -2,82 +2,84 @@ package com.kodemakers.charity.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FollowersItem{
+import java.io.Serializable;
 
-	@SerializedName("user_id")
-	private String userId;
+public class FollowersItem implements Serializable {
 
-	@SerializedName("charity_id")
-	private String charityId;
+    @SerializedName("user_id")
+    private String userId;
 
-	@SerializedName("created_at")
-	private String createdAt;
+    @SerializedName("charity_id")
+    private String charityId;
 
-	@SerializedName("id")
-	private String id;
+    @SerializedName("created_at")
+    private String createdAt;
 
-	@SerializedName("username")
-	private String username;
+    @SerializedName("id")
+    private String id;
 
-	@SerializedName("image")
-	private String image;
+    @SerializedName("username")
+    private String username;
 
-	public String getUsername() {
-		return username;
-	}
+    @SerializedName("image")
+    private String image;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getImage() {
-		return image;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public void setUserId(String userId){
-		this.userId = userId;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public String getUserId(){
-		return userId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public void setCharityId(String charityId){
-		this.charityId = charityId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public String getCharityId(){
-		return charityId;
-	}
+    public void setCharityId(String charityId) {
+        this.charityId = charityId;
+    }
 
-	public void setCreatedAt(String createdAt){
-		this.createdAt = createdAt;
-	}
+    public String getCharityId() {
+        return charityId;
+    }
 
-	public String getCreatedAt(){
-		return createdAt;
-	}
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public void setId(String id){
-		this.id = id;
-	}
+    public String getCreatedAt() {
+        return createdAt;
+    }
 
-	public String getId(){
-		return id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"FollowersItem{" + 
-			"user_id = '" + userId + '\'' + 
-			",charity_id = '" + charityId + '\'' + 
-			",created_at = '" + createdAt + '\'' + 
-			",id = '" + id + '\'' + 
-			"}";
-		}
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "FollowersItem{" +
+                        "user_id = '" + userId + '\'' +
+                        ",charity_id = '" + charityId + '\'' +
+                        ",created_at = '" + createdAt + '\'' +
+                        ",id = '" + id + '\'' +
+                        "}";
+    }
 }

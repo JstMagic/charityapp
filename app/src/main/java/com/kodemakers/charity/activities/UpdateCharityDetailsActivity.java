@@ -24,7 +24,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,8 +55,6 @@ import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.custom.PrefUtils;
 import com.kodemakers.charity.model.CharityResponse;
 import com.kodemakers.charity.model.StatusResponse;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,11 +79,10 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
     LinearLayout llUploadImage, llcharityType;
     ImageView imgUploadImage;
     ProgressDialog progressDialog;
-    ProgressBar pb;
     private int SELECT_FILE = 1;
     private File actualImage;
     private File compressedImage;
-    String type="";
+    String type;
 
     CharityResponse charityResponse;
     Location mLastLocation;
@@ -105,10 +101,9 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         setToolbar();
         //charityResponse = (CharityResponse) getIntent().getSerializableExtra("charityResponse");
         charityResponse = PrefUtils.getUser(UpdateCharityDetailsActivity.this);
-//        type=null;
+        type = null;
         initViews();
         loadData();
-
         edtLocation2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +136,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         } else if (type.equalsIgnoreCase("2")) {
             tvDonation.setBackground(getResources().getDrawable(R.drawable.button_background));
             tvDonation.setTextColor(getResources().getColor(R.color.white));
-        }else if (type.equalsIgnoreCase("3")) {
+        } else if (type.equalsIgnoreCase("3")) {
             tvCause.setBackground(getResources().getDrawable(R.drawable.button_background));
             tvCause.setTextColor(getResources().getColor(R.color.white));
         }
@@ -316,7 +311,6 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
     };
 
     void initViews() {
-        pb = findViewById(R.id.pb);
         edtCharityName = findViewById(R.id.edtCharityName);
         edtEmail = findViewById(R.id.edtEmail);
         edtMobile = findViewById(R.id.edtMobile);
@@ -346,47 +340,26 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         edtEmail.setText(charityResponse.getEmail());
         edtMobile.setText(charityResponse.getMobile());
         edtAddress.setText(charityResponse.getCharityAddress());
-        try {
-            edtLocation2.setText(charityResponse.getLatitude() + ", " + charityResponse.getLongitude());
-        }catch(Exception e){
-
-        }
+        //    edtLocation2.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
+//        edtLocation1.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
         edtNameonAccount.setText(charityResponse.getCharitynameinaccount());
         edtIfscCode.setText(charityResponse.getCharityifsccode());
         edtBankName.setText(charityResponse.getCharitybankname());
         edtAccountNo.setText(charityResponse.getCharityaccountno());
         edtPaypalEmail.setText(charityResponse.getCharitypaypalemail());
-        //Glide.with(UpdateCharityDetailsActivity.this).load(AppConstants.BASE_URL + charityResponse.getImage()).into(imgUploadImage);
-        Picasso.with(UpdateCharityDetailsActivity.this).load(AppConstants.BASE_URL + charityResponse.getImage()).into(imgUploadImage, new Callback() {
-            @Override
-            public void onSuccess() {
-                pb.setVisibility(View.GONE);
-                imgUploadImage.setVisibility(View.VISIBLE);
-            }
-            @Override
-            public void onError() {
-                pb.setVisibility(View.GONE);
-                imgUploadImage.setVisibility(View.VISIBLE);
-            }
-        });
-        try {
-            if(charityResponse.getCharityType().equalsIgnoreCase("1")){
-                tvAdoption.setBackground(getResources().getDrawable(R.drawable.button_background));
-                tvAdoption.setTextColor(getResources().getColor(R.color.white));
-            }else  if(charityResponse.getCharityType().equalsIgnoreCase("2")){
-                tvDonation.setBackground(getResources().getDrawable(R.drawable.button_background));
-                tvDonation.setTextColor(getResources().getColor(R.color.white));
-            }else  if(charityResponse.getCharityType().equalsIgnoreCase("3")){
-                tvCause.setBackground(getResources().getDrawable(R.drawable.button_background));
-                tvCause.setTextColor(getResources().getColor(R.color.white));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        Glide.with(UpdateCharityDetailsActivity.this).load(AppConstants.BASE_URL + charityResponse.getImage()).into(imgUploadImage);
+
+        if (charityResponse.getCharityType().equalsIgnoreCase("1")) {
             tvAdoption.setBackground(getResources().getDrawable(R.drawable.button_background));
             tvAdoption.setTextColor(getResources().getColor(R.color.white));
-            type="1";
-            updateUI();
+        } else if (charityResponse.getCharityType().equalsIgnoreCase("2")) {
+            tvDonation.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvDonation.setTextColor(getResources().getColor(R.color.white));
+        } else if (charityResponse.getCharityType().equalsIgnoreCase("3")) {
+            tvCause.setBackground(getResources().getDrawable(R.drawable.button_background));
+            tvCause.setTextColor(getResources().getColor(R.color.white));
         }
+
         tvUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -400,7 +373,6 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                 galleryIntent();
             }
         });
-
 
 
         tvAdoption.setOnClickListener(new View.OnClickListener() {
@@ -450,9 +422,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Account No", Toast.LENGTH_SHORT).show();
         } else if (edtPaypalEmail.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity paypal email", Toast.LENGTH_SHORT).show();
-        } else if (!isValidEmail(edtPaypalEmail.getText().toString())) {
-            Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Valid Paypal Email", Toast.LENGTH_SHORT).show();
-        } else if (edtLocation1.getText().toString().length() == 0 || edtLocation2.getText().toString().length() == 0) {
+        } else if (edtLocation1.getText().toString().length() == 0 & edtLocation2.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter location or get current location", Toast.LENGTH_SHORT).show();
         } else {
             postimage();
@@ -497,7 +467,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
 
             try {
                 jsonObject.put("charity_id", PrefUtils.getUser(UpdateCharityDetailsActivity.this).getCharityId());
-                jsonObject.put("charity_type",type);
+                jsonObject.put("charity_type", type);
                 jsonObject.put("charity_name", edtCharityName.getText().toString().trim());
                 jsonObject.put("mobile", edtMobile.getText().toString().trim());
                 jsonObject.put("charity_address", edtAddress.getText().toString().trim());

@@ -79,8 +79,7 @@
                             android:padding="4dp"
                             android:text="Achievements"
                             android:textColor="@color/colorGrayDark"
-                            android:textSize="@dimen/text_medium"
-                            />
+                            android:textSize="@dimen/text_medium" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -157,16 +156,14 @@
                             android:padding="4dp"
                             android:text="Impacts"
                             android:textColor="@color/colorGrayDark"
-                            android:textSize="@dimen/text_medium"
-                            />
+                            android:textSize="@dimen/text_medium" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingBottom="4dp"
-                        >
+                        android:paddingBottom="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -251,8 +248,7 @@
                             android:padding="4dp"
                             android:text="I Care About"
                             android:textColor="@color/colorGrayDark"
-                            android:textSize="@dimen/text_medium"
-                            />
+                            android:textSize="@dimen/text_medium" />
                     </LinearLayout>
 
                     <LinearLayout
