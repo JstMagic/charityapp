@@ -476,6 +476,8 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                 jsonObject.put("accountno", edtAccountNo.getText().toString().trim());
                 jsonObject.put("paypalemail", edtPaypalEmail.getText().toString().trim());
                 jsonObject.put("image", "data:image/jpeg;base64," + encoded2 + "");
+                jsonObject.put("latitude",latitude);
+                jsonObject.put("longitude",longitude);
             } catch (JSONException e) {
 
             }
