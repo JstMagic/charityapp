@@ -101,7 +101,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         setToolbar();
         //charityResponse = (CharityResponse) getIntent().getSerializableExtra("charityResponse");
         charityResponse = PrefUtils.getUser(UpdateCharityDetailsActivity.this);
-        type = null;
+        type = charityResponse.getType();
         initViews();
         loadData();
         edtLocation2.setOnClickListener(new View.OnClickListener() {
@@ -340,7 +340,7 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         edtEmail.setText(charityResponse.getEmail());
         edtMobile.setText(charityResponse.getMobile());
         edtAddress.setText(charityResponse.getCharityAddress());
-        //    edtLocation2.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
+        edtLocation2.setText(charityResponse.getLatitude() + ", " + charityResponse.getLongitude());
 //        edtLocation1.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
         edtNameonAccount.setText(charityResponse.getCharitynameinaccount());
         edtIfscCode.setText(charityResponse.getCharityifsccode());
@@ -476,8 +476,8 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
                 jsonObject.put("accountno", edtAccountNo.getText().toString().trim());
                 jsonObject.put("paypalemail", edtPaypalEmail.getText().toString().trim());
                 jsonObject.put("image", "data:image/jpeg;base64," + encoded2 + "");
-                jsonObject.put("latitude",latitude);
-                jsonObject.put("longitude",longitude);
+                jsonObject.put("latitude", latitude);
+                jsonObject.put("longitude", longitude);
             } catch (JSONException e) {
 
             }
