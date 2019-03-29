@@ -47,12 +47,6 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/add" />
 
-                    <ProgressBar
-                        android:id="@+id/pb"
-                        android:layout_width="25dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:visibility="visible" />
                 </FrameLayout>
 
             </LinearLayout>
