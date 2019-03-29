@@ -14,6 +14,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ import com.kodemakers.charity.custom.PrefUtils;
 import com.kodemakers.charity.model.InterSlidersDetails;
 import com.kodemakers.charity.model.StaffDetails;
 import com.kodemakers.charity.model.StatusResponse;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +55,7 @@ public class AddStaffActivity extends AppCompatActivity {
     private File compressedImage;
     StaffDetails staffDetails;
     String type;
+    ProgressBar pb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,7 @@ public class AddStaffActivity extends AppCompatActivity {
         loadData();
     }
     void initViews() {
+        pb = findViewById(R.id.pb);
         edtName = findViewById(R.id.edtStaffName);
         edtEmail = findViewById(R.id.edtStaffEmail);
         tvSetImage = findViewById(R.id.tvSetImageStaff);
@@ -113,6 +118,18 @@ public class AddStaffActivity extends AppCompatActivity {
             updateUI();
             tvAdd.setText("Edit");
             Glide.with(AddStaffActivity.this).load(AppConstants.BASE_URL + staffDetails.getImage()).into(imgUser);
+//            Picasso.with(AddStaffActivity.this).load(AppConstants.BASE_URL + AddStaffActivity.this).into(imgUser, new Callback() {
+//                @Override
+//                public void onSuccess() {
+//                    pb.setVisibility(View.GONE);
+//                    imgUser.setVisibility(View.VISIBLE);
+//                }
+//                @Override
+//                public void onError() {
+//                    pb.setVisibility(View.GONE);
+//                    imgUser.setVisibility(View.VISIBLE);
+//                }
+//            });
         }
 
         tvAdd.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +141,8 @@ public class AddStaffActivity extends AppCompatActivity {
                     Toast.makeText(AddStaffActivity.this, "Please enter Name", Toast.LENGTH_SHORT).show();
                 } else if (edtEmail.getText().toString().length() == 0) {
                     Toast.makeText(AddStaffActivity.this, "Please enter Email", Toast.LENGTH_SHORT).show();
+                } else if (isValidEmail(edtEmail.getText().toString())) {
+                    Toast.makeText(AddStaffActivity.this, "Please enter Valid  Email", Toast.LENGTH_SHORT).show();
                 } else if (type == null) {
                     Toast.makeText(AddStaffActivity.this, "Please Select type", Toast.LENGTH_SHORT).show();
                 }else {
@@ -142,7 +161,9 @@ public class AddStaffActivity extends AppCompatActivity {
             }
         });
     }
-
+    private boolean isValidEmail(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
     private void add() {
 
         JSONObject requestObject = new JSONObject();

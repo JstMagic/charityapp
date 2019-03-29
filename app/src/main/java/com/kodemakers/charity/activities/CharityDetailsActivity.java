@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +17,8 @@ import com.kodemakers.charity.R;
 import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.custom.PrefUtils;
 import com.kodemakers.charity.model.CharityResponse;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 public class CharityDetailsActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class CharityDetailsActivity extends AppCompatActivity {
             tvCharityBankName,tvCharityAccountNumber,tvCharityPaypalEmail,tvUpdateCharity;
     ImageView ivCharityImage;
     CharityResponse charityResponse;
+    ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +51,26 @@ public class CharityDetailsActivity extends AppCompatActivity {
         tvCharityAccountNumber = findViewById(R.id.tvCharityAccountNo);
         tvCharityPaypalEmail = findViewById(R.id.tvCharityPaypalEmail);
         tvUpdateCharity = findViewById(R.id.tvCharityUpdate);
+        pb = findViewById(R.id.pb);
     }
     private void loadData(){
         tvCharityName.setText(charityResponse.getCharityName());
         tvEmail.setText(charityResponse.getEmail());
         tvMobile.setText(charityResponse.getMobile());
         tvAddress.setText(charityResponse.getCharityAddress());
-        Glide.with(CharityDetailsActivity.this).load(AppConstants.BASE_URL+charityResponse.getImage()).into(ivCharityImage);
+        //Glide.with(CharityDetailsActivity.this).load(AppConstants.BASE_URL+charityResponse.getImage()).into(ivCharityImage);
+        Picasso.with(CharityDetailsActivity.this).load(AppConstants.BASE_URL + charityResponse.getImage()).into(ivCharityImage, new Callback() {
+            @Override
+            public void onSuccess() {
+                pb.setVisibility(View.GONE);
+                ivCharityImage.setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onError() {
+                pb.setVisibility(View.GONE);
+                ivCharityImage.setVisibility(View.VISIBLE);
+            }
+        });
         tvLocation.setText(charityResponse.getLatitude()+", "+charityResponse.getLongitude());
         tvCharityNameonAccount.setText(charityResponse.getCharitynameinaccount());
         tvCharityIfsc.setText(charityResponse.getCharityifsccode());

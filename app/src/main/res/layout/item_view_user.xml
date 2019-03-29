@@ -26,11 +26,21 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.3"
                 android:gravity="center">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/civUserImage"
                     android:layout_width="60dp"
                     android:layout_height="50dp" />
+                <ProgressBar
+                    android:id="@+id/pb"
+                    android:layout_width="20dp"
+                    android:visibility="visible"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+                </FrameLayout>
 
 
             </LinearLayout>

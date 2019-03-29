@@ -30,22 +30,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/ivImage"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:scaleType="centerCrop" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="150dp">
+                    <ImageView
+                        android:id="@+id/ivImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop" />
+                    <ProgressBar
+                        android:id="@+id/pb"
+                        android:layout_width="25dp"
+                        android:visibility="visible"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+                </FrameLayout>
             </LinearLayout>
-
             <!--<View-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="0.5dp"-->
             <!--android:layout_marginLeft="3dp"-->
             <!--android:layout_marginRight="3dp"-->
             <!--android:background="@color/black" />-->
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

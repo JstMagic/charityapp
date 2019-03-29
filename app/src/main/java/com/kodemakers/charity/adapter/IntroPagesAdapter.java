@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +23,8 @@ import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.model.InterSlidersDetails;
 import com.kodemakers.charity.model.StatusResponse;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,9 +49,22 @@ public class IntroPagesAdapter extends RecyclerView.Adapter<IntroPagesAdapter.Re
     }
 
     @Override
-    public void onBindViewHolder(IntroPagesAdapter.RecViewHolder holder, final int position) {
+    public void onBindViewHolder(final IntroPagesAdapter.RecViewHolder holder, final int position) {
 
-        Glide.with(context).load(AppConstants.BASE_URL + newList.get(position).getImage()).into(holder.ivImage);
+//        Glide.with(context).load(AppConstants.BASE_URL + newList.get(position).getImage()).into(holder.ivImage);
+        Picasso.with(context).load(AppConstants.BASE_URL + newList.get(position).getImage()).into(holder.ivImage, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.pb.setVisibility(View.GONE);
+                holder.ivImage.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError() {
+                holder.pb.setVisibility(View.GONE);
+                holder.ivImage.setVisibility(View.VISIBLE);
+            }
+        });
 
         holder.ivDelete.setColorFilter(Color.parseColor("#03a9f4"));
         holder.ivEdit.setColorFilter(Color.parseColor("#03a9f4"));
@@ -139,10 +155,11 @@ public class IntroPagesAdapter extends RecyclerView.Adapter<IntroPagesAdapter.Re
 
         ImageView ivImage, ivDelete, ivEdit;
         LinearLayout llDelete, llEdit;
+        ProgressBar pb;
 
         public RecViewHolder(View itemView) {
             super(itemView);
-
+            pb = itemView.findViewById(R.id.pb);
             ivImage = itemView.findViewById(R.id.ivImage);
             llEdit = itemView.findViewById(R.id.llEdit);
             llDelete = itemView.findViewById(R.id.llDelete);

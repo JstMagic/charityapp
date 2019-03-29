@@ -26,6 +26,8 @@ import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.custom.PrefUtils;
 import com.kodemakers.charity.model.InterSlidersDetails;
 import com.kodemakers.charity.model.StatusResponse;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -78,6 +80,18 @@ public class AddIntroPageActivity extends AppCompatActivity {
             tvAdd.setText("Edit");
 
             Glide.with(AddIntroPageActivity.this).load(AppConstants.BASE_URL + interSlidersDetails.getImage()).into(imgUser);
+//            Picasso.with(AddIntroPageActivity.this).load(AppConstants.BASE_URL + interSlidersDetails.getImage()).into(imgUser, new Callback() {
+//                @Override
+//                public void onSuccess() {
+//                    pb.setVisibility(View.GONE);
+//                    imgUser.setVisibility(View.VISIBLE);
+//                }
+//                @Override
+//                public void onError() {
+//                    pb.setVisibility(View.GONE);
+//                    imgUser.setVisibility(View.VISIBLE);
+//                }
+//            });
         }
 
         tvAdd.setOnClickListener(new View.OnClickListener() {

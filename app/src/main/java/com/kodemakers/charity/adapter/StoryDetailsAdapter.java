@@ -11,13 +11,17 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kodemakers.charity.R;
 import com.kodemakers.charity.activities.ContributorProfileActivity;
+import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.model.StoryDetails;
 import com.kodemakers.charity.model.UserDetails;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -82,12 +86,23 @@ public class StoryDetailsAdapter extends RecyclerView.Adapter<StoryDetailsAdapte
         };
     }
     @Override
-    public void onBindViewHolder(StoryDetailsAdapter.RecViewHolder holder, final int position) {
+    public void onBindViewHolder(final StoryDetailsAdapter.RecViewHolder holder, final int position) {
 
         holder.tvTitle.setText(mFilteredList.get(position).getName());
         holder.tvDate.setText(mFilteredList.get(position).getDate());
-        Glide.with(context).load(mFilteredList.get(position).getImage()).into(holder.ivStoryImage);
-
+        //Glide.with(context).load(mFilteredList.get(position).getImage()).into(holder.ivStoryImage);
+        Picasso.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImage()).into(holder.ivStoryImage, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.pb.setVisibility(View.GONE);
+                holder.ivStoryImage.setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onError() {
+                holder.pb.setVisibility(View.GONE);
+                holder.ivStoryImage.setVisibility(View.VISIBLE);
+            }
+        });
         holder.ivDelete.setColorFilter(Color.parseColor("#03a9f4"));
         holder.ivEdit.setColorFilter(Color.parseColor("#03a9f4"));
          }
@@ -103,12 +118,13 @@ public class StoryDetailsAdapter extends RecyclerView.Adapter<StoryDetailsAdapte
 
         TextView tvTitle,tvDate;
         ImageView ivStoryImage,ivEdit,ivDelete;
+        ProgressBar pb;
 
 
         public RecViewHolder(View itemView) {
             super(itemView);
 
-
+            pb = itemView.findViewById(R.id.pb);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDate = itemView.findViewById(R.id.tvDate);
             ivStoryImage = itemView.findViewById(R.id.ivStoryImage);

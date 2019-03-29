@@ -11,6 +11,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +21,8 @@ import com.kodemakers.charity.custom.AppConstants;
 import com.kodemakers.charity.model.FollowersItem;
 import com.kodemakers.charity.model.StoryDetails;
 import com.kodemakers.charity.model.UserDetails;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,12 +53,24 @@ public class UserDetailsAdapter extends RecyclerView.Adapter<UserDetailsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(UserDetailsAdapter.RecViewHolder holder, final int position) {
+    public void onBindViewHolder(final UserDetailsAdapter.RecViewHolder holder, final int position) {
 
         holder.tvUserName.setText(mFilteredList.get(position).getUsername());
         holder.tvDate.setText(mFilteredList.get(position).getCreatedAt());
-        Glide.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImage()).into(holder.civUserImage);
+//        Glide.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImage()).into(holder.civUserImage);
+        Picasso.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImage()).into(holder.civUserImage, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.pb.setVisibility(View.GONE);
+                holder.civUserImage.setVisibility(View.VISIBLE);
+            }
 
+            @Override
+            public void onError() {
+                holder.pb.setVisibility(View.GONE);
+                holder.civUserImage.setVisibility(View.VISIBLE);
+            }
+        });
 //        holder.llDetails.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -116,11 +131,12 @@ public class UserDetailsAdapter extends RecyclerView.Adapter<UserDetailsAdapter.
         TextView tvUserName,tvDate;
         CircleImageView civUserImage;
         LinearLayout llDetails;
+        ProgressBar pb;
 
         public RecViewHolder(View itemView) {
             super(itemView);
 
-
+            pb = itemView.findViewById(R.id.pb);
             tvUserName = itemView.findViewById(R.id.tvFollowerName);
             tvDate = itemView.findViewById(R.id.tvDate);
             civUserImage = itemView.findViewById(R.id.civUserImage);

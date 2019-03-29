@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ import com.kodemakers.charity.custom.PostServiceCall;
 import com.kodemakers.charity.model.FollowersItem;
 import com.kodemakers.charity.model.StaffDetails;
 import com.kodemakers.charity.model.StatusResponse;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,12 +61,24 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
     }
 
     @Override
-    public void onBindViewHolder(StaffDetailsAdapter.RecViewHolder holder, final int position) {
+    public void onBindViewHolder(final StaffDetailsAdapter.RecViewHolder holder, final int position) {
         holder.ivUpdateStaff.setColorFilter(Color.parseColor("#000000"));
         holder.ivDeleteStaff.setColorFilter(Color.parseColor("#000000"));
         holder.tvUserName.setText(newList.get(position).getName());
         holder.tvRoleName.setText(newList.get(position).getType());
-        Glide.with(context).load(AppConstants.BASE_URL+newList.get(position).getImage()).into(holder.civUserImage);
+//        Glide.with(context).load(AppConstants.BASE_URL+newList.get(position).getImage()).into(holder.civUserImage);
+        Picasso.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImage()).into(holder.civUserImage, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.pb.setVisibility(View.GONE);
+                holder.civUserImage.setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onError() {
+                holder.pb.setVisibility(View.GONE);
+                holder.civUserImage.setVisibility(View.VISIBLE);
+            }
+        });
         holder.ivDeleteStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,9 +195,11 @@ public class StaffDetailsAdapter extends RecyclerView.Adapter<StaffDetailsAdapte
         TextView tvUserName,tvRoleName;
         CircleImageView civUserImage;
         ImageView ivUpdateStaff,ivDeleteStaff;
+        ProgressBar pb;
 
         public RecViewHolder(View itemView) {
             super(itemView);
+            pb = itemView.findViewById(R.id.pb);
             tvUserName = itemView.findViewById(R.id.tvUserName);
             tvRoleName = itemView.findViewById(R.id.tvRoleName);
             civUserImage = itemView.findViewById(R.id.civUserImage);

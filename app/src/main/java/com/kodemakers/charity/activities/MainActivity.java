@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     CharityResponse charityResponse;
     Switch switchCharityLive;
     String logintype="";
+    String logintype1="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             charityResponse = PrefUtils.getUser(MainActivity.this);
             logintype=charityResponse.getType();
+            logintype1 = charityResponse.getCharityType();
             if(logintype.length()>0){
                 charityResponse.setType(logintype);
                 PrefUtils.setUser(charityResponse,MainActivity.this);
@@ -135,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         llCharities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         llStories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         llStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         llDonations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 //        llAccount.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -175,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(i);*/
 //            }
 //        });
-
         llIntroSteppers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

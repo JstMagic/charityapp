@@ -48,11 +48,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (edtEmail.getText().toString().length() == 0) {
                     Toast.makeText(ForgotPasswordActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (isValidEmail(edtEmail.getText().toString())) {
+                    Toast.makeText(ForgotPasswordActivity.this, "Please enter valid email", Toast.LENGTH_SHORT).show();
+                }else {
                     forgotPassword();
                 }
             }
         });
+    }
+    private boolean isValidEmail(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private boolean isNetworkConnected() {

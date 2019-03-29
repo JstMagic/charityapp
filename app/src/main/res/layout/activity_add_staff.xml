@@ -40,12 +40,19 @@
                         android:layout_gravity="center"
                         android:orientation="vertical">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/imgStaff"
+
+                        <FrameLayout
                             android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:padding="5dp"
-                            android:src="@drawable/user_img" />
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="150dp">
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imgStaff"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:padding="5dp"
+                                android:src="@drawable/user_img" />
+                        </FrameLayout>
+
 
                         <com.kodemakers.charity.fonts.RobotoLightTextView
                             android:id="@+id/tvSetImageStaff"

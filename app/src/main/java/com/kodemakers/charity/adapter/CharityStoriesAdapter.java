@@ -15,6 +15,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ import com.kodemakers.charity.model.FeedsDetails;
 import com.kodemakers.charity.model.LikesDetails;
 import com.kodemakers.charity.model.StatusResponse;
 import com.kodemakers.charity.model.FeedsDetails;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -100,7 +103,20 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
     public void onBindViewHolder(final CharityStoriesAdapter.RecViewHolder holder, final int position) {
 
         holder.tvTitle.setText(mFilteredList.get(position).getTitle());
-        Glide.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImageUrl()).into(holder.ivImage);
+//        Glide.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImageUrl()).into(holder.ivImage);
+        Picasso.with(context).load(AppConstants.BASE_URL + mFilteredList.get(position).getImageUrl()).into(holder.ivImage, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.pb.setVisibility(View.GONE);
+                holder.ivImage.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError() {
+                holder.pb.setVisibility(View.GONE);
+                holder.ivImage.setVisibility(View.VISIBLE);
+            }
+        });
         holder.tvDate.setText(mFilteredList.get(position).getCreatedAt().substring(0,10));
 
         holder.ivDelete.setColorFilter(Color.parseColor("#03a9f4"));
@@ -235,10 +251,11 @@ public class CharityStoriesAdapter extends RecyclerView.Adapter<CharityStoriesAd
         TextView tvTitle, tvDate,tvDetails,tvLikesCount;
         ImageView ivImage,ivShare,ivPlayVideo,ivEdit,ivDelete;
         LinearLayout llEdit,llDelete;
+        ProgressBar pb;
 
         public RecViewHolder(View itemView) {
             super(itemView);
-
+            pb = itemView.findViewById(R.id.pb);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvDetails = itemView.findViewById(R.id.tvDetails);

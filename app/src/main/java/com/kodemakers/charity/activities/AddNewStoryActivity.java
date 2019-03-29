@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ import com.kodemakers.charity.custom.PrefUtils;
 import com.kodemakers.charity.model.FeedsDetails;
 import com.kodemakers.charity.model.FeedsResponse;
 import com.kodemakers.charity.model.StatusResponse;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,6 +72,7 @@ public class AddNewStoryActivity extends AppCompatActivity {
     }
 
     void initViews(){
+//        pb = findViewById(R.id.pb);
         edtTitle = findViewById(R.id.edtTitle);
         edtDetails = findViewById(R.id.edtDetails);
         tvAdd = findViewById(R.id.tvAdd);
@@ -88,6 +92,18 @@ public class AddNewStoryActivity extends AppCompatActivity {
             if (is_Image) {
                 llUploadImage.setVisibility(View.VISIBLE);
                 Glide.with(AddNewStoryActivity.this).load(AppConstants.BASE_URL+list.getImageUrl()).into(imgUploadImage);
+//                Picasso.with(AddNewStoryActivity.this).load(AppConstants.BASE_URL + list.getImageUrl()).into(imgUploadImage, new Callback() {
+//                    @Override
+//                    public void onSuccess() {
+//                        pb.setVisibility(View.GONE);
+//                        imgUploadImage.setVisibility(View.VISIBLE);
+//                    }
+//                    @Override
+//                    public void onError() {
+//                        pb.setVisibility(View.GONE);
+//                        imgUploadImage.setVisibility(View.VISIBLE);
+//                    }
+//                });
                 tvAdd.setText("Edit Image Feed");
             } else {
                 llUploadImage.setVisibility(View.GONE);
