@@ -331,6 +331,10 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
         llcharityType = findViewById(R.id.llcharityType);
     }
 
+    private boolean isValidEmail(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     private void loadData() {
         edtCharityName.setText(charityResponse.getCharityName());
         edtEmail.setText(charityResponse.getEmail());
@@ -403,6 +407,8 @@ public class UpdateCharityDetailsActivity extends AppCompatActivity implements G
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Name", Toast.LENGTH_SHORT).show();
         } else if (edtEmail.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Email", Toast.LENGTH_SHORT).show();
+        } else if (!isValidEmail(edtEmail.getText().toString())) {
+            Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Valid Email", Toast.LENGTH_SHORT).show();
         } else if (edtMobile.getText().toString().length() == 0) {
             Toast.makeText(UpdateCharityDetailsActivity.this, "Please enter Charity Mobile", Toast.LENGTH_SHORT).show();
         } else if (edtAddress.getText().toString().length() == 0) {

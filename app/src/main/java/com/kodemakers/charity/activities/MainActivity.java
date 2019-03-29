@@ -38,21 +38,65 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout llUsers, llCharities, llStories, llStaff, llDonations, llAccount, llIntroSteppers, llNotifications;
+    LinearLayout llUsers, llCharities, llStories, llStaff, llDonations,llMakeCharityLive, llIntroSteppers, llNotifications;
     TextView tvCharityName,tvCharityStatusText;
     CharityResponse charityResponse;
     Switch switchCharityLive;
+    String logintype="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        charityResponse = PrefUtils.getUser(MainActivity.this);
+        try {
+            charityResponse = PrefUtils.getUser(MainActivity.this);
+            logintype=charityResponse.getType();
+            if(logintype.length()>0){
+                charityResponse.setType(logintype);
+                PrefUtils.setUser(charityResponse,MainActivity.this);
+            }else {
+                charityResponse.setType("admin");
+                PrefUtils.setUser(charityResponse,MainActivity.this);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            charityResponse.setType("admin");
+            PrefUtils.setUser(charityResponse,MainActivity.this);
+        }
+
+        Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
         setToolbar();
         initViews();
+        showViews();
         loadData();
-
         //comment
     }
+
+    private void showViews() {
+
+        if(charityResponse.getType().equalsIgnoreCase("moderator")){
+            llUsers.setVisibility(View.VISIBLE);
+            llCharities.setVisibility(View.GONE);
+            llStaff.setVisibility(View.GONE);
+            llDonations.setVisibility(View.VISIBLE);
+            llMakeCharityLive.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
+        }else if(charityResponse.getType().equalsIgnoreCase("staff")){
+            llUsers.setVisibility(View.GONE);
+            llCharities.setVisibility(View.GONE);
+            llStaff.setVisibility(View.GONE);
+            llDonations.setVisibility(View.GONE);
+            llMakeCharityLive.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
+        } else{
+            llUsers.setVisibility(View.VISIBLE);
+            llCharities.setVisibility(View.VISIBLE);
+            llStaff.setVisibility(View.VISIBLE);
+            llDonations.setVisibility(View.VISIBLE);
+            llMakeCharityLive.setVisibility(View.VISIBLE);
+            Toast.makeText(MainActivity.this,charityResponse.getType(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
     void initViews() {
         switchCharityLive  =(Switch)findViewById(R.id.switchCharitylive);
         llUsers = findViewById(R.id.llUsers);
@@ -60,21 +104,25 @@ public class MainActivity extends AppCompatActivity {
         llStories = findViewById(R.id.llStories);
         llStaff = findViewById(R.id.llStaff);
         llDonations = findViewById(R.id.llDonations);
-        llAccount = findViewById(R.id.llAccount);
         llIntroSteppers = findViewById(R.id.llIntroSteppers);
         llNotifications = findViewById(R.id.llNotifications);
+        llMakeCharityLive = findViewById(R.id.llMakeCharityLive);
         tvCharityName = findViewById(R.id.tvCharityNameDashboard);
         tvCharityStatusText = findViewById(R.id.tvCharityStatustext);
-        if (charityResponse.getCharityName().length() != 0) {
-            tvCharityName.setText(charityResponse.getCharityName());
+        try {
+            if (charityResponse.getCharityName().length() != 0) {
+                tvCharityName.setText(charityResponse.getCharityName());
+            }
+            if (charityResponse.getIsLive().equalsIgnoreCase("1")) {
+                tvCharityStatusText.setText("Charity is Live");
+                switchCharityLive.setChecked(true);
+            } else {
+                tvCharityStatusText.setText("Make Charity Live");
+                switchCharityLive.setChecked(false);
+            }
         }
-        if(charityResponse.getIsLive().equalsIgnoreCase("1")){
-            tvCharityStatusText.setText("Charity is Live");
-            switchCharityLive.setChecked(true);
-        }
-        else{
-            tvCharityStatusText.setText("Make Charity Live");
-            switchCharityLive.setChecked(false);
+        catch (Exception e){
+
         }
 
     }
@@ -120,13 +168,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        llAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /*/* Intent i = new Intent(MainActivity.this, UpdateCharityDetailsActivity.class);
-                startActivity(i);*/
-            }
-        });
+//        llAccount.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//               /*/* Intent i = new Intent(MainActivity.this, UpdateCharityDetailsActivity.class);
+//                startActivity(i);*/
+//            }
+//        });
 
         llIntroSteppers.setOnClickListener(new View.OnClickListener() {
             @Override
