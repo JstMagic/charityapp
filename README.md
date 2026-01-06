@@ -4,8 +4,11 @@ An Android application for charity management and donations.
 
 ## Project Structure
 
-The application follows a feature-based package structure, separating UI layers, business logic, and data models to improve maintainability and scalability.
+The application is organised using logical, feature-based package grouping within Android Studio.  
+This structure separates UI components, business logic, and data models to improve maintainability and scalability.  
+The layout below represents the **conceptual organisation of the code**, rather than the raw folder structure displayed on GitHub.
 
+```text
 com.kodemakers.charity/
 ├── activities/
 │   ├── authentication/      # LoginActivity, SignUpActivity, ForgotPasswordActivity
@@ -20,6 +23,7 @@ com.kodemakers.charity/
 ├── custom/                  # Custom UI components
 ├── util/                    # Fonts, helpers, extensions
 └── CharityApp.java          # Application class
+```
 
 ## Technical Details
 - **Language**: Java (100%)
