@@ -3,24 +3,23 @@
 An Android application for charity management and donations.
 
 ## Project Structure
-com.kodemakers.charity/
+
+The application follows a feature-based package structure, separating UI layers, business logic, and data models to improve maintainability and scalability.
 
 com.kodemakers.charity/
-├── activities/               # 22 Activity classes categorized as:
-│   ├── Authentication/      # LoginActivity, SignUpActivity, ForgotPasswordActivity
-│   ├── Donor/              # MainActivity, CharityDetailsActivity, DonationActivity
-│   ├── Charity Management/ # AddNewStoryActivity, UpdateCharityDetailsActivity, AddStaffActivity
-│   ├── User Management/    # ProfileActivity, AccountDetailsActivity, UsersListActivity
-│   ├── Content/            # StoriesActivity, PlayVideoActivity, AddVideoFeedActivity
-│   └── Utilities/          # SplashActivity, NotificationActivity, IntroSteppersActivity
+├── activities/
+│   ├── authentication/      # LoginActivity, SignUpActivity, ForgotPasswordActivity
+│   ├── donor/               # MainActivity, CharityDetailsActivity, DonationActivity
+│   ├── charity/             # AddNewStoryActivity, UpdateCharityDetailsActivity, AddStaffActivity
+│   ├── user/                # ProfileActivity, AccountDetailsActivity, UsersListActivity
+│   ├── content/             # StoriesActivity, PlayVideoActivity, AddVideoFeedActivity
+│   └── common/              # SplashActivity, NotificationActivity, IntroSteppersActivity
 ├── adapter/                 # RecyclerView adapters
 ├── model/                   # Data models (User, Charity, Donation)
-├── service/                 # Business logic services
+├── service/                 # Business logic & API services
 ├── custom/                  # Custom UI components
-├── fonts/                   # Font utilities
-└── app/                     # Application class
-
-```
+├── util/                    # Fonts, helpers, extensions
+└── CharityApp.java          # Application class
 
 ## Technical Details
 - **Language**: Java (100%)
