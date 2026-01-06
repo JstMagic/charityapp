@@ -55,19 +55,19 @@ com.kodemakers.charity/
 
 Features (Based on Activity Names)
 
-· User Authentication: Login, SignUp, ForgotPassword
-· Charity Management: Add stories, videos, staff, update details
-· Donation System: Process and track donations
-· User Profiles: Contributor and account management
-· Content Management: Stories, videos, onboarding
-· Admin Features: User and staff listings
-· Notifications: In-app notifications system
+- User Authentication: Login, SignUp, ForgotPassword
+- Charity Management: Add stories, videos, staff, update details
+- Donation System: Process and track donations
+- User Profiles: Contributor and account management
+- Content Management: Stories, videos, onboarding
+- Admin Features: User and staff listings
+- Notifications: In-app notifications system
 
  Important Notes
  
-· Update dependencies for current Android versions
-· Requires Firebase configuration
-· Contains both donor and admin interfaces
+- Update dependencies for current Android versions
+- Requires Firebase configuration
+- Contains both donor and admin interfaces
 
  Links
 
