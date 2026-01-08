@@ -33,11 +33,11 @@ com.kodemakers.charity/
 
 # User Authentication
 
-Login, registration, and password recovery
+- Login, registration, and password recovery
 
 # Donation System
 
-Browse charities and make donations
+- Browse charities and make donations
 
 - View charity details and donation-related content
 
