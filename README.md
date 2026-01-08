@@ -28,7 +28,7 @@ com.kodemakers.charity/
 ├── custom/                  # Custom UI components
 ├── util/                    # Fonts, helpers, extensions
 └── CharityApp.java          # Application class
-
+```
 
 ## Technical Details
 - **Language**: Java (100%)
