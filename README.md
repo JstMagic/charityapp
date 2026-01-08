@@ -29,11 +29,44 @@ com.kodemakers.charity/
 ├── util/                    # Fonts, helpers, extensions
 └── CharityApp.java          # Application class
 ```
+## Key Features
+
+# User Authentication
+
+Login, registration, and password recovery
+
+# Donation System
+
+Browse charities and make donations
+
+- View charity details and donation-related content
+
+# Charity Management
+
+- Add and manage charity stories, videos, and staff
+
+- Update charity profiles and information
+
+# User Profiles
+
+- Account and contributor profile management
+
+# Content Management
+
+- Stories, video feeds, and onboarding flows
+
+# Administrative Features
+
+- User and staff listings
+
+- In-app notifications
 
 ## Technical Details
 - **Language**: Java (100%)
 - **Package**: `com.kodemakers.charity`
-
+- **Platform**: Android
+- **Backend Services**: Firebase (Authentication, data storage, notifications)
+ 
 ##  Quick Start
 
 ### Prerequisites
