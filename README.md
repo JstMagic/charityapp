@@ -2,7 +2,7 @@
 
 CharityApp is an Android application built in Java that enables users to browse charities, make donations, and manage charity-related content through a role-based interface.
 
-The application includes functionality for donors, charity administrators, and content managers, providing a complete end-to-end charity and donation workflow.
+The application supports donors, charity administrators, and content managers, providing a complete end-to-end charity and donation workflow.
 
 ---
 
