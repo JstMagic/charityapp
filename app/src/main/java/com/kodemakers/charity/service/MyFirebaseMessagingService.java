@@ -2,6 +2,7 @@ package com.kodemakers.charity.service;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +34,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private NotificationUtils notificationUtils;
     NotificationDetailModelList notificationDetailModelList;
     ArrayList<NotificationResponse> notificationResponseArrayList;
+
+    @Override
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+
+        if (TextUtils.isEmpty(token)) {
+            return;
+        }
+
+        storeRegIdInPref(token);
+        sendRegistrationToServer(token);
+
+        Intent registrationComplete = new Intent(Config.REGISTRATION_COMPLETE);
+        registrationComplete.putExtra("token", token);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -93,6 +110,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
         }
+    }
+
+    private void sendRegistrationToServer(String token) {
+        Log.e(TAG, "sendRegistrationToServer: " + token);
+    }
+
+    private void storeRegIdInPref(String token) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("regId", token);
+        editor.apply();
     }
 
     private void handleDataMessage(JSONObject json) {
